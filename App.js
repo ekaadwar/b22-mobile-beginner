@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default class App extends Component {
   render() {
@@ -34,7 +34,21 @@ export default class App extends Component {
             </View>
           </View>
 
-          <View></View>
+          <View style={styles.buttonWrapper}>
+            <View style={styles.variantWrapper}>
+              {["R", "L", "XL"].map((items) => {
+                return (
+                  <View style={styles.variant} key={items}>
+                    <Text style={styles.variantText}>{items}</Text>
+                  </View>
+                );
+              })}
+            </View>
+
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>Add to Cart</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
@@ -106,6 +120,38 @@ const styles = StyleSheet.create({
     color: "#6A4029",
   },
   bold: {
+    fontWeight: "bold",
+  },
+  buttonWrapper: {
+    paddingHorizontal: 20,
+    paddingBottom: 40,
+  },
+  variantWrapper: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    marginVertical: 20,
+  },
+  variant: {
+    width: 40,
+    height: 40,
+    backgroundColor: "#FFBA33",
+    borderRadius: 9999,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  variantText: {
+    fontWeight: "bold",
+  },
+  button: {
+    height: 60,
+    borderRadius: 15,
+    backgroundColor: "#6A4029",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 17,
     fontWeight: "bold",
   },
 });
