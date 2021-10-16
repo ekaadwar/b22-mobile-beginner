@@ -1,10 +1,16 @@
 import React, { Component } from "react";
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default class ProductDetail extends Component {
   render() {
     return (
-      <View style={styles.parent}>
+      <ScrollView style={styles.parent}>
         <View style={styles.content}>
           <View style={styles.price}>
             <Text style={styles.priceText}>Hello</Text>
@@ -23,13 +29,18 @@ export default class ProductDetail extends Component {
           <View style={styles.contentContext}>
             <View style={styles.deliveryText}>
               <Text style={styles.text}>
-                Delivery only on <Text style={styles.bold}>Monday to friday</Text> at <Text style={styles.bold}>1 - 7 pm</Text>
+                Delivery only on{" "}
+                <Text style={styles.bold}>Monday to friday</Text> at{" "}
+                <Text style={styles.bold}>1 - 7 pm</Text>
               </Text>
             </View>
 
             <View style={styles.description}>
               <Text style={[styles.text, styles.bold]}>
-                Cold brewing is a method of brewing that combines ground coffee and cool water and uses time instead of heat to extract the flavor. It is brewed in small batches and steeped for as long as 48 hours.
+                Cold brewing is a method of brewing that combines ground coffee
+                and cool water and uses time instead of heat to extract the
+                flavor. It is brewed in small batches and steeped for as long as
+                48 hours.
               </Text>
             </View>
           </View>
@@ -50,7 +61,7 @@ export default class ProductDetail extends Component {
             </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
