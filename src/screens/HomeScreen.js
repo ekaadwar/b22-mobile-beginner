@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export default class HomeScreen extends Component {
   render() {
@@ -7,13 +15,17 @@ export default class HomeScreen extends Component {
       <View style={styles.parent}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {[...Array(20)].map((_i, idx) => (
-            <View style={styles.productCard} key={String(idx)}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("detail")}
+              style={styles.productCard}
+              key={String(idx)}
+            >
               <View style={styles.image}>
-                <Text>picture</Text>
+                <Icon name="user-circle" size={30} color="#900" />
               </View>
               <Text style={styles.productName}>Hazelnut Latte</Text>
               <Text style={styles.productPrice}>IDR 30.000</Text>
-            </View>
+            </TouchableOpacity>
           ))}
         </ScrollView>
       </View>
