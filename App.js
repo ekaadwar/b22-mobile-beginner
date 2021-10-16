@@ -3,10 +3,7 @@ import "react-native-gesture-handler";
 import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import {
-  createStackNavigator,
-  HeaderStyleInterpolators,
-} from "@react-navigation/stack";
+import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./src/screens/HomeScreen";
 import ProductDetail from "./src/screens/ProductDetail";
 
@@ -18,16 +15,23 @@ import Cart from "./src/screens/Cart";
 const Stack = createStackNavigator();
 
 const Header = ({ navigation, scene }) => {
-  console.log(scene);
+  const titleName = scene.route.name;
+  console.log(titleName);
 
   return (
     <View style={headerStyles.parent}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
-        <FontAwesome name="chevron-left" size={20} color="silver" />
+        <FontAwesome
+          name="chevron-left"
+          size={20}
+          color={titleName === "detail" ? "white" : "black"}
+        />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("cart")}>
-        <AntDesign name="shoppingcart" size={20} color="silver" />
-      </TouchableOpacity>
+      {titleName === "detail" && (
+        <TouchableOpacity onPress={() => navigation.navigate("cart")}>
+          <AntDesign name="shoppingcart" size={20} color="silver" />
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
@@ -62,7 +66,15 @@ export default class App extends Component {
             }}
             name="detail"
           />
-          <Stack.Screen component={Cart} name="cart" />
+          <Stack.Screen
+            component={Cart}
+            options={{
+              header: Header,
+              cardStyle: { backgroundColor: "transparent" },
+              headerTransparent: true,
+            }}
+            name="cart"
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );
