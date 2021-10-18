@@ -1,7 +1,13 @@
 import "react-native-gesture-handler";
 
 import React, { Component } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -14,9 +20,9 @@ import EditProfile from "./src/screens/EditProfile";
 import AllMenu from "./src/screens/AllMenu";
 import PrivacyPolicy from "./src/screens/PrivacyPolicy";
 import Security from "./src/screens/Security";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 import Header from "./src/components/Header";
+import HomeHeader from "./src/components/HomeHeader";
 import DrawerContents from "./src/components/DrawerContents";
 
 const Stack = createStackNavigator();
@@ -29,7 +35,11 @@ class MainStack extends Component {
         <Stack.Screen
           component={HomeScreen}
           name="home"
-          options={{ title: "Dashboard" }}
+          options={{
+            header: HomeHeader,
+            cardStyle: { backgroundColor: "transparent" },
+            headerTransparent: true,
+          }}
         />
         <Stack.Screen
           component={ProductDetail}

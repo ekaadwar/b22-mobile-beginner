@@ -81,6 +81,7 @@ const ratio = 0.8;
 const styles = StyleSheet.create({
   parent: {
     backgroundColor: "#F2F2F2",
+    paddingTop: 100,
   },
   container: {
     paddingHorizontal: 34,

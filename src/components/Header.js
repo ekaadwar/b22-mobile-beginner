@@ -27,7 +27,6 @@ const Header = ({ navigation, scene }) => {
 
 const headerStyles = StyleSheet.create({
   parent: {
-    // backgroundColor: "#362115",
     height: 80,
     justifyContent: "space-between",
     alignItems: "flex-end",
