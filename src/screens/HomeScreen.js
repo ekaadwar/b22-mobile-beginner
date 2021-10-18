@@ -20,7 +20,10 @@ export default class HomeScreen extends Component {
         <View style={styles.container}>
           <Text style={styles.mainTitle}>A good coffee is a good day</Text>
           <Text style={styles.sectionTitle}>Favorite Products</Text>
-          <TouchableOpacity style={styles.linkWrapper}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("favorites")}
+            style={styles.linkWrapper}
+          >
             <Text style={styles.linkText}>See more</Text>
           </TouchableOpacity>
         </View>

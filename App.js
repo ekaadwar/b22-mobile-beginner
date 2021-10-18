@@ -20,6 +20,7 @@ import EditProfile from "./src/screens/EditProfile";
 import AllMenu from "./src/screens/AllMenu";
 import PrivacyPolicy from "./src/screens/PrivacyPolicy";
 import Security from "./src/screens/Security";
+import FavoriteProducts from "./src/screens/FavoriteProducts";
 
 import Header from "./src/components/Header";
 import HomeHeader from "./src/components/HomeHeader";
@@ -58,6 +59,15 @@ class MainStack extends Component {
             headerTransparent: true,
           }}
           name="cart"
+        />
+        <Stack.Screen
+          component={FavoriteProducts}
+          options={{
+            header: Header,
+            cardStyle: { backgroundColor: "transparent" },
+            headerTransparent: true,
+          }}
+          name="favorites"
         />
       </Stack.Navigator>
     );
