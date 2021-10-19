@@ -25,6 +25,7 @@ import FavoriteProducts from "./src/screens/FavoriteProducts";
 import Header from "./src/components/Header";
 import HomeHeader from "./src/components/HomeHeader";
 import DrawerContents from "./src/components/DrawerContents";
+import PromoProducts from "./src/screens/PromoProducts";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -33,15 +34,6 @@ class MainStack extends Component {
   render() {
     return (
       <Stack.Navigator>
-        <Stack.Screen
-          component={FavoriteProducts}
-          options={{
-            header: Header,
-            cardStyle: { backgroundColor: "transparent" },
-            headerTransparent: true,
-          }}
-          name="favorites"
-        />
         <Stack.Screen
           component={HomeScreen}
           name="home"
@@ -68,6 +60,24 @@ class MainStack extends Component {
             headerTransparent: true,
           }}
           name="cart"
+        />
+        <Stack.Screen
+          component={FavoriteProducts}
+          options={{
+            header: Header,
+            cardStyle: { backgroundColor: "transparent" },
+            headerTransparent: true,
+          }}
+          name="favorites"
+        />
+        <Stack.Screen
+          component={PromoProducts}
+          options={{
+            header: Header,
+            cardStyle: { backgroundColor: "transparent" },
+            headerTransparent: true,
+          }}
+          name="promo"
         />
       </Stack.Navigator>
     );
