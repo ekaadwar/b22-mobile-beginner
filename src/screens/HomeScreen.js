@@ -8,8 +8,6 @@ import {
   View,
 } from "react-native";
 
-import Icon from "react-native-vector-icons/FontAwesome";
-
 import hazelnutLatte from "../assets/image/products/hazelnutLatte.png";
 import cappuccino from "../assets/image/products/cappuccino.png";
 

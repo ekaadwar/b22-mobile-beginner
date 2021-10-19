@@ -6,6 +6,8 @@ export const chocoOreo = require("./chocoOreo.png");
 
 export const coffeeWhippedCream = require("./coffeeWhippedCream.png");
 
+export const coldBrew = require("./coldBrew.png");
+
 export const creamyIceLatte = require("./creamyIceLatte.png");
 
 export const drumStick = require("./drumStick.png");

@@ -15,6 +15,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import HomeScreen from "./src/screens/HomeScreen";
 import ProductDetail from "./src/screens/ProductDetail";
+import ProductDetail2 from "./src/screens/ProductDetail2";
 import Cart from "./src/screens/Cart";
 import EditProfile from "./src/screens/EditProfile";
 import AllMenu from "./src/screens/AllMenu";
@@ -35,6 +36,15 @@ class MainStack extends Component {
     return (
       <Stack.Navigator>
         <Stack.Screen
+          component={ProductDetail2}
+          options={{
+            header: Header,
+            cardStyle: { backgroundColor: "transparent" },
+            headerTransparent: true,
+          }}
+          name="detail"
+        />
+        <Stack.Screen
           component={HomeScreen}
           name="home"
           options={{
@@ -42,15 +52,6 @@ class MainStack extends Component {
             cardStyle: { backgroundColor: "transparent" },
             headerTransparent: true,
           }}
-        />
-        <Stack.Screen
-          component={ProductDetail}
-          options={{
-            header: Header,
-            cardStyle: { backgroundColor: "transparent" },
-            headerTransparent: true,
-          }}
-          name="detail"
         />
         <Stack.Screen
           component={Cart}

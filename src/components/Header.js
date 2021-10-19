@@ -10,15 +10,11 @@ const Header = ({ navigation, scene }) => {
   return (
     <View style={headerStyles.parent}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
-        <FontAwesome
-          name="chevron-left"
-          size={20}
-          color={titleName === "detail" ? "white" : "black"}
-        />
+        <FontAwesome name="chevron-left" size={20} color="black" />
       </TouchableOpacity>
       {titleName === "detail" && (
         <TouchableOpacity onPress={() => navigation.navigate("cart")}>
-          <AntDesign name="shoppingcart" size={20} color="silver" />
+          <AntDesign name="shoppingcart" size={20} color="black" />
         </TouchableOpacity>
       )}
     </View>
