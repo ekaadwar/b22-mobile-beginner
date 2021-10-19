@@ -1,9 +1,11 @@
-import vergiTomattoMix from "../assets/image/products/vergieTomattoMix.png";
-import hazelnutLatte from "../assets/image/products/hazelnutLatte.png";
-import summerFriedRice from "../assets/image/products/summerFriedRice.png";
-import creamyIceLatte from "../assets/image/products/creamyIceLatte.png";
-import drumStick from "../assets/image/products/drumStick.png";
-import saltyRice from "../assets/image/products/saltyRice.png";
+import {
+  vergiTomattoMix,
+  hazelnutLatte,
+  summerFriedRice,
+  creamyIceLatte,
+  drumStick,
+  saltyRice,
+} from "../assets/image/products";
 
 const dataFavorites = [
   {

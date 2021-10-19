@@ -1,9 +1,10 @@
 import React from "react";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 import ItemCard from "../components/ItemCard";
 
 import dataFavorites from "../data/dataFavorites";
+import dataPromo from "../data/dataPromo";
 
 export default function FavoriteProducts() {
   return (

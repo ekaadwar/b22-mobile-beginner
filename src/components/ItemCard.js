@@ -3,6 +3,14 @@ import { Image, StyleSheet, Text, View } from "react-native";
 
 const ratio = 0.9;
 
+const promoPrice = (promo = "harga promo") => {
+  return (
+    <View style={styles.promoCard}>
+      <Text style={styles.productPrice}>IDR {promo}</Text>
+    </View>
+  );
+};
+
 const ItemCard = (data, index) => {
   return (
     <View key={String(index)} style={styles.itemCard}>
@@ -11,8 +19,11 @@ const ItemCard = (data, index) => {
       </View>
 
       <View style={styles.textWrapper}>
+        {data.promo && promoPrice(data.promo)}
         <Text style={styles.productName}>{data.name}</Text>
-        <Text style={styles.productPrice}>IDR {data.price}</Text>
+        <Text style={data.promo ? styles.priceCanceled : styles.productPrice}>
+          IDR {data.price}
+        </Text>
       </View>
     </View>
   );
@@ -48,6 +59,18 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     alignItems: "center",
     paddingHorizontal: 10,
+    position: "relative",
+  },
+  promoCard: {
+    position: "absolute",
+    height: 43 * ratio,
+    width: 133 * ratio,
+    backgroundColor: "white",
+    borderRadius: 20 * ratio,
+    top: 43 * ratio * -1,
+    elevation: 2,
+    alignItems: "center",
+    justifyContent: "center",
   },
   productName: {
     fontSize: 22,
@@ -58,6 +81,11 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: "700",
     color: "#6A4029",
+  },
+  priceCanceled: {
+    fontSize: 17,
+    color: "#9F9F9F",
+    textDecorationLine: "line-through",
   },
 });
 
