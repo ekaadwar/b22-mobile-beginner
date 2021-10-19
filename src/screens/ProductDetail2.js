@@ -1,7 +1,45 @@
 import React, { Component } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 import { coldBrew } from "../assets/image/products";
+
+const PICTURE_SIZE = 240;
+const RATIO = 0.8;
+const CIRCLE_SIZE_1 = 8;
+
+const MainButton = (text = "Submit") => {
+  return (
+    <TouchableOpacity style={mainButtonStyles.button}>
+      <Text style={mainButtonStyles.buttonText}>{text}</Text>
+    </TouchableOpacity>
+  );
+};
+
+const mainButtonStyles = StyleSheet.create({
+  button: {
+    height: 70 * RATIO,
+    width: "100%",
+    backgroundColor: "#6A4029",
+    borderRadius: 20 * RATIO,
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+    bottom: 40,
+    alignSelf: "center",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 17,
+    fontWeight: "bold",
+  },
+});
 
 export default class ProdutDetail2 extends Component {
   pictureCircle = (picture) => {
@@ -46,14 +84,11 @@ export default class ProdutDetail2 extends Component {
             is brewed in small batches and steeped for as long as 48 hours.
           </Text>
         </View>
+        {MainButton("Add to Cart")}
       </View>
     );
   }
 }
-
-const PICTURE_SIZE = 240;
-const RATIO = 0.8;
-const CIRCLE_SIZE_1 = 8;
 
 const styles = StyleSheet.create({
   parent: {
@@ -62,6 +97,7 @@ const styles = StyleSheet.create({
     height: "100%",
     paddingHorizontal: 30,
     alignItems: "center",
+    position: "relative",
   },
   pictureSection: {
     marginTop: 16,
@@ -96,6 +132,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#C4C4C4",
   },
   textWrapper: {
+    marginTop: 41 * RATIO,
     width: "100%",
   },
   productName: {
@@ -113,5 +150,6 @@ const styles = StyleSheet.create({
   },
   sectionContent: {
     fontSize: 15,
+    marginBottom: 20,
   },
 });
