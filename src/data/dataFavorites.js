@@ -5,7 +5,7 @@ import {
   creamyIceLatte,
   drumStick,
   saltyRice,
-} from "../assets/image/products";
+} from "../assets/image";
 
 const dataFavorites = [
   {

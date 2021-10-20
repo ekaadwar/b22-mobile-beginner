@@ -1,60 +1,21 @@
 import React, { Component } from "react";
-import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-import { coldBrew } from "../assets/image/products";
+import MainButton from "../components/MainButton";
+import CirclePicture from "../components/CirclePicture";
+
+import { coldBrew } from "../assets/image";
 
 const PICTURE_SIZE = 240;
 const RATIO = 0.8;
 const CIRCLE_SIZE_1 = 8;
 
-const MainButton = (text = "Submit") => {
-  return (
-    <TouchableOpacity style={mainButtonStyles.button}>
-      <Text style={mainButtonStyles.buttonText}>{text}</Text>
-    </TouchableOpacity>
-  );
-};
-
-const mainButtonStyles = StyleSheet.create({
-  button: {
-    height: 70 * RATIO,
-    width: "100%",
-    backgroundColor: "#6A4029",
-    borderRadius: 20 * RATIO,
-    alignItems: "center",
-    justifyContent: "center",
-    position: "absolute",
-    bottom: 40,
-    alignSelf: "center",
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 17,
-    fontWeight: "bold",
-  },
-});
-
 export default class ProdutDetail2 extends Component {
-  pictureCircle = (picture) => {
-    return (
-      <View style={styles.pictureCircle}>
-        <Image style={styles.picture} source={picture} />
-      </View>
-    );
-  };
-
   render() {
     return (
       <View style={styles.parent}>
         <View style={styles.pictureSection}>
-          {this.pictureCircle(coldBrew)}
+          {CirclePicture(coldBrew, PICTURE_SIZE)}
         </View>
 
         <View style={styles.circleWrapper}>

@@ -5,7 +5,7 @@ import {
   beefSpaghetti,
   mixSnack,
   spicyChicken,
-} from "../assets/image/products";
+} from "../assets/image";
 
 const dataFavorites = [
   {

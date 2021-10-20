@@ -14,7 +14,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import HomeScreen from "./src/screens/HomeScreen";
-import ProductDetail from "./src/screens/ProductDetail";
 import ProductDetail2 from "./src/screens/ProductDetail2";
 import Cart from "./src/screens/Cart";
 import EditProfile from "./src/screens/EditProfile";
@@ -103,7 +102,12 @@ const App = () => {
           component={EditProfile}
         />
         <Drawer.Screen
-          options={{ title: "Orders" }}
+          options={{
+            title: "Orders",
+            header: Header,
+            cardStyle: { backgroundColor: "transparent" },
+            headerTransparent: true,
+          }}
           name="cart"
           component={Cart}
         />
