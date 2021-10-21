@@ -7,6 +7,8 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import MainButton from "../components/MainButton";
 import CirclePicture from "../components/CirclePicture";
 
+import dataCart from "../data/dataCart";
+
 import { vergieTomattoMix } from "../assets/image";
 
 export default class Cart extends Component {
@@ -20,16 +22,16 @@ export default class Cart extends Component {
 
         <FlatList
           style={styles.cardWrapper}
-          data={[...Array(10)]}
-          renderItem={({ _i, idx }) => (
+          data={dataCart}
+          renderItem={({ item, idx }) => (
             <TouchableOpacity style={styles.card} key={String(idx)}>
-              {CirclePicture(vergieTomattoMix, 70)}
+              {CirclePicture(item.image, 70)}
 
               <View style={styles.textWrapper}>
-                <Text style={styles.productName}>Vergie Tomatto Mix</Text>
+                <Text style={styles.productName}>{item.name}</Text>
 
                 <View style={styles.priceWrapper}>
-                  <Text style={styles.productPrice}>IDR 34.000</Text>
+                  <Text style={styles.productPrice}>IDR {item.price}</Text>
 
                   <View style={styles.amountWrapper}>
                     <TouchableOpacity style={styles.amountButton}>
@@ -37,7 +39,7 @@ export default class Cart extends Component {
                     </TouchableOpacity>
 
                     <View style={styles.amountValue}>
-                      <Text style={styles.amountText}>1</Text>
+                      <Text style={styles.amountText}>{item.amount}</Text>
                     </View>
 
                     <TouchableOpacity style={styles.amountButton}>
