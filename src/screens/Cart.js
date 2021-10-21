@@ -1,9 +1,13 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { FlatList, StyleSheet, View, Text } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 import MainButton from "../components/MainButton";
+import CirclePicture from "../components/CirclePicture";
+
+import { vergieTomattoMix } from "../assets/image";
 
 export default class Cart extends Component {
   render() {
@@ -14,9 +18,40 @@ export default class Cart extends Component {
           <Text style={styles.mainTitle}>swipe on an item to delete</Text>
         </View>
 
-        <View></View>
+        <FlatList
+          style={styles.cardWrapper}
+          data={[...Array(10)]}
+          renderItem={({ _i, idx }) => (
+            <TouchableOpacity style={styles.card} key={String(idx)}>
+              {CirclePicture(vergieTomattoMix, 70)}
 
-        {MainButton("Confirm and Checkout")}
+              <View style={styles.textWrapper}>
+                <Text style={styles.productName}>Vergie Tomatto Mix</Text>
+
+                <View style={styles.priceWrapper}>
+                  <Text style={styles.productPrice}>IDR 34.000</Text>
+
+                  <View style={styles.amountWrapper}>
+                    <TouchableOpacity style={styles.amountButton}>
+                      <Text style={styles.amountText}>-</Text>
+                    </TouchableOpacity>
+
+                    <View style={styles.amountValue}>
+                      <Text style={styles.amountText}>1</Text>
+                    </View>
+
+                    <TouchableOpacity style={styles.amountButton}>
+                      <Text style={styles.amountText}>+</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+            </TouchableOpacity>
+          )}
+          keyExtractor={(_i, idx) => String(idx)}
+        />
+
+        {MainButton()}
       </View>
     );
   }
@@ -30,13 +65,59 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     alignItems: "center",
     position: "relative",
+    paddingBottom: 120,
   },
   titleWrapper: {
     flexDirection: "row",
     alignItems: "center",
+    marginTop: 40,
+    marginBottom: 20,
   },
   mainTitle: {
     fontSize: 10,
     marginLeft: 10,
+  },
+  cardWrapper: {
+    width: "100%",
+  },
+  card: {
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    flexDirection: "row",
+    width: "100%",
+    elevation: 2,
+    padding: 20,
+    marginVertical: 7,
+  },
+  textWrapper: {
+    marginLeft: 20,
+    flex: 1,
+    justifyContent: "space-around",
+  },
+  productName: {
+    fontSize: 17,
+    fontWeight: "700",
+  },
+  priceWrapper: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  productPrice: {
+    color: "#895537",
+  },
+  amountWrapper: {
+    flexDirection: "row",
+    backgroundColor: "#6A4029",
+    height: 20,
+    width: 70,
+    borderRadius: 9999,
+    paddingHorizontal: 12,
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  amountText: {
+    color: "#fff",
+    fontSize: 10,
+    fontWeight: "bold",
   },
 });

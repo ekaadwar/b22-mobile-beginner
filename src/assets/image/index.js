@@ -26,4 +26,4 @@ export const spicyChicken = require("./products/spicyChicken.png");
 
 export const summerFriedRice = require("./products/summerFriedRice.png");
 
-export const vergiTomattoMix = require("./products/vergieTomattoMix.png");
+export const vergieTomattoMix = require("./products/vergieTomattoMix.png");
