@@ -1,5 +1,5 @@
 import {
-  vergiTomattoMix,
+  vergieTomattoMix,
   hazelnutLatte,
   summerFriedRice,
   creamyIceLatte,
@@ -9,7 +9,7 @@ import {
 
 const dataFavorites = [
   {
-    image: vergiTomattoMix,
+    image: vergieTomattoMix,
     name: "Vergi Tomatto Mix",
     price: "34.000",
   },

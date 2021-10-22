@@ -1,6 +1,11 @@
 import React, { Component } from "react";
-import { FlatList, StyleSheet, View, Text } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import {
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  Text,
+} from "react-native";
 
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
@@ -9,12 +14,12 @@ import CirclePicture from "../components/CirclePicture";
 
 import dataCart from "../data/dataCart";
 
-import { vergieTomattoMix } from "../assets/image";
+import GeneralStyle from "../components/GeneralStyle";
 
 export default class Cart extends Component {
   render() {
     return (
-      <View style={styles.parent}>
+      <View style={GeneralStyle.parent}>
         <View style={styles.titleWrapper}>
           <MaterialIcons name="swipe" size={16} />
           <Text style={styles.mainTitle}>swipe on an item to delete</Text>
@@ -52,23 +57,18 @@ export default class Cart extends Component {
           )}
           keyExtractor={(_i, idx) => String(idx)}
         />
-
-        {MainButton()}
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate("checkout")}
+          style={GeneralStyle.mainButtonWrapper}
+        >
+          {MainButton("Confirm and Checkout")}
+        </TouchableOpacity>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  parent: {
-    paddingTop: 80,
-    backgroundColor: "#f7f0f0",
-    height: "100%",
-    paddingHorizontal: 30,
-    alignItems: "center",
-    position: "relative",
-    paddingBottom: 120,
-  },
   titleWrapper: {
     flexDirection: "row",
     alignItems: "center",

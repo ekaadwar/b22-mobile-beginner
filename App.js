@@ -21,11 +21,12 @@ import AllMenu from "./src/screens/AllMenu";
 import PrivacyPolicy from "./src/screens/PrivacyPolicy";
 import Security from "./src/screens/Security";
 import FavoriteProducts from "./src/screens/FavoriteProducts";
+import PromoProducts from "./src/screens/PromoProducts";
+import Checkout from "./src/screens/Checkout";
 
 import Header from "./src/components/Header";
 import HomeHeader from "./src/components/HomeHeader";
 import DrawerContents from "./src/components/DrawerContents";
-import PromoProducts from "./src/screens/PromoProducts";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -34,6 +35,15 @@ class MainStack extends Component {
   render() {
     return (
       <Stack.Navigator>
+        <Stack.Screen
+          component={Checkout}
+          name="checkout"
+          options={{
+            header: HomeHeader,
+            cardStyle: { backgroundColor: "transparent" },
+            headerTransparent: true,
+          }}
+        />
         <Stack.Screen
           component={HomeScreen}
           name="home"
