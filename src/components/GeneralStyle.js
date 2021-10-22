@@ -1,4 +1,3 @@
-import React from "react";
 import { StyleSheet } from "react-native";
 
 const GeneralStyle = StyleSheet.create({
@@ -22,6 +21,18 @@ const GeneralStyle = StyleSheet.create({
   },
   bold: {
     fontWeight: "bold",
+  },
+  card: {
+    padding: 20,
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    elevation: 2,
+  },
+  verticalSeparator: {
+    borderBottomWidth: 0.5,
+    borderBottomColor: "black",
+    width: "100%",
+    backgroundColor: "coral",
   },
 });
 

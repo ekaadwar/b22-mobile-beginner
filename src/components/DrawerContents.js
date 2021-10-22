@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import GeneralStyle from "./GeneralStyle";
 
 const DrawerContents = ({ descriptors, navigation }) => {
   const menuItem = Object.keys(descriptors);
