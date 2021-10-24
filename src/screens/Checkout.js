@@ -67,7 +67,10 @@ export default class Checkout extends Component {
           </View>
         </View>
 
-        <TouchableOpacity style={GeneralStyle.mainButtonWrapper}>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate("payment")}
+          style={GeneralStyle.mainButtonWrapper}
+        >
           {MainButton("Proceed to payment")}
         </TouchableOpacity>
       </View>

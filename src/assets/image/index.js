@@ -2,6 +2,8 @@ export const defaultPicture = require("./defaultPicture.jpg");
 
 export const beefSpaghetti = require("./products/beefSpaghetti.png");
 
+export const chickenFireWing = require("./products/chickenFireWing.png");
+
 export const cappuccino = require("./products/cappuccino.png");
 
 export const chocoOreo = require("./products/chocoOreo.png");

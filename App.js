@@ -27,6 +27,7 @@ import Checkout from "./src/screens/Checkout";
 import Header from "./src/components/Header";
 import HomeHeader from "./src/components/HomeHeader";
 import DrawerContents from "./src/components/DrawerContents";
+import Payment from "./src/screens/Payment";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -36,8 +37,17 @@ class MainStack extends Component {
     return (
       <Stack.Navigator>
         <Stack.Screen
-          component={Checkout}
-          name="checkout"
+          component={Payment}
+          options={{
+            header: Header,
+            cardStyle: { backgroundColor: "transparent" },
+            headerTransparent: true,
+          }}
+          name="payment"
+        />
+        <Stack.Screen
+          component={HomeScreen}
+          name="home"
           options={{
             header: HomeHeader,
             cardStyle: { backgroundColor: "transparent" },
@@ -45,10 +55,10 @@ class MainStack extends Component {
           }}
         />
         <Stack.Screen
-          component={HomeScreen}
-          name="home"
+          component={Checkout}
+          name="checkout"
           options={{
-            header: HomeHeader,
+            header: Header,
             cardStyle: { backgroundColor: "transparent" },
             headerTransparent: true,
           }}

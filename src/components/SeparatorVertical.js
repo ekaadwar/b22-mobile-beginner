@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from "react-native";
 export default function SeparatorVertical({
   width = 0.5,
   top = 0,
-  bottom = 1,
+  bottom = 0,
   color = "#000",
 }) {
   const styles = StyleSheet.create({

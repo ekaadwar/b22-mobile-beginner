@@ -5,10 +5,12 @@ const GeneralStyle = StyleSheet.create({
     paddingTop: 80,
     backgroundColor: "#f7f0f0",
     height: "100%",
-    paddingHorizontal: 30,
     alignItems: "center",
     position: "relative",
     paddingBottom: 120,
+  },
+  container: {
+    paddingHorizontal: 30,
   },
   mainButtonWrapper: {
     width: "100%",
@@ -28,11 +30,18 @@ const GeneralStyle = StyleSheet.create({
     borderRadius: 20,
     elevation: 2,
   },
-  verticalSeparator: {
-    borderBottomWidth: 0.5,
-    borderBottomColor: "black",
+  picture: {
+    resizeMode: "contain",
     width: "100%",
-    backgroundColor: "coral",
+  },
+  justifyCenter: {
+    justifyContent: "center",
+  },
+  justifyBetween: {
+    justifyContent: "space-between",
+  },
+  alignCenter: {
+    alignItems: "center",
   },
 });
 
