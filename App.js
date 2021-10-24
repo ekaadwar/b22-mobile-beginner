@@ -37,15 +37,6 @@ class MainStack extends Component {
     return (
       <Stack.Navigator>
         <Stack.Screen
-          component={Payment}
-          options={{
-            header: Header,
-            cardStyle: { backgroundColor: "transparent" },
-            headerTransparent: true,
-          }}
-          name="payment"
-        />
-        <Stack.Screen
           component={HomeScreen}
           name="home"
           options={{
@@ -53,6 +44,15 @@ class MainStack extends Component {
             cardStyle: { backgroundColor: "transparent" },
             headerTransparent: true,
           }}
+        />
+        <Stack.Screen
+          component={Payment}
+          options={{
+            header: Header,
+            cardStyle: { backgroundColor: "transparent" },
+            headerTransparent: true,
+          }}
+          name="payment"
         />
         <Stack.Screen
           component={Checkout}

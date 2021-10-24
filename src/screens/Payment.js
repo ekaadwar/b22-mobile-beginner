@@ -8,14 +8,40 @@ import {
   View,
 } from "react-native";
 
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+// credit-card,bank,
+
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+// credit-card, bank, truck-delivery
+
 import GeneralStyle from "../components/GeneralStyle";
 import MainButton from "../components/MainButton";
 import SeparatorVertical from "../components/SeparatorVertical";
 
-import dataPayment from "../data/dataPayment";
+import { dataPayment, dataCards } from "../data";
 
 export default class Payment extends Component {
-  paymentMethods = ["Card", "Bank account", "Cash on delivery"];
+  paymentMethods = [
+    {
+      method: "Card",
+      icon: "credit-card",
+      color: "#F47B0A",
+      iconColor: "#fff",
+    },
+
+    {
+      method: "Bank account",
+      icon: "bank",
+      color: "#895537",
+      iconColor: "#fff",
+    },
+    {
+      method: "Cash on delivery",
+      icon: "truck-delivery",
+      color: "#FFBA33",
+      iconColor: "#000",
+    },
+  ];
 
   render() {
     return (
@@ -61,12 +87,21 @@ export default class Payment extends Component {
                     style={[styles.cardSection, GeneralStyle.alignCenter]}
                     key={String(index)}
                   >
-                    <View style={styles.iconWrapper}>
-                      <Text>icon</Text>
+                    <View
+                      style={[
+                        styles.iconWrapper,
+                        { backgroundColor: item.color },
+                      ]}
+                    >
+                      <MaterialCommunityIcons
+                        name={item.icon}
+                        color={item.iconColor}
+                        size={20}
+                      />
                     </View>
 
                     <View>
-                      <Text>{item}</Text>
+                      <Text>{item.method}</Text>
                     </View>
                   </View>
 
@@ -83,7 +118,7 @@ export default class Payment extends Component {
           </View>
 
           <ScrollView horizontal style={styles.cardPaySection}>
-            {[...Array(5)].map((_i, index) => (
+            {dataCards.map((item, index) => (
               <View
                 key={String(index)}
                 style={[
@@ -92,7 +127,7 @@ export default class Payment extends Component {
                   index + 1 === 5 && { marginRight: 30 },
                 ]}
               >
-                <Text>picture</Text>
+                <Image source={item} style={GeneralStyle.picture} />
               </View>
             ))}
           </ScrollView>
@@ -102,6 +137,7 @@ export default class Payment extends Component {
               GeneralStyle.wFull,
               styles.cardSection,
               GeneralStyle.justifyBetween,
+              GeneralStyle.container,
             ]}
           >
             <Text>Total</Text>
@@ -109,7 +145,9 @@ export default class Payment extends Component {
           </View>
         </ScrollView>
 
-        <TouchableOpacity style={GeneralStyle.mainButtonWrapper}>
+        <TouchableOpacity
+          style={[GeneralStyle.mainButtonWrapper, GeneralStyle.container]}
+        >
           <MainButton text="Proceed payment" />
         </TouchableOpacity>
       </View>
@@ -140,7 +178,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     overflow: "hidden",
   },
-
   productAmount: {
     flex: 1,
   },
@@ -155,7 +192,7 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "coral",
+    // backgroundColor: "coral",
     borderRadius: 10 * RATIO,
     marginRight: 10,
   },
@@ -172,6 +209,7 @@ const styles = StyleSheet.create({
     elevation: 2,
     alignItems: "center",
     justifyContent: "center",
+    overflow: "hidden",
   },
   totalPrice: {
     fontSize: 22,

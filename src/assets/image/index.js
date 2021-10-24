@@ -1,5 +1,6 @@
 export const defaultPicture = require("./defaultPicture.jpg");
 
+// products
 export const beefSpaghetti = require("./products/beefSpaghetti.png");
 
 export const chickenFireWing = require("./products/chickenFireWing.png");
@@ -29,3 +30,8 @@ export const spicyChicken = require("./products/spicyChicken.png");
 export const summerFriedRice = require("./products/summerFriedRice.png");
 
 export const vergieTomattoMix = require("./products/vergieTomattoMix.png");
+
+// cards
+export const briPlatinum = require("./cards/briPlatinum.png");
+
+export const briWorld = require("./cards/briWorld.jpg");
