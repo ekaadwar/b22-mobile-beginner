@@ -10,7 +10,7 @@ const deliveryMethod = ["Door delivery", "Pick up at the store", "Dine in"];
 export default class Checkout extends Component {
   render() {
     return (
-      <View style={GeneralStyle.parent}>
+      <View style={[GeneralStyle.parent, GeneralStyle.container]}>
         <View style={GeneralStyle.wFull}>
           <Text style={styles.mainTitle}>Delivery</Text>
         </View>
@@ -71,7 +71,7 @@ export default class Checkout extends Component {
           onPress={() => this.props.navigation.navigate("payment")}
           style={GeneralStyle.mainButtonWrapper}
         >
-          {MainButton("Proceed to payment")}
+          <MainButton text="Proceed to payment" />
         </TouchableOpacity>
       </View>
     );

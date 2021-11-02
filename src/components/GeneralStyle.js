@@ -1,25 +1,8 @@
 import { StyleSheet } from "react-native";
 
 const GeneralStyle = StyleSheet.create({
-  parent: {
-    paddingTop: 80,
-    backgroundColor: "#f7f0f0",
-    height: "100%",
+  alignCenter: {
     alignItems: "center",
-    position: "relative",
-    paddingBottom: 120,
-  },
-  container: {
-    paddingHorizontal: 30,
-  },
-  mainButtonWrapper: {
-    width: "100%",
-    position: "absolute",
-    bottom: 40,
-    alignSelf: "center",
-  },
-  wFull: {
-    width: "100%",
   },
   bold: {
     fontWeight: "bold",
@@ -30,9 +13,8 @@ const GeneralStyle = StyleSheet.create({
     borderRadius: 20,
     elevation: 2,
   },
-  picture: {
-    resizeMode: "contain",
-    width: "100%",
+  container: {
+    paddingHorizontal: 30,
   },
   justifyCenter: {
     justifyContent: "center",
@@ -40,8 +22,35 @@ const GeneralStyle = StyleSheet.create({
   justifyBetween: {
     justifyContent: "space-between",
   },
-  alignCenter: {
-    alignItems: "center",
+  mainButtonWrapper: {
+    width: "100%",
+    position: "absolute",
+    bottom: 40,
+    alignSelf: "center",
+  },
+  parent: {
+    paddingTop: 80,
+    backgroundColor: "#f7f0f0",
+    height: "100%",
+    alignItems: "stretch",
+    position: "relative",
+    paddingBottom: 120,
+  },
+  picture: {
+    resizeMode: "contain",
+    width: "100%",
+  },
+  titleMain: {
+    fontWeight: "bold",
+    fontSize: 34,
+    marginTop: 30,
+  },
+  titleSection: {
+    fontSize: 17,
+    fontWeight: "700",
+  },
+  wFull: {
+    width: "100%",
   },
 });
 

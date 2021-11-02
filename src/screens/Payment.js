@@ -8,11 +8,7 @@ import {
   View,
 } from "react-native";
 
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-// credit-card,bank,
-
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-// credit-card, bank, truck-delivery
 
 import GeneralStyle from "../components/GeneralStyle";
 import MainButton from "../components/MainButton";
@@ -124,10 +120,11 @@ export default class Payment extends Component {
                 style={[
                   styles.cardWrapper,
                   index === 0 && { marginLeft: 30 },
-                  index + 1 === 5 && { marginRight: 30 },
+                  index + 1 === dataCards.length && { marginRight: 30 },
                 ]}
               >
                 <Image source={item} style={GeneralStyle.picture} />
+                {console.log(index)}
               </View>
             ))}
           </ScrollView>

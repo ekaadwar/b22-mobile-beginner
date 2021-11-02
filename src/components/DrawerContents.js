@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import GeneralStyle from "./GeneralStyle";
 
 const DrawerContents = ({ descriptors, navigation }) => {
   const menuItem = Object.keys(descriptors);
@@ -15,9 +14,12 @@ const DrawerContents = ({ descriptors, navigation }) => {
   return (
     <View style={drawerStyles.parent}>
       <View style={drawerStyles.userInfo}>
-        <View style={drawerStyles.profilePicture}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("profile")}
+          style={drawerStyles.profilePicture}
+        >
           <Text>Picture</Text>
-        </View>
+        </TouchableOpacity>
         <Text style={drawerStyles.nameText}>Administrator</Text>
         <Text style={drawerStyles.email}>admin@mail.com</Text>
       </View>

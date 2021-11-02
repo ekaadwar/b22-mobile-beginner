@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import MainButton from "../components/MainButton";
 import CirclePicture from "../components/CirclePicture";
@@ -45,7 +45,7 @@ export default class ProdutDetail2 extends Component {
             is brewed in small batches and steeped for as long as 48 hours.
           </Text>
         </View>
-        {MainButton("Add to Cart")}
+        <MainButton text="Add to cart" />
       </View>
     );
   }

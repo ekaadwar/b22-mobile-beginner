@@ -19,7 +19,7 @@ import GeneralStyle from "../components/GeneralStyle";
 export default class Cart extends Component {
   render() {
     return (
-      <View style={GeneralStyle.parent}>
+      <View style={[GeneralStyle.parent, GeneralStyle.container]}>
         <View style={styles.titleWrapper}>
           <MaterialIcons name="swipe" size={16} />
           <Text style={styles.mainTitle}>swipe on an item to delete</Text>
@@ -39,7 +39,7 @@ export default class Cart extends Component {
                   <Text style={styles.productPrice}>IDR {item.price}</Text>
 
                   <View style={styles.amountWrapper}>
-                    <TouchableOpacity style={styles.amountButton}>
+                    <TouchableOpacity>
                       <Text style={styles.amountText}>-</Text>
                     </TouchableOpacity>
 
@@ -47,7 +47,7 @@ export default class Cart extends Component {
                       <Text style={styles.amountText}>{item.amount}</Text>
                     </View>
 
-                    <TouchableOpacity style={styles.amountButton}>
+                    <TouchableOpacity>
                       <Text style={styles.amountText}>+</Text>
                     </TouchableOpacity>
                   </View>
@@ -56,12 +56,13 @@ export default class Cart extends Component {
             </TouchableOpacity>
           )}
           keyExtractor={(_i, idx) => String(idx)}
+          showsVerticalScrollIndicator={false}
         />
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate("checkout")}
           style={GeneralStyle.mainButtonWrapper}
         >
-          {MainButton("Confirm and Checkout")}
+          <MainButton text="Confirm and Checkout" />
         </TouchableOpacity>
       </View>
     );

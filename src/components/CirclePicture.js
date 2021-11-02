@@ -5,7 +5,7 @@ import { defaultPicture } from "../assets/image";
 
 const RATIO = 0.8;
 
-const CirclePicture = (picture = defaultPicture, size = 150) => {
+const CirclePicture = ({ picture = defaultPicture, size = 150 }) => {
   const styles = StyleSheet.create({
     pictureCircle: {
       width: size * RATIO,

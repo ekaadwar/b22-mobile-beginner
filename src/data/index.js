@@ -119,4 +119,4 @@ export const dataPayment = [
   },
 ];
 
-export const dataCards = [briWorld, briPlatinum, briWorld];
+export const dataCards = [briWorld, briPlatinum];
