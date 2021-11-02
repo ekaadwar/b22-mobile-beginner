@@ -47,6 +47,15 @@ class MainStack extends Component {
           name="profile"
         />
         <Stack.Screen
+          component={EditProfile}
+          options={{
+            header: Header,
+            cardStyle: { backgroundColor: "transparent" },
+            headerTransparent: true,
+          }}
+          name="editProfile"
+        />
+        <Stack.Screen
           component={HomeScreen}
           name="home"
           options={{

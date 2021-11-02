@@ -32,7 +32,7 @@ export default class Profile extends Component {
           <View style={styles.section}>
             <View style={[styles.titleSectionWrapper, styles.spaceBottom]}>
               <Text style={GeneralStyle.titleSection}>Your Information</Text>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={()=>this.props.navigation.navigate("editProfile")} >
                 <Text style={styles.linkText}>edit</Text>
               </TouchableOpacity>
             </View>
