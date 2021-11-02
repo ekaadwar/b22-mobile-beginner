@@ -6,6 +6,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import GeneralStyle from "../components/GeneralStyle";
 import MainButton from "../components/MainButton";
 import CirclePicture from "../components/CirclePicture";
+import SeparatorVertical from "../components/SeparatorVertical";
 
 export default class Profile extends Component {
   buttonHead = ["Order History", "Edit Password", "FAQ", "Help"];
@@ -18,6 +19,8 @@ export default class Profile extends Component {
       "Iskandar Street Block A Number 102 ular melingkar lingakr di pagar pak umar",
   };
 
+  data = [ this.userData.name, this.userData.email, this.userData.phone, this.userData.address ]
+
   render() {
     return (
       <View style={[GeneralStyle.parent, GeneralStyle.container]}>
@@ -27,9 +30,11 @@ export default class Profile extends Component {
           </View>
 
           <View style={styles.section}>
-            <View style={styles.titleSectionWrapper}>
+            <View style={[styles.titleSectionWrapper, styles.spaceBottom]}>
               <Text style={GeneralStyle.titleSection}>Your Information</Text>
-              <Text>edit</Text>
+              <TouchableOpacity>
+                <Text style={styles.linkText}>edit</Text>
+              </TouchableOpacity>
             </View>
 
             <View style={GeneralStyle.card}>
@@ -39,13 +44,19 @@ export default class Profile extends Component {
                 </View>
 
                 <View style={styles.userInfoWrapper}>
-                  <Text style={styles.fullName}>Si Jon</Text>
-                  <Text style={styles.userInfo}>sijon@mail.com</Text>
-                  <Text style={styles.userInfo}>+62 81348287878</Text>
-                  <Text style={styles.userInfo}>
-                    Iskandar Street Block A Number 102 ular melingkar lingakr di
-                    pagar pak umar
-                  </Text>
+                  {this.data.map((item, index)=>(
+                    <View key={String(index)}>
+                      <Text style={
+                        index === 0 ? styles.fullName : styles.userInfo
+                      }>
+                        {item}
+                      </Text>
+
+                      {index + 1 < this.data.length && (
+                        <SeparatorVertical top={2} bottom={5}/>
+                      ) }
+                    </View>
+                  ))}
                 </View>
               </View>
             </View>
@@ -80,8 +91,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
+  linkText:{
+    color : "#6A4029"
+  },
   section: {
     marginVertical: 10,
+  },
+  spaceBottom:{
+    marginBottom : 10
   },
   pictureWrapper: {
     marginRight: 10,
