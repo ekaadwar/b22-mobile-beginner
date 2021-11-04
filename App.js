@@ -29,6 +29,7 @@ import HomeHeader from "./src/components/HomeHeader";
 import DrawerContents from "./src/components/DrawerContents";
 import Payment from "./src/screens/Payment";
 import Profile from "./src/screens/Profile";
+import History from "./src/screens/History";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -37,6 +38,24 @@ class MainStack extends Component {
   render() {
     return (
       <Stack.Navigator>
+        <Stack.Screen
+          component={HomeScreen}
+          name="home"
+          options={{
+            header: HomeHeader,
+            cardStyle: { backgroundColor: "transparent" },
+            headerTransparent: true,
+          }}
+        />
+        <Stack.Screen
+          component={History}
+          options={{
+            header: Header,
+            cardStyle: { backgroundColor: "transparent" },
+            headerTransparent: true,
+          }}
+          name="history"
+        />
         <Stack.Screen
           component={EditProfile}
           options={{
@@ -54,15 +73,6 @@ class MainStack extends Component {
             headerTransparent: true,
           }}
           name="profile"
-        />
-        <Stack.Screen
-          component={HomeScreen}
-          name="home"
-          options={{
-            header: HomeHeader,
-            cardStyle: { backgroundColor: "transparent" },
-            headerTransparent: true,
-          }}
         />
         <Stack.Screen
           component={Payment}

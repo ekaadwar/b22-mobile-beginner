@@ -64,6 +64,10 @@ export default class Profile extends Component {
 
           {this.buttonHead.map((item, index) => (
             <TouchableOpacity
+              onPress={()=>this.props.navigation.navigate(
+                item === "Order History" ? "history" : "profil"
+              )}
+
               key={String(index)}
               style={[
                 GeneralStyle.card,
