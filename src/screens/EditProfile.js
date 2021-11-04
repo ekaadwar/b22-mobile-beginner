@@ -1,12 +1,37 @@
-import React, {Component} from "react";
-import { View, StyleSheet, Text, TextInput, TouchableOpacity } from "react-native";
+import React, {Component, useState} from "react";
+import { View, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, Button } from "react-native";
 import RadioGroup,{Radio} from "react-native-radio-input";
+import DatePicker from 'react-native-date-picker'
 
 import CirclePicture from "../components/CirclePicture";
 import CircleButton from "../components/CircleButton"
 import GeneralStyle from "../components/GeneralStyle";
 import MainButton from "../components/MainButton";
-import { ScrollView } from "react-native-gesture-handler";
+import Dates from "../components/Dates";
+
+const DateComponent = () => {
+  const [date, setDate] = useState(new Date())
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <Button title="Open" onPress={() => setOpen(true)} />
+
+      <DatePicker
+        modal
+        open={open}
+        date={date}
+        onConfirm={(date) => {
+          setOpen(false)
+          setDate(date)
+        }}
+        onCancel={() => {
+          setOpen(false)
+        }}
+      />
+    </>
+  )
+}
 
 export default class EditProfile extends Component {
   constructor(props){
@@ -16,7 +41,9 @@ export default class EditProfile extends Component {
       email : "",
       phone : "",
       birth : "",
-      address : ""
+      address : "",
+      // date : new Date(),
+      // open : false
     }
   }
 
@@ -45,6 +72,25 @@ export default class EditProfile extends Component {
             </View>
           </View>
 
+          {/* <Dates /> */}
+
+          {/* <View>
+            <Button title="Open" onPress={() => this.setState({open:true})} />
+
+            <DatePicker
+              modal
+              open={this.state.open}
+              date={this.state.date}
+              onConfirm={(date) => {
+                this.setState({open:false})
+                this.setState({date: this.state.date})
+              }}
+              onCancel={() => {
+                this.setState({open : false})
+              }}
+            />
+          </View> */}
+
           <View style={styles.section}>
             <Text style={styles.inputLabel}>Name :</Text>
 
@@ -56,12 +102,12 @@ export default class EditProfile extends Component {
             />
           </View>
 
-          <ScrollView horizontal>
+          <View style={styles.section}>
             <RadioGroup getChecked={this.getChecked} RadioGroupStyle={{flexDirection: "row" }}>
               <Radio iconName={"lens"} label={"Female"} value={"female"} />
               <Radio iconName={"lens"} label={"Male"} value={"male"}/>
             </RadioGroup>
-          </ScrollView>
+          </View>
 
           <View style={styles.section}>
             <Text style={styles.inputLabel}>Email Address :</Text>
