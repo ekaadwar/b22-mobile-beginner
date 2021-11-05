@@ -44,15 +44,6 @@ class MainStack extends Component {
     return (
       <Stack.Navigator>
         <Stack.Screen
-          component={HomeScreen}
-          name="home"
-          options={{
-            header: HomeHeader,
-            cardStyle: { backgroundColor: "transparent" },
-            headerTransparent: true,
-          }}
-        />
-        <Stack.Screen
           component={SignUpAndLogin}
           options={{
             cardStyle: { backgroundColor: "transparent" },
@@ -60,6 +51,15 @@ class MainStack extends Component {
             headerShown: false,
           }}
           name="signUpAndLogin"
+        />
+        <Stack.Screen
+          component={HomeScreen}
+          name="home"
+          options={{
+            header: HomeHeader,
+            cardStyle: { backgroundColor: "transparent" },
+            headerTransparent: true,
+          }}
         />
         <Stack.Screen
           component={SignUp}

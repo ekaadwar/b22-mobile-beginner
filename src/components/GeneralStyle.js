@@ -36,9 +36,23 @@ const GeneralStyle = StyleSheet.create({
     position: "relative",
     paddingBottom: 120,
   },
+  parentAuth: {
+    paddingTop: 80,
+    backgroundColor: "#f7f0f0",
+    height: "100%",
+    alignItems: "stretch",
+    position: "relative",
+  },
   picture: {
     resizeMode: "contain",
     width: "100%",
+  },
+  subTitle: {
+    textAlign: "center",
+    fontSize: 17,
+  },
+  textCenter: {
+    textAlign: "center",
   },
   titleAuth: {
     fontSize: 50,
