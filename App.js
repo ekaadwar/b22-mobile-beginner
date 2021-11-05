@@ -30,6 +30,7 @@ import DrawerContents from "./src/components/DrawerContents";
 import Payment from "./src/screens/Payment";
 import Profile from "./src/screens/Profile";
 import History from "./src/screens/History";
+import Welcome from "./src/screens/Welcome";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -46,6 +47,15 @@ class MainStack extends Component {
             cardStyle: { backgroundColor: "transparent" },
             headerTransparent: true,
           }}
+        />
+        <Stack.Screen
+          component={Welcome}
+          options={{
+            cardStyle: { backgroundColor: "transparent" },
+            headerTransparent: true,
+            headerShown: false,
+          }}
+          name="welcome"
         />
         <Stack.Screen
           component={History}

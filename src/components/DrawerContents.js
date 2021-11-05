@@ -7,6 +7,8 @@ import {
   View,
 } from "react-native";
 
+import CirclePicture from "./CirclePicture";
+
 const DrawerContents = ({ descriptors, navigation }) => {
   const menuItem = Object.keys(descriptors);
   const renderMenu = menuItem.map((item) => descriptors[item].options.title);
@@ -14,11 +16,8 @@ const DrawerContents = ({ descriptors, navigation }) => {
   return (
     <View style={drawerStyles.parent}>
       <View style={drawerStyles.userInfo}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("profile")}
-          style={drawerStyles.profilePicture}
-        >
-          <Text>Picture</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("profile")}>
+          <CirclePicture />
         </TouchableOpacity>
         <Text style={drawerStyles.nameText}>Administrator</Text>
         <Text style={drawerStyles.email}>admin@mail.com</Text>
@@ -41,8 +40,8 @@ const DrawerContents = ({ descriptors, navigation }) => {
       />
 
       <View style={drawerStyles.menuWrapper}>
-        <TouchableOpacity>
-          <Text style={drawerStyles.menuItemText}>Sigh-Out</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("welcome")}>
+          <Text style={drawerStyles.menuItemText}>Sign-Out</Text>
         </TouchableOpacity>
       </View>
     </View>

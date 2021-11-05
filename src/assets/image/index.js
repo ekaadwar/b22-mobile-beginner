@@ -1,5 +1,10 @@
 export const defaultPicture = require("./defaultPicture.jpg");
 
+// auth
+export const forgotPassword = require("./auth/forgotPassword.png");
+
+export const welcome = require("./auth/welcome.png");
+
 // products
 export const beefSpaghetti = require("./products/beefSpaghetti.png");
 

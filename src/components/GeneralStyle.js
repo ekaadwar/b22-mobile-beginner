@@ -40,6 +40,10 @@ const GeneralStyle = StyleSheet.create({
     resizeMode: "contain",
     width: "100%",
   },
+  titleAuth: {
+    fontSize: 50,
+    fontWeight: "700",
+  },
   titleMain: {
     fontWeight: "bold",
     fontSize: 34,
