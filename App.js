@@ -31,6 +31,10 @@ import Payment from "./src/screens/Payment";
 import Profile from "./src/screens/Profile";
 import History from "./src/screens/History";
 import Welcome from "./src/screens/Welcome";
+import SignUpAndLogin from "./src/screens/SignUpAndLogin";
+import SignUp from "./src/screens/SignUp";
+import Login from "./src/screens/Login";
+import ForgotPassword from "./src/screens/ForgotPAssword";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -47,6 +51,42 @@ class MainStack extends Component {
             cardStyle: { backgroundColor: "transparent" },
             headerTransparent: true,
           }}
+        />
+        <Stack.Screen
+          component={SignUpAndLogin}
+          options={{
+            cardStyle: { backgroundColor: "transparent" },
+            headerTransparent: true,
+            headerShown: false,
+          }}
+          name="signUpAndLogin"
+        />
+        <Stack.Screen
+          component={SignUp}
+          options={{
+            cardStyle: { backgroundColor: "transparent" },
+            headerTransparent: true,
+            headerShown: false,
+          }}
+          name="signUp"
+        />
+        <Stack.Screen
+          component={Login}
+          options={{
+            cardStyle: { backgroundColor: "transparent" },
+            headerTransparent: true,
+            headerShown: false,
+          }}
+          name="login"
+        />
+        <Stack.Screen
+          component={ForgotPassword}
+          options={{
+            cardStyle: { backgroundColor: "transparent" },
+            headerTransparent: true,
+            headerShown: false,
+          }}
+          name="forgotPassword"
         />
         <Stack.Screen
           component={Welcome}

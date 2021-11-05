@@ -2,20 +2,20 @@ import React, { Component } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import GeneralStyle from "../components/GeneralStyle";
 
-import { welcome } from "../assets/image";
+import { signUpOrLogin } from "../assets/image";
 import MainButton from "../components/MainButton";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default class Welcome extends Component {
+export default class SignUpAndLogin extends Component {
   render() {
     return (
       <View style={GeneralStyle.parent}>
         <View style={GeneralStyle.container}>
-          <Text style={GeneralStyle.titleAuth}>Coffee for Everyone</Text>
+          <Text style={GeneralStyle.titleAuth}>Welcome!</Text>
         </View>
 
         <View>
-          <Image style={GeneralStyle.picture} source={welcome} />
+          <Image style={GeneralStyle.picture} source={signUpOrLogin} />
         </View>
 
         <View style={GeneralStyle.mainButtonWrapper}>

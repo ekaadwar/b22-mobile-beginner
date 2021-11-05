@@ -5,6 +5,12 @@ export const forgotPassword = require("./auth/forgotPassword.png");
 
 export const welcome = require("./auth/welcome.png");
 
+export const login = require("./auth/login.png");
+
+export const signUp = require("./auth/signUp.png");
+
+export const signUpOrLogin = require("./auth/signUpOrLogin.png");
+
 // products
 export const beefSpaghetti = require("./products/beefSpaghetti.png");
 
