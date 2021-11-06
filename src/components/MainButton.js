@@ -7,6 +7,8 @@ const MainButton = ({
   text = "Submit",
   color = "#6A4029",
   textColor = "#fff",
+  borderWidth = 0,
+  borderColor = "black",
 }) => {
   const mainButtonStyles = StyleSheet.create({
     button: {
@@ -16,6 +18,8 @@ const MainButton = ({
       width: "100%",
       alignItems: "center",
       justifyContent: "center",
+      borderWidth: borderWidth,
+      borderColor: borderColor,
     },
     buttonText: {
       color: textColor,

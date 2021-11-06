@@ -16,6 +16,11 @@ const GeneralStyle = StyleSheet.create({
   container: {
     paddingHorizontal: 30,
   },
+  inputAuth: {
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#9A9A9D",
+  },
   justifyCenter: {
     justifyContent: "center",
   },
@@ -27,6 +32,9 @@ const GeneralStyle = StyleSheet.create({
     position: "absolute",
     bottom: 40,
     alignSelf: "center",
+  },
+  mb10: {
+    marginBottom: 10,
   },
   parent: {
     paddingTop: 80,
@@ -46,6 +54,13 @@ const GeneralStyle = StyleSheet.create({
   picture: {
     resizeMode: "contain",
     width: "100%",
+  },
+  pictureVertical: {
+    resizeMode: "contain",
+    height: "100%",
+  },
+  section: {
+    marginVertical: 10,
   },
   subTitle: {
     textAlign: "center",

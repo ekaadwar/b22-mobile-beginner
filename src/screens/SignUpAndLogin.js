@@ -27,7 +27,7 @@ export default class SignUpAndLogin extends Component {
           <View style={GeneralStyle.container}>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate("signUp")}
-              style={styles.mb10}
+              style={GeneralStyle.mb10}
             >
               <MainButton text="Create New Account" />
             </TouchableOpacity>
@@ -43,9 +43,3 @@ export default class SignUpAndLogin extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  mb10: {
-    marginBottom: 10,
-  },
-});
