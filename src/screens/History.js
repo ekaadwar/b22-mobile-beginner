@@ -15,22 +15,24 @@ import CirclePicture from "../components/CirclePicture";
 import dataCart from "../data/dataCart";
 
 import GeneralStyle from "../components/GeneralStyle";
+import SwipeableSubtitles from "../components/SwipeableSubtitles";
 
 export default class History extends Component {
   render() {
     return (
       <View style={[styles.parent, GeneralStyle.container]}>
-        <View style={styles.titleWrapper}>
+        {/* <View style={styles.titleWrapper}>
           <MaterialIcons name="swipe" size={16} />
           <Text style={styles.mainTitle}>swipe on an item to delete</Text>
-        </View>
+        </View> */}
+
+        <SwipeableSubtitles />
 
         <FlatList
           style={styles.cardWrapper}
           data={dataCart}
           renderItem={({ item, idx }) => (
             <TouchableOpacity style={styles.card} key={String(idx)}>
-              {/* {CirclePicture(item.image, 70)} */}
               <CirclePicture picture={item.image} size={70} />
 
               <View style={styles.textWrapper}>
@@ -65,17 +67,6 @@ export default class History extends Component {
 }
 
 const styles = StyleSheet.create({
-  titleWrapper: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 40,
-    marginBottom: 20,
-  },
-  mainTitle: {
-    fontSize: 10,
-    marginLeft: 10,
-  },
   cardWrapper: {
     width: "100%",
   },

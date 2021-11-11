@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component /*, useState*/ } from "react";
 import {
   View,
   ScrollView,
@@ -6,40 +6,40 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Button,
+  // Button,
 } from "react-native";
 import RadioGroup, { Radio } from "react-native-radio-input";
-import DatePicker from "react-native-date-picker";
+// import DatePicker from "react-native-date-picker";
 
 import CirclePicture from "../components/CirclePicture";
 import CircleButton from "../components/CircleButton";
 import GeneralStyle from "../components/GeneralStyle";
 import MainButton from "../components/MainButton";
-import Dates from "../components/Dates";
+// import Dates from "../components/Dates";
 
-const DateComponent = () => {
-  const [date, setDate] = useState(new Date());
-  const [open, setOpen] = useState(false);
+// const DateComponent = () => {
+//   const [date, setDate] = useState(new Date());
+//   const [open, setOpen] = useState(false);
 
-  return (
-    <>
-      <Button title="Open" onPress={() => setOpen(true)} />
+//   return (
+//     <>
+//       <Button title="Open" onPress={() => setOpen(true)} />
 
-      <DatePicker
-        modal
-        open={open}
-        date={date}
-        onConfirm={(date) => {
-          setOpen(false);
-          setDate(date);
-        }}
-        onCancel={() => {
-          setOpen(false);
-        }}
-      />
-    </>
-  );
-};
+//       <DatePicker
+//         modal
+//         open={open}
+//         date={date}
+//         onConfirm={(date) => {
+//           setOpen(false);
+//           setDate(date);
+//         }}
+//         onCancel={() => {
+//           setOpen(false);
+//         }}
+//       />
+//     </>
+//   );
+// };
 
 export default class EditProfile extends Component {
   constructor(props) {
