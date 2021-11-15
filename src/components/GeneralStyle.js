@@ -4,6 +4,12 @@ const GeneralStyle = StyleSheet.create({
   alignCenter: {
     alignItems: "center",
   },
+  backButtonWrapper: {
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    flexDirection: "row",
+  },
   bold: {
     fontWeight: "bold",
   },

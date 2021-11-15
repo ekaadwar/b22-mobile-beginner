@@ -13,6 +13,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
+import { Provider } from "react-redux";
+
 import HomeScreen from "./src/screens/HomeScreen";
 import ProductDetail2 from "./src/screens/ProductDetail2";
 import Cart from "./src/screens/Cart";
@@ -35,6 +37,8 @@ import SignUpAndLogin from "./src/screens/SignUpAndLogin";
 import SignUp from "./src/screens/SignUp";
 import Login from "./src/screens/Login";
 import ForgotPassword from "./src/screens/ForgotPAssword";
+
+import store from "./src/redux/store";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -183,50 +187,68 @@ class MainStack extends Component {
   }
 }
 
+const OrderStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="cart"
+        component={Cart}
+        options={{
+          header: Header,
+          cardStyle: { backgroundColor: "transparent" },
+          headerTransparent: true,
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
+
 const App = () => {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator
-        drawerStyle={drawer.container}
-        drawerContent={DrawerContents}
-      >
-        <Drawer.Screen
-          options={{ title: "Main" }}
-          name="root"
-          component={MainStack}
-        />
-        <Drawer.Screen
-          options={{ title: "Edit Profile" }}
-          name="editProfile"
-          component={EditProfile}
-        />
-        <Drawer.Screen
-          options={{
-            title: "Orders",
-            header: Header,
-            cardStyle: { backgroundColor: "transparent" },
-            headerTransparent: true,
-          }}
-          name="cart"
-          component={Cart}
-        />
-        <Drawer.Screen
-          options={{ title: "All Menu" }}
-          name="allMenu"
-          component={AllMenu}
-        />
-        <Drawer.Screen
-          options={{ title: "Privacy & Policy" }}
-          name="privacyPolicy"
-          component={PrivacyPolicy}
-        />
-        <Drawer.Screen
-          options={{ title: "Security" }}
-          name="security"
-          component={Security}
-        />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Drawer.Navigator
+          drawerStyle={drawer.container}
+          drawerContent={DrawerContents}
+        >
+          <Drawer.Screen
+            options={{ title: "Main" }}
+            name="root"
+            component={MainStack}
+          />
+          <Drawer.Screen
+            options={{ title: "Edit Profile" }}
+            name="editProfile"
+            component={EditProfile}
+          />
+          <Drawer.Screen
+            options={{
+              title: "Orders",
+              // header: Header,
+              // cardStyle: { backgroundColor: "transparent" },
+              // headerTransparent: true,
+            }}
+            name="orderstack"
+            component={OrderStack}
+          />
+          <Drawer.Screen
+            options={{ title: "All Menu" }}
+            name="allMenu"
+            component={AllMenu}
+          />
+          <Drawer.Screen
+            options={{ title: "Privacy & Policy" }}
+            name="privacyPolicy"
+            component={PrivacyPolicy}
+          />
+          <Drawer.Screen
+            options={{ title: "Security" }}
+            name="security"
+            component={Security}
+          />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 };
 

@@ -6,62 +6,117 @@ import {
   View,
   Text,
 } from "react-native";
-
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import { SwipeListView } from "react-native-swipe-list-view";
+import { connect } from "react-redux";
+import { deleteItem } from "../redux/actions/cart";
 
 import MainButton from "../components/MainButton";
 import CirclePicture from "../components/CirclePicture";
-
-import dataCart from "../data/dataCart";
+import CircleButton from "../components/CircleButton";
 
 import GeneralStyle from "../components/GeneralStyle";
 import SwipeableSubtitles from "../components/SwipeableSubtitles";
 
-export default class Cart extends Component {
+import MaterialIcon from "react-native-vector-icons/MaterialIcons";
+import EmptyContent from "../components/EmptyContent";
+
+class Cart extends Component {
   render() {
     return (
       <View style={[GeneralStyle.parent, GeneralStyle.container]}>
-        <SwipeableSubtitles />
+        {this.props.cart.data.length >= 1 ? (
+          <>
+            <SwipeableSubtitles />
 
-        <FlatList
-          style={styles.cardWrapper}
-          data={dataCart}
-          renderItem={({ item, idx }) => (
-            <TouchableOpacity style={styles.card} key={String(idx)}>
-              <CirclePicture picture={item.image} size={70} />
+            <SwipeListView
+              showsVerticalScrollIndicator={false}
+              data={this.props.cart.data}
+              renderItem={({ item, idx }) => (
+                <View style={styles.card} key={String(idx)}>
+                  <CirclePicture picture={item.image} size={70} />
 
-              <View style={styles.textWrapper}>
-                <Text style={styles.productName}>{item.name}</Text>
+                  <View style={styles.textWrapper}>
+                    <Text style={styles.productName}>{item.name}</Text>
 
-                <View style={styles.priceWrapper}>
-                  <Text style={styles.productPrice}>IDR {item.price}</Text>
+                    <View style={styles.priceWrapper}>
+                      <Text style={styles.productPrice}>IDR {item.price}</Text>
 
-                  <View style={styles.amountWrapper}>
-                    <TouchableOpacity>
-                      <Text style={styles.amountText}>-</Text>
-                    </TouchableOpacity>
+                      <View style={styles.amountWrapper}>
+                        <TouchableOpacity>
+                          <Text style={styles.amountText}>-</Text>
+                        </TouchableOpacity>
 
-                    <View style={styles.amountValue}>
-                      <Text style={styles.amountText}>{item.amount}</Text>
+                        <View style={styles.amountValue}>
+                          <Text style={styles.amountText}>{item.amount}</Text>
+                        </View>
+
+                        <TouchableOpacity>
+                          <Text style={styles.amountText}>+</Text>
+                        </TouchableOpacity>
+                      </View>
                     </View>
-
-                    <TouchableOpacity>
-                      <Text style={styles.amountText}>+</Text>
-                    </TouchableOpacity>
                   </View>
                 </View>
-              </View>
+              )}
+              renderHiddenItem={(data, rowMap) => (
+                <View style={GeneralStyle.backButtonWrapper}>
+                  <TouchableOpacity style={styles.backButton}>
+                    <CircleButton
+                      icon="favorite-outline"
+                      color="#FFBA33"
+                      iconSize={20}
+                    />
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    style={styles.backButton}
+                    onPress={() => this.props.deleteCartItem(data.index)}
+                  >
+                    <CircleButton
+                      icon="delete-outline"
+                      color="#FFBA33"
+                      iconSize={20}
+                    />
+                  </TouchableOpacity>
+                </View>
+              )}
+              rightOpenValue={-95}
+              keyExtractor={(_i, idx) => String(idx)}
+            />
+
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("checkout")}
+              style={GeneralStyle.mainButtonWrapper}
+            >
+              <MainButton text="Confirm and Checkout" />
             </TouchableOpacity>
-          )}
-          keyExtractor={(_i, idx) => String(idx)}
-          showsVerticalScrollIndicator={false}
-        />
-        <TouchableOpacity
-          onPress={() => this.props.navigation.navigate("checkout")}
-          style={GeneralStyle.mainButtonWrapper}
-        >
-          <MainButton text="Confirm and Checkout" />
-        </TouchableOpacity>
+          </>
+        ) : (
+          <>
+            {/* <View style={styles.emptyParent}>
+              <MaterialIcon name="shopping-cart" color="#C7C7C7" size={150} />
+
+              <Text style={styles.emptyTitle}>No orders yet</Text>
+
+              <Text style={styles.emptyDescription}>
+                Hit the orange button down below to Create an order
+              </Text>
+            </View> */}
+
+            <EmptyContent
+              icon="shopping-cart"
+              title="No orders yet"
+              description="Hit the orange button down below to Create an order"
+            />
+
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("home")}
+              style={GeneralStyle.mainButtonWrapper}
+            >
+              <MainButton text="Start ordering" />
+            </TouchableOpacity>
+          </>
+        )}
       </View>
     );
   }
@@ -77,6 +132,9 @@ const styles = StyleSheet.create({
   mainTitle: {
     fontSize: 10,
     marginLeft: 10,
+  },
+  backButton: {
+    marginLeft: 5,
   },
   cardWrapper: {
     width: "100%",
@@ -121,4 +179,28 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: "bold",
   },
+  // emptyParent: {
+  //   flex: 1,
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  // },
+  // emptyTitle: {
+  //   fontWeight: "bold",
+  //   fontSize: 28,
+  //   textAlign: "center",
+  //   marginVertical: 10,
+  // },
+  // emptyDescription: {
+  //   fontSize: 17,
+  //   textAlign: "center",
+  //   width: 200,
+  // },
 });
+
+const mapStateToProps = (state) => ({
+  cart: state.cart,
+});
+
+const mapDispatchToProps = { deleteCartItem: deleteItem };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
