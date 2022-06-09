@@ -70,7 +70,6 @@ const cart = (state = cartState, action) => {
     case "CART_DELETE_ITEM": {
       const data = [...state.data];
       const removed = data.splice(action.payload, 1);
-      // console.log(removed);
       return {
         ...state,
         data,
