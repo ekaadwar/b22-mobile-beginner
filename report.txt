@@ -1,4 +1,0 @@
-do :
-
-    - instalasi react-native-dotenv
-    - setting babel.config.js

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  FlatList,
   Image,
   ScrollView,
   StyleSheet,
@@ -11,7 +12,13 @@ import {
 import hazelnutLatte from "../assets/image/products/hazelnutLatte.png";
 import cappuccino from "../assets/image/products/cappuccino.png";
 
-export default class HomeScreen extends Component {
+import { connect } from "react-redux";
+import { getItems } from "../redux/actions/items";
+
+class HomeScreen extends Component {
+  componentDidMount() {
+    this.props.getItems();
+  }
   render() {
     return (
       <ScrollView style={styles.parent}>
@@ -27,7 +34,7 @@ export default class HomeScreen extends Component {
         </View>
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {[...Array(20)].map((_i, idx) => (
+          {/* {[...Array(20)].map((_i, idx) => (
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate("detail")}
               style={styles.productCard}
@@ -43,7 +50,34 @@ export default class HomeScreen extends Component {
                 <Text style={styles.productPrice}>IDR 30.000</Text>
               </View>
             </TouchableOpacity>
-          ))}
+          ))} */}
+
+          <FlatList
+            data={this.props.items.data}
+            horizontal
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate("detail")}
+                style={styles.productCard}
+              >
+                <View style={styles.image}>
+                  {/* <Image source={hazelnutLatte} style={styles.img} /> */}
+                  <Image
+                    source={{
+                      uri: "http://localhost:8080/uploads/1651623998957.jpg",
+                    }}
+                    style={styles.img}
+                  />
+                </View>
+
+                <View style={styles.textWrapper}>
+                  <Text style={styles.productName}>{item.name}</Text>
+                  <Text style={styles.productPrice}>IDR {item.price}</Text>
+                </View>
+              </TouchableOpacity>
+            )}
+            keyExtractor={(item) => String(item.id)}
+          />
         </ScrollView>
 
         <View style={styles.container}>
@@ -149,3 +183,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
+
+const mapStateToProps = (state) => ({ items: state.items });
+
+const mapDispatchToProps = { getItems };
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
