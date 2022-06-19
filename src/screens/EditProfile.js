@@ -17,6 +17,9 @@ import GeneralStyle from "../components/GeneralStyle";
 import MainButton from "../components/MainButton";
 // import Dates from "../components/Dates";
 
+import { connect } from "react-redux";
+import { getProfile } from "../redux/actions/profile";
+
 // const DateComponent = () => {
 //   const [date, setDate] = useState(new Date());
 //   const [open, setOpen] = useState(false);
@@ -41,19 +44,24 @@ import MainButton from "../components/MainButton";
 //   );
 // };
 
-export default class EditProfile extends Component {
+class EditProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      email: "",
-      phone: "",
-      birth: "",
-      address: "",
-      // date : new Date(),
-      // open : false
+      data: {},
     };
   }
+
+  componentDidMount() {
+    // this.props.getProfile()
+    this.getData();
+  }
+
+  getData = () => {
+    this.props.getProfile().then(() => {
+      this.setState({ data: this.props.profile.data });
+    });
+  };
 
   getChecked = (value) => {
     console.log(value);
@@ -104,9 +112,17 @@ export default class EditProfile extends Component {
 
             <TextInput
               style={styles.input}
-              placeholder="Si Jon"
+              placeholder={this.state.data.display_name}
               placeholderTextColor="black"
-              defaultValue={this.state.name}
+              defaultValue={this.state.data.display_name}
+              onChange={(event) =>
+                this.setState((prevState) => ({
+                  data: {
+                    ...prevState.data,
+                    email: event.target.value,
+                  },
+                }))
+              }
             />
           </View>
 
@@ -125,9 +141,9 @@ export default class EditProfile extends Component {
 
             <TextInput
               style={styles.input}
-              placeholder="sijon@kopi.com"
+              placeholder={this.state.data.email}
               placeholderTextColor="black"
-              defaultValue={this.state.email}
+              defaultValue={this.state.data.email}
             />
           </View>
 
@@ -136,9 +152,9 @@ export default class EditProfile extends Component {
 
             <TextInput
               style={styles.input}
-              placeholder="+62 82136784231"
+              placeholder={this.state.data.mobile_number}
               placeholderTextColor="black"
-              defaultValue={this.state.phone}
+              defaultValue={this.state.data.mobile_number}
             />
           </View>
 
@@ -147,9 +163,9 @@ export default class EditProfile extends Component {
 
             <TextInput
               style={styles.input}
-              placeholder="December 21th 1996"
+              placeholder={this.state.data.birth}
               placeholderTextColor="black"
-              defaultValue={this.state.birth}
+              defaultValue={this.state.data.birth}
             />
           </View>
 
@@ -158,9 +174,9 @@ export default class EditProfile extends Component {
 
             <TextInput
               style={styles.input}
-              placeholder="Delivery Address"
+              placeholder={this.state.data.address}
               placeholderTextColor="black"
-              defaultValue={this.state.address}
+              defaultValue={this.state.data.address}
             />
           </View>
         </ScrollView>
@@ -204,3 +220,9 @@ const styles = StyleSheet.create({
     borderBottomColor: "#9F9F9F",
   },
 });
+
+const mapStateToProps = (state) => ({ profile: state.profile });
+
+const mapDispatchToProps = { getProfile };
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);

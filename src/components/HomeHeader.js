@@ -18,7 +18,7 @@ const HomeHeader = ({ navigation }) => {
           <IonIcons name="menu" color="grey" size={24} />
         </TouchableOpacity>
         <View style={[styles.buttonWrapper, styles.contentWrapper]}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
             <IonIcons
               name="chatbubble-ellipses-outline"
               color="grey"
