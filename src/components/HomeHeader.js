@@ -14,11 +14,11 @@ const HomeHeader = ({ navigation }) => {
   return (
     <View style={styles.parent}>
       <View style={styles.contentWrapper}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
           <IonIcons name="menu" color="grey" size={24} />
         </TouchableOpacity>
         <View style={[styles.buttonWrapper, styles.contentWrapper]}>
-          <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+          <TouchableOpacity>
             <IonIcons
               name="chatbubble-ellipses-outline"
               color="grey"

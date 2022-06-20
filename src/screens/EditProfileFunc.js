@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import {
   View,
   ScrollView,
@@ -14,15 +14,15 @@ import GeneralStyle from "../components/GeneralStyle";
 import MainButton from "../components/MainButton";
 
 import { connect } from "react-redux";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getProfile, editProfile } from "../redux/actions/profile";
 
 const EditProfile = () => {
   const dispatch = useDispatch();
-  const [name, setName] = useState(profile[0]?.name);
+  const [email, setEmail] = useState("");
 
   const formData = {
-    name: name,
+    email: email,
   };
 
   const onSubmit = () => {
@@ -50,21 +50,18 @@ const EditProfile = () => {
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.inputLabel}>Name :</Text>
+          <Text style={styles.inputLabel}>Email :</Text>
           <TextInput
             style={styles.input}
-            value={name}
-            onChangeText={(event) => (setName = event)}
+            value={email}
+            onChangeText={(event) => setEmail(event)}
           />
         </View>
       </ScrollView>
 
       <View style={GeneralStyle.mainButtonWrapper}>
         <TouchableOpacity onPress={onSubmit}>
-          <MainButton
-            onPress={(event) => this.save(event)}
-            text="Save and Update"
-          />
+          <MainButton text="Save and Update" />
         </TouchableOpacity>
       </View>
     </View>
