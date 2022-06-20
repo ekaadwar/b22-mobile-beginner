@@ -67,6 +67,41 @@ class EditProfile extends Component {
     console.log(value);
   };
 
+  save = (event) => {
+    event.preventDefault();
+    // const { token } = this.props.auth;
+    const token = null;
+    const prevKeys = Object.keys(this.props.profile.data);
+    const prevValues = Object.values(this.props.profile.data);
+    const realKeys = Object.keys(this.state.data);
+    const realValues = Object.values(this.state.data);
+    const length = prevKeys.length;
+
+    let keys = "";
+
+    // if (this.state.currentPhoto) {
+    //   keys += "photo";
+    //   this.props.updateProfile(token, null, null, this.state.currentPhoto);
+    // }
+
+    for (let i = 0; i < length; i++) {
+      if (prevValues[i] !== realValues[i]) {
+        if (keys !== "") {
+          keys += ", ";
+        }
+        keys += `${prevKeys[i]}`;
+        this.props.updateProfile(token, realKeys[i], realValues[i]).then(() => {
+          this.setState({ data: this.props.profile.data });
+        });
+      }
+    }
+
+    // if (keys !== '') {
+    //   window.alert(`${keys} have been updated`)
+    //   this.redirect()
+    // }
+  };
+
   render() {
     return (
       <View style={[GeneralStyle.parent, GeneralStyle.container]}>
@@ -183,7 +218,10 @@ class EditProfile extends Component {
 
         <View style={GeneralStyle.mainButtonWrapper}>
           <TouchableOpacity>
-            <MainButton text="Save and Update" />
+            <MainButton
+              onPress={(event) => this.save(event)}
+              text="Save and Update"
+            />
           </TouchableOpacity>
         </View>
       </View>

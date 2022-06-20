@@ -13,6 +13,12 @@ const profile = (state = profileState, action) => {
         data: action.payload,
       };
     }
+    case "PROFILE_UPDATE": {
+      return {
+        ...state,
+        msg: action.payload,
+      };
+    }
     default: {
       return state;
     }
