@@ -2,7 +2,6 @@ const profileState = {
   data: {
     display_name: "eka cool",
   },
-  name: "eka",
 };
 
 const profile = (state = profileState, action) => {
@@ -16,7 +15,7 @@ const profile = (state = profileState, action) => {
     case "PROFILE_UPDATE": {
       return {
         ...state,
-        msg: action.payload,
+        data: action.payload,
       };
     }
     default: {

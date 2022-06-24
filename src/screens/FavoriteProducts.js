@@ -4,7 +4,6 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import ItemCard from "../components/ItemCard";
 
 import dataFavorites from "../data/dataFavorites";
-import dataPromo from "../data/dataPromo";
 
 export default function FavoriteProducts() {
   return (
@@ -25,7 +24,6 @@ const styles = StyleSheet.create({
   mainTitle: {
     paddingHorizontal: 40,
     marginTop: 40,
-    // marginBottom: 20,
     fontWeight: "700",
     fontSize: 28,
   },

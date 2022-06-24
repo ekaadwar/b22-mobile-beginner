@@ -24,10 +24,10 @@ export const getProfile = () => {
   };
 };
 
-export const editProfile = (data) => {
+export const editProfile = (key, value) => {
   return async (dispatch) => {
     const form = new FormData();
-    form.append("email", data.email);
+    form.append(key, value);
 
     await http().patch(`${BACKEND_URL}/users`, form);
   };

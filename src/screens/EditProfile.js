@@ -6,43 +6,16 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  // Button,
 } from "react-native";
 import RadioGroup, { Radio } from "react-native-radio-input";
-// import DatePicker from "react-native-date-picker";
 
 import CirclePicture from "../components/CirclePicture";
 import CircleButton from "../components/CircleButton";
 import GeneralStyle from "../components/GeneralStyle";
 import MainButton from "../components/MainButton";
-// import Dates from "../components/Dates";
 
 import { connect } from "react-redux";
-import { getProfile } from "../redux/actions/profile";
-
-// const DateComponent = () => {
-//   const [date, setDate] = useState(new Date());
-//   const [open, setOpen] = useState(false);
-
-//   return (
-//     <>
-//       <Button title="Open" onPress={() => setOpen(true)} />
-
-//       <DatePicker
-//         modal
-//         open={open}
-//         date={date}
-//         onConfirm={(date) => {
-//           setOpen(false);
-//           setDate(date);
-//         }}
-//         onCancel={() => {
-//           setOpen(false);
-//         }}
-//       />
-//     </>
-//   );
-// };
+import { getProfile, editProfile } from "../redux/actions/profile";
 
 class EditProfile extends Component {
   constructor(props) {
@@ -53,7 +26,6 @@ class EditProfile extends Component {
   }
 
   componentDidMount() {
-    // this.props.getProfile()
     this.getData();
   }
 
@@ -63,43 +35,32 @@ class EditProfile extends Component {
     });
   };
 
-  getChecked = (value) => {
-    console.log(value);
-  };
-
-  save = (event) => {
-    event.preventDefault();
-    // const { token } = this.props.auth;
-    const token = null;
+  onSubmit = () => {
     const prevKeys = Object.keys(this.props.profile.data);
     const prevValues = Object.values(this.props.profile.data);
     const realKeys = Object.keys(this.state.data);
     const realValues = Object.values(this.state.data);
-    const length = prevKeys.length;
+    const dataLength = prevKeys.length;
 
     let keys = "";
 
-    // if (this.state.currentPhoto) {
-    //   keys += "photo";
-    //   this.props.updateProfile(token, null, null, this.state.currentPhoto);
-    // }
+    // console.log("realValues");
+    // console.log(realValues);
+    // console.log("prevValues");
+    // console.log(prevValues);
 
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < dataLength; i++) {
       if (prevValues[i] !== realValues[i]) {
         if (keys !== "") {
           keys += ", ";
         }
-        keys += `${prevKeys[i]}`;
-        this.props.updateProfile(token, realKeys[i], realValues[i]).then(() => {
-          this.setState({ data: this.props.profile.data });
-        });
+
+        keys += prevKeys[i];
+        this.props.editProfile(realKeys[i], realValues[i]);
       }
     }
 
-    // if (keys !== '') {
-    //   window.alert(`${keys} have been updated`)
-    //   this.redirect()
-    // }
+    console.log(keys);
   };
 
   render() {
@@ -123,25 +84,6 @@ class EditProfile extends Component {
             </View>
           </View>
 
-          {/* <Dates /> */}
-
-          {/* <View>
-            <Button title="Open" onPress={() => this.setState({open:true})} />
-
-            <DatePicker
-              modal
-              open={this.state.open}
-              date={this.state.date}
-              onConfirm={(date) => {
-                this.setState({open:false})
-                this.setState({date: this.state.date})
-              }}
-              onCancel={() => {
-                this.setState({open : false})
-              }}
-            />
-          </View> */}
-
           <View style={styles.section}>
             <Text style={styles.inputLabel}>Name :</Text>
 
@@ -154,7 +96,7 @@ class EditProfile extends Component {
                 this.setState((prevState) => ({
                   data: {
                     ...prevState.data,
-                    email: event.target.value,
+                    display_name: event.target.value,
                   },
                 }))
               }
@@ -173,12 +115,17 @@ class EditProfile extends Component {
 
           <View style={styles.section}>
             <Text style={styles.inputLabel}>Email Address :</Text>
-
             <TextInput
               style={styles.input}
-              placeholder={this.state.data.email}
-              placeholderTextColor="black"
               defaultValue={this.state.data.email}
+              onChange={(event) =>
+                this.setState((prevState) => ({
+                  data: {
+                    ...prevState.data,
+                    email: event.target.value,
+                  },
+                }))
+              }
             />
           </View>
 
@@ -187,9 +134,15 @@ class EditProfile extends Component {
 
             <TextInput
               style={styles.input}
-              placeholder={this.state.data.mobile_number}
-              placeholderTextColor="black"
               defaultValue={this.state.data.mobile_number}
+              onChange={(event) =>
+                this.setState((prevState) => ({
+                  data: {
+                    ...prevState.data,
+                    mobile_number: event.target.value,
+                  },
+                }))
+              }
             />
           </View>
 
@@ -198,9 +151,15 @@ class EditProfile extends Component {
 
             <TextInput
               style={styles.input}
-              placeholder={this.state.data.birth}
-              placeholderTextColor="black"
               defaultValue={this.state.data.birth}
+              onChange={(event) =>
+                this.setState((prevState) => ({
+                  data: {
+                    ...prevState.data,
+                    birth: event.target.value,
+                  },
+                }))
+              }
             />
           </View>
 
@@ -209,19 +168,22 @@ class EditProfile extends Component {
 
             <TextInput
               style={styles.input}
-              placeholder={this.state.data.address}
-              placeholderTextColor="black"
               defaultValue={this.state.data.address}
+              onChange={(event) =>
+                this.setState((prevState) => ({
+                  data: {
+                    ...prevState.data,
+                    address: event.target.value,
+                  },
+                }))
+              }
             />
           </View>
         </ScrollView>
 
         <View style={GeneralStyle.mainButtonWrapper}>
-          <TouchableOpacity>
-            <MainButton
-              onPress={(event) => this.save(event)}
-              text="Save and Update"
-            />
+          <TouchableOpacity onPress={this.onSubmit}>
+            <MainButton text="Save and Update" />
           </TouchableOpacity>
         </View>
       </View>
@@ -231,12 +193,10 @@ class EditProfile extends Component {
 
 const styles = StyleSheet.create({
   pictureSection: {
-    // backgroundColor : "coral",
     alignItems: "center",
     marginVertical: 40,
   },
   imageWrapper: {
-    // backgroundColor : "purple",
     position: "relative",
   },
   buttonWrapper: {
@@ -261,6 +221,6 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({ profile: state.profile });
 
-const mapDispatchToProps = { getProfile };
+const mapDispatchToProps = { getProfile, editProfile };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);

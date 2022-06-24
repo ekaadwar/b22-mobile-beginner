@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   ScrollView,
@@ -17,13 +17,30 @@ import { connect } from "react-redux";
 import { useDispatch } from "react-redux";
 import { getProfile, editProfile } from "../redux/actions/profile";
 
-const EditProfile = () => {
+const EditProfile = ({ getProfile, profile }) => {
   const dispatch = useDispatch();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [birth, setBirth] = useState("");
+  const [address, setAddress] = useState("");
 
   const formData = {
-    email: email,
+    name,
+    email,
+    phone,
+    birth,
+    address,
   };
+
+  useEffect(() => {
+    getProfile();
+  }, []);
+
+  const prevKey = Object.values(formData);
+  const prevValue = Object.values(formData);
+  const realKey = Object.values(formData);
+  const realValue = Object.values(formData);
 
   const onSubmit = () => {
     dispatch(editProfile(formData));
@@ -50,11 +67,49 @@ const EditProfile = () => {
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.inputLabel}>Email :</Text>
+          <Text style={styles.inputLabel}>Name :</Text>
+          <TextInput
+            style={styles.input}
+            placeholder={profile.display_name}
+            placeholderTextColor="black"
+            value={profile.display_name}
+            onChangeText={(event) => setName(event)}
+          />
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.inputLabel}>Email Address :</Text>
+          <TextInput
+            style={styles.input}
+            value={profile.email}
+            onChangeText={(event) => setEmail(event)}
+          />
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.inputLabel}>Phone Number :</Text>
           <TextInput
             style={styles.input}
             value={email}
-            onChangeText={(event) => setEmail(event)}
+            onChangeText={(event) => setPhone(event)}
+          />
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.inputLabel}>Date of Birth :</Text>
+          <TextInput
+            style={styles.input}
+            value={birth}
+            onChangeText={(event) => setBirth(event)}
+          />
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.inputLabel}>Delivery Address :</Text>
+          <TextInput
+            style={styles.input}
+            value={address}
+            onChangeText={(event) => setSetAddress(event)}
           />
         </View>
       </ScrollView>
@@ -93,6 +148,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderBottomWidth: 1,
     borderBottomColor: "#9F9F9F",
+    borderWidth: 0,
   },
 });
 

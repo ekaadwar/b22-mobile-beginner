@@ -18,7 +18,7 @@ import { Provider } from "react-redux";
 import HomeScreen from "./src/screens/HomeScreen";
 import ProductDetail2 from "./src/screens/ProductDetail2";
 import Cart from "./src/screens/Cart";
-import EditProfile from "./src/screens/EditProfileFunc";
+import EditProfile from "./src/screens/EditProfile";
 import AllMenu from "./src/screens/AllMenu";
 import PrivacyPolicy from "./src/screens/PrivacyPolicy";
 import Security from "./src/screens/Security";
