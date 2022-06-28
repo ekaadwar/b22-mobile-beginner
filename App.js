@@ -15,6 +15,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import { Provider } from "react-redux";
 
+import FlashMessage from "react-native-flash-message";
 import HomeScreen from "./src/screens/HomeScreen";
 import ProductDetail2 from "./src/screens/ProductDetail2";
 import Cart from "./src/screens/Cart";
@@ -247,6 +248,7 @@ const App = () => {
             component={Security}
           />
         </Drawer.Navigator>
+        <FlashMessage position="top" />
       </NavigationContainer>
     </Provider>
   );

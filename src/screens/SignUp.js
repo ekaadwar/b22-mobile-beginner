@@ -1,74 +1,95 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Image, StyleSheet, Text, TextInput, View } from "react-native";
+import { useDispatch } from "react-redux";
 import GeneralStyle from "../components/GeneralStyle";
 
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import { signUpAction } from "../redux/actions/auth";
 import { signUp } from "../assets/image";
-import { ScrollView } from "react-native-gesture-handler";
 import MainButton from "../components/MainButton";
+import toastMessage from "../utils/showMessage";
 
-export default class SignUp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: "",
-      phone: "",
-    };
-  }
+const SignUp = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
 
-  render() {
-    return (
-      <View style={GeneralStyle.parent}>
-        <ScrollView>
-          <View style={styles.pictureWrapper}>
-            <Text style={[GeneralStyle.titleAuth, styles.titleSignUp]}>
-              Sign Up
-            </Text>
+  const dispatch = useDispatch();
 
-            <Image style={GeneralStyle.picture} source={signUp} />
+  const formData = {
+    email,
+    password,
+    phone,
+  };
+
+  const onSubmit = () => {
+    if (email === "" || password === "" || phone === "") {
+      toastMessage("form cannot be empty!");
+    } else {
+      email.includes("@")
+        ? dispatch(signUpAction(formData, navigation))
+        : // ? toastMessage(phone, "success")
+          toastMessage("wrong email");
+    }
+  };
+
+  return (
+    <View style={GeneralStyle.parent}>
+      <ScrollView>
+        <View style={styles.pictureWrapper}>
+          <Text style={[GeneralStyle.titleAuth, styles.titleSignUp]}>
+            Sign Up
+          </Text>
+
+          <Image style={GeneralStyle.picture} source={signUp} />
+        </View>
+
+        <View style={GeneralStyle.container}>
+          <View style={GeneralStyle.section}>
+            <TextInput
+              style={GeneralStyle.inputAuth}
+              placeholder="Enter your email address"
+              placeholderTextColor="#9A9A9D"
+              value={email}
+              onChangeText={(value) => setEmail(value)}
+              keyboardType="email-address"
+            />
           </View>
 
-          <View style={GeneralStyle.container}>
-            <View style={GeneralStyle.section}>
-              <TextInput
-                style={GeneralStyle.inputAuth}
-                placeholder="Enter your email address"
-                placeholderTextColor="#9A9A9D"
-                defaultValue={this.state.email}
-              />
-            </View>
-
-            <View style={GeneralStyle.section}>
-              <TextInput
-                secureTextEntry={true}
-                style={GeneralStyle.inputAuth}
-                placeholder="Enter your password"
-                placeholderTextColor="#9A9A9D"
-                defaultValue={this.state.password}
-              />
-            </View>
-
-            <View style={GeneralStyle.section}>
-              <TextInput
-                style={GeneralStyle.inputAuth}
-                placeholder="Enter your phone number"
-                placeholderTextColor="#9A9A9D"
-                defaultValue={this.state.phone}
-                keyboardType="numeric"
-              />
-            </View>
+          <View style={GeneralStyle.section}>
+            <TextInput
+              secureTextEntry={true}
+              style={GeneralStyle.inputAuth}
+              placeholder="Enter your password"
+              placeholderTextColor="#9A9A9D"
+              value={password}
+              onChangeText={(value) => setPassword(value)}
+            />
           </View>
-        </ScrollView>
 
-        <View style={GeneralStyle.mainButtonWrapper}>
-          <View style={GeneralStyle.container}>
-            <MainButton text="Create Account" />
+          <View style={GeneralStyle.section}>
+            <TextInput
+              style={GeneralStyle.inputAuth}
+              placeholder="Enter your phone number"
+              placeholderTextColor="#9A9A9D"
+              value={phone}
+              keyboardType="numeric"
+              onChangeText={(value) => setPhone(value)}
+            />
           </View>
         </View>
+      </ScrollView>
+
+      <View style={GeneralStyle.mainButtonWrapper}>
+        <View style={GeneralStyle.container}>
+          <TouchableOpacity onPress={onSubmit}>
+            <MainButton text="Create Account" />
+          </TouchableOpacity>
+        </View>
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   pictureWrapper: {
@@ -82,3 +103,5 @@ const styles = StyleSheet.create({
     top: 30,
   },
 });
+
+export default SignUp;
