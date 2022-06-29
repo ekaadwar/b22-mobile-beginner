@@ -13,7 +13,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 
 import FlashMessage from "react-native-flash-message";
 import HomeScreen from "./src/screens/HomeScreen";
@@ -26,7 +26,6 @@ import Security from "./src/screens/Security";
 import FavoriteProducts from "./src/screens/FavoriteProducts";
 import PromoProducts from "./src/screens/PromoProducts";
 import Checkout from "./src/screens/Checkout";
-
 import Header from "./src/components/Header";
 import HomeHeader from "./src/components/HomeHeader";
 import DrawerContents from "./src/components/DrawerContents";
@@ -38,7 +37,7 @@ import SignUpAndLogin from "./src/screens/SignUpAndLogin";
 import SignUp from "./src/screens/SignUp";
 import Login from "./src/screens/Login";
 import ForgotPassword from "./src/screens/ForgotPAssword";
-
+import Loading from "./src/components/Loading";
 import store from "./src/redux/store";
 
 const Stack = createStackNavigator();
@@ -204,52 +203,58 @@ const OrderStack = () => {
   );
 };
 
+const Router = () => {
+  const { isLoading } = useSelector((state) => state.globalReducer);
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator
+        drawerStyle={drawer.container}
+        drawerContent={DrawerContents}
+      >
+        <Drawer.Screen
+          options={{ title: "Main" }}
+          name="root"
+          component={MainStack}
+        />
+        <Drawer.Screen
+          options={{ title: "Edit Profile" }}
+          name="editProfile"
+          component={EditProfile}
+        />
+        <Drawer.Screen
+          options={{
+            title: "Orders",
+          }}
+          name="orderstack"
+          component={OrderStack}
+        />
+        <Drawer.Screen
+          options={{ title: "All Menu" }}
+          name="allMenu"
+          component={AllMenu}
+        />
+        <Drawer.Screen
+          options={{ title: "Privacy & Policy" }}
+          name="privacyPolicy"
+          component={PrivacyPolicy}
+        />
+        <Drawer.Screen
+          options={{ title: "Security" }}
+          name="security"
+          component={Security}
+        />
+      </Drawer.Navigator>
+
+      <FlashMessage position="top" />
+      {isLoading && <Loading />}
+    </NavigationContainer>
+  );
+};
+
 const App = () => {
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <Drawer.Navigator
-          drawerStyle={drawer.container}
-          drawerContent={DrawerContents}
-        >
-          <Drawer.Screen
-            options={{ title: "Main" }}
-            name="root"
-            component={MainStack}
-          />
-          <Drawer.Screen
-            options={{ title: "Edit Profile" }}
-            name="editProfile"
-            component={EditProfile}
-          />
-          <Drawer.Screen
-            options={{
-              title: "Orders",
-              // header: Header,
-              // cardStyle: { backgroundColor: "transparent" },
-              // headerTransparent: true,
-            }}
-            name="orderstack"
-            component={OrderStack}
-          />
-          <Drawer.Screen
-            options={{ title: "All Menu" }}
-            name="allMenu"
-            component={AllMenu}
-          />
-          <Drawer.Screen
-            options={{ title: "Privacy & Policy" }}
-            name="privacyPolicy"
-            component={PrivacyPolicy}
-          />
-          <Drawer.Screen
-            options={{ title: "Security" }}
-            name="security"
-            component={Security}
-          />
-        </Drawer.Navigator>
-        <FlashMessage position="top" />
-      </NavigationContainer>
+      <Router />
     </Provider>
   );
 };
