@@ -1,4 +1,5 @@
 export const defaultPicture = require("./defaultPicture.jpg");
+export const BG_SplashScreen = require("./BG_SplashScreen.png");
 
 // auth
 export const forgotPassword = require("./auth/forgotPassword.png");
