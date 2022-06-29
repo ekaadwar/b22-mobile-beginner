@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
-import { BGSplashScreen } from "../assets/image";
+import { BGSplashScreen, welcome } from "../assets/image";
 import { getData } from "../utils/storage";
 
 const SplashScreen = ({ navigation }) => {
@@ -19,7 +19,7 @@ const SplashScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.container}>
-        <ImageBackground style={styles.picture} source={BGSplashScreen}>
+        <ImageBackground style={styles.picture} source={welcome}>
           <Text style={styles.text}>Coffee For Everyone</Text>
         </ImageBackground>
       </View>

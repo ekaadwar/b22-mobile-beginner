@@ -16,6 +16,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Provider, useSelector } from "react-redux";
 
 import FlashMessage from "react-native-flash-message";
+import SplashScreen from "./src/screens/SplashScreen";
 import HomeScreen from "./src/screens/HomeScreen";
 import ProductDetail2 from "./src/screens/ProductDetail2";
 import Cart from "./src/screens/Cart";
@@ -46,7 +47,12 @@ const Drawer = createDrawerNavigator();
 class MainStack extends Component {
   render() {
     return (
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="SplashScreen">
+        <Stack.Screen
+          component={SplashScreen}
+          name="SplashScreen"
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           component={HomeScreen}
           name="home"
