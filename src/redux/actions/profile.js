@@ -49,9 +49,9 @@ export const editProfile = (key, value, token, navigation) => {
         },
       })
       .then((res) => {
-        // toastMessage(res?.data?.message, "success");
-        // navigation.reset({ index: 0, routes: [{ name: "profile" }] });
-        console.log(res?.data?.message, "success");
+        toastMessage(res?.data?.message, "success");
+        navigation.reset({ index: 0, routes: [{ name: "profile" }] });
+        // console.log(res?.data?.message, "success")
       })
       .catch((err) => {
         // toastMessage(err?.response?.data?.message);
