@@ -21,55 +21,78 @@ import { editProfile } from "../redux/actions/profile";
 import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
 
 const EditProfileFunc = ({ navigation }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const { profile } = useSelector((state) => state.profileReducer);
+  const { profile } = useSelector((state) => state.profileReducer);
   // const profile = [
   //   {
   //     email: "test@mail.com",
   //   },
   // ];
 
-  const [profile, setProfile] = useState();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [birth, setBirth] = useState("");
-  const [address, setAddress] = useState("");
+  // const [profile, setProfile] = useState({});
+  const [name, setName] = useState(profile?.display_name);
+  const [email, setEmail] = useState(profile?.email);
+  const [phone, setPhone] = useState(profile?.mobile_number);
+  const [birth, setBirth] = useState(profile?.birth);
+  const [address, setAddress] = useState(profile?.address);
   const [token, setToken] = useState("");
 
-  const formData = {
+  const prevData = {
+    display_name: profile?.display_name,
+    email: profile?.email,
+    mobile_number: profile?.mobile_number,
+    birth: profile?.birth,
+    address: profile?.address,
+  };
+
+  const realData = {
     display_name: name,
     email,
-    mobile_phone: phone,
+    mobile_number: phone,
     birth,
     address,
   };
 
   useEffect(() => {
-    getProfileData();
-    // getToken();
-  }, [profile]);
+    getData("token").then((res) => {
+      setToken(res);
+      dispatch(getProfile(res));
+    });
+  }, []);
 
-  const getProfileData = () => {
-    getData("profile").then((res) => {
-      setProfile(res);
-      setName(res.display_name);
-      setEmail(res.email);
-      setPhone(res.mobile_number);
-      setBirth(res.birth);
-      setAddress(res.address);
+  const getProfileData = (token) => {
+    dispatch(getProfile(token));
+  };
+
+  const getToken = () => {
+    getData("token").then((res) => {
+      setToken(res);
     });
   };
 
-  // const getToken = () => {
-  //   getData("token").then((res) => {
-  //     setToken(res);
-  //   });
-  // };
-
   const onSubmit = () => {
-    // dispatch(editProfile(formData));
+    const realKeys = Object.keys(realData);
+    const realValues = Object.values(realData);
+    const prevKeys = Object.keys(prevData);
+    const prevValues = Object.values(prevData);
+    const length = realKeys.length;
+
+    let report = "";
+
+    for (let i = 0; i < length; i++) {
+      if (realValues[i] !== prevValues[i]) {
+        if (report !== "") {
+          report += ", ";
+        }
+        report += `${realKeys[i]}`;
+        dispatch(editProfile(realKeys[i], realValues[i], token, navigation));
+      }
+    }
+
+    console.log(report);
+    toastMessage(report, "success");
+    navigation.reset({ index: 0, routes: [{ name: "profile" }] });
   };
 
   return (
@@ -94,7 +117,6 @@ const EditProfileFunc = ({ navigation }) => {
 
         <View style={styles.section}>
           <Text>Token : {token}</Text>
-          {/* <Text>Profile Data : {JSON.stringify(profile)}</Text> */}
           <Text style={styles.inputLabel}>Name :</Text>
           <TextInput
             style={styles.input}
@@ -140,7 +162,7 @@ const EditProfileFunc = ({ navigation }) => {
           <TextInput
             style={styles.input}
             value={address}
-            onChangeText={(event) => setSetAddress(event)}
+            onChangeText={(event) => setAddress(event)}
             placeholder="Your address"
           />
         </View>

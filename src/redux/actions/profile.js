@@ -1,5 +1,6 @@
 import axios from "axios";
 import http from "../../helpers/http";
+import toastMessage from "../../utils/showMessage";
 // import { BACKEND_URL } from "@env";
 
 const BACKEND_URL = "http://localhost:8080";
@@ -35,11 +36,26 @@ export const getProfile = (token) => (dispatch) => {
     });
 };
 
-export const editProfile = (key, value) => {
+export const editProfile = (key, value, token, navigation) => {
   return async (dispatch) => {
     const form = new FormData();
     form.append(key, value);
 
-    await http().patch(`${BACKEND_URL}/users`, form);
+    axios
+      .patch(`${BACKEND_URL}/users`, form, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        // toastMessage(res?.data?.message, "success");
+        // navigation.reset({ index: 0, routes: [{ name: "profile" }] });
+        console.log(res?.data?.message, "success");
+      })
+      .catch((err) => {
+        // toastMessage(err?.response?.data?.message);
+        console.log(err?.response?.data?.message);
+      });
   };
 };
