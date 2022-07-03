@@ -1,27 +1,47 @@
-const profileState = {
-  data: {
-    display_name: "eka cool",
+// const profileState = {
+//   data: {
+//     display_name: "eka cool",
+//   },
+// };
+
+// const profile = (state = profileState, action) => {
+//   switch (action.type) {
+//     case "PROFILE_GET_LIST": {
+//       return {
+//         ...state,
+//         data: action.payload,
+//       };
+//     }
+//     case "PROFILE_UPDATE": {
+//       return {
+//         ...state,
+//         data: action.payload,
+//       };
+//     }
+//     default: {
+//       return state;
+//     }
+//   }
+// };
+
+// export default profile;
+
+const initPhoto = {
+  profile: {
+    email: "test@mail.com",
   },
 };
 
-const profile = (state = profileState, action) => {
+export const profileReducer = (state = initPhoto, action) => {
   switch (action.type) {
-    case "PROFILE_GET_LIST": {
+    case "SET_PROFILE":
       return {
         ...state,
-        data: action.payload,
+        profile: action.payload,
       };
-    }
-    case "PROFILE_UPDATE": {
+    default:
       return {
         ...state,
-        data: action.payload,
       };
-    }
-    default: {
-      return state;
-    }
   }
 };
-
-export default profile;

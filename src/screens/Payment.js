@@ -124,7 +124,6 @@ export default class Payment extends Component {
                 ]}
               >
                 <Image source={item} style={GeneralStyle.picture} />
-                {console.log(index)}
               </View>
             ))}
           </ScrollView>

@@ -20,7 +20,7 @@ import SplashScreen from "./src/screens/SplashScreen";
 import HomeScreen from "./src/screens/HomeScreen";
 import ProductDetail2 from "./src/screens/ProductDetail2";
 import Cart from "./src/screens/Cart";
-import EditProfile from "./src/screens/EditProfile";
+import EditProfile from "./src/screens/EditProfileFunc";
 import AllMenu from "./src/screens/AllMenu";
 import PrivacyPolicy from "./src/screens/PrivacyPolicy";
 import Security from "./src/screens/Security";
@@ -48,11 +48,11 @@ class MainStack extends Component {
   render() {
     return (
       <Stack.Navigator initialRouteName="SplashScreen">
-        <Stack.Screen
+        {/* <Stack.Screen
           component={SplashScreen}
           name="SplashScreen"
           options={{ headerShown: false }}
-        />
+        /> */}
         <Stack.Screen
           component={HomeScreen}
           name="home"

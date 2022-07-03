@@ -7,43 +7,69 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import { getData } from "../utils/storage";
 
 import CirclePicture from "../components/CirclePicture";
 import CircleButton from "../components/CircleButton";
 import GeneralStyle from "../components/GeneralStyle";
 import MainButton from "../components/MainButton";
 
-import { connect } from "react-redux";
-import { useDispatch } from "react-redux";
-import { getProfile, editProfile } from "../redux/actions/profile";
+// import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfile } from "../redux/actions/profile";
+import { editProfile } from "../redux/actions/profile";
+import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
 
-const EditProfile = ({ getProfile, profile }) => {
-  const dispatch = useDispatch();
+const EditProfileFunc = ({ navigation }) => {
+  // const dispatch = useDispatch();
+
+  // const { profile } = useSelector((state) => state.profileReducer);
+  // const profile = [
+  //   {
+  //     email: "test@mail.com",
+  //   },
+  // ];
+
+  const [profile, setProfile] = useState();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [birth, setBirth] = useState("");
   const [address, setAddress] = useState("");
+  const [token, setToken] = useState("");
 
   const formData = {
-    name,
+    display_name: name,
     email,
-    phone,
+    mobile_phone: phone,
     birth,
     address,
   };
 
   useEffect(() => {
-    getProfile();
-  }, []);
+    getProfileData();
+    // getToken();
+  }, [profile]);
 
-  const prevKey = Object.values(formData);
-  const prevValue = Object.values(formData);
-  const realKey = Object.values(formData);
-  const realValue = Object.values(formData);
+  const getProfileData = () => {
+    getData("profile").then((res) => {
+      setProfile(res);
+      setName(res.display_name);
+      setEmail(res.email);
+      setPhone(res.mobile_number);
+      setBirth(res.birth);
+      setAddress(res.address);
+    });
+  };
+
+  // const getToken = () => {
+  //   getData("token").then((res) => {
+  //     setToken(res);
+  //   });
+  // };
 
   const onSubmit = () => {
-    dispatch(editProfile(formData));
+    // dispatch(editProfile(formData));
   };
 
   return (
@@ -67,12 +93,13 @@ const EditProfile = ({ getProfile, profile }) => {
         </View>
 
         <View style={styles.section}>
+          <Text>Token : {token}</Text>
+          {/* <Text>Profile Data : {JSON.stringify(profile)}</Text> */}
           <Text style={styles.inputLabel}>Name :</Text>
           <TextInput
             style={styles.input}
-            placeholder={profile.display_name}
-            placeholderTextColor="black"
-            value={profile.display_name}
+            placeholder="Your fullname"
+            value={name}
             onChangeText={(event) => setName(event)}
           />
         </View>
@@ -81,17 +108,20 @@ const EditProfile = ({ getProfile, profile }) => {
           <Text style={styles.inputLabel}>Email Address :</Text>
           <TextInput
             style={styles.input}
-            value={profile.email}
+            value={email}
             onChangeText={(event) => setEmail(event)}
+            placeholder="Your email"
           />
         </View>
 
         <View style={styles.section}>
           <Text style={styles.inputLabel}>Phone Number :</Text>
           <TextInput
+            keyboardType="numeric"
             style={styles.input}
-            value={email}
+            value={phone}
             onChangeText={(event) => setPhone(event)}
+            placeholder="Your phone number"
           />
         </View>
 
@@ -101,6 +131,7 @@ const EditProfile = ({ getProfile, profile }) => {
             style={styles.input}
             value={birth}
             onChangeText={(event) => setBirth(event)}
+            placeholder="Your birthday"
           />
         </View>
 
@@ -110,6 +141,7 @@ const EditProfile = ({ getProfile, profile }) => {
             style={styles.input}
             value={address}
             onChangeText={(event) => setSetAddress(event)}
+            placeholder="Your address"
           />
         </View>
       </ScrollView>
@@ -152,8 +184,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state) => ({ profile: state.profile });
+// const mapStateToProps = (state) => ({ profile: state.profile });
 
-const mapDispatchToProps = { getProfile };
+// const mapDispatchToProps = { getProfile };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);
+export default EditProfileFunc;
