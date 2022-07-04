@@ -8,7 +8,8 @@ const SplashScreen = ({ navigation }) => {
     setTimeout(() => {
       getData('token').then((res) => {
         if (res) {
-          navigation.reset({ index: 0, routes: [{ name: 'Main' }] })
+          navigation.reset({ index: 0, routes: [{ name: 'home' }] })
+          // navigation.replace('Main')
         } else {
           navigation.replace('welcome')
         }
