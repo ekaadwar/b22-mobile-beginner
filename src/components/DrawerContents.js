@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import { clearAllData } from '../utils/storage'
 
 import CirclePicture from './CirclePicture'
 
@@ -40,7 +41,7 @@ const DrawerContents = ({ descriptors, navigation }) => {
       />
 
       <View style={drawerStyles.menuWrapper}>
-        <TouchableOpacity onPress={() => navigation.navigate('welcome')}>
+        <TouchableOpacity onPress={() => clearAllData(navigation)}>
           <Text style={drawerStyles.menuItemText}>Sign-Out</Text>
         </TouchableOpacity>
       </View>

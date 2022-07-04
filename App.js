@@ -47,10 +47,10 @@ const Drawer = createDrawerNavigator()
 class MainStack extends Component {
   render() {
     return (
-      <Stack.Navigator initialRouteName="SplashScreen">
+      <Stack.Navigator initialRouteName="splashScreen">
         <Stack.Screen
           component={SplashScreen}
-          name="SplashScreen"
+          name="splashScreen"
           options={{ headerShown: false }}
         />
         <Stack.Screen

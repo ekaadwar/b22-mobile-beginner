@@ -1,6 +1,6 @@
 import axios from 'axios'
 import toastMessage from '../../utils/showMessage'
-import { getData, storeData } from '../../utils/storage'
+import { storeData } from '../../utils/storage'
 
 const BACKEND_URL = 'http://localhost:8080'
 

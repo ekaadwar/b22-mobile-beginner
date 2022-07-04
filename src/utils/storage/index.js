@@ -17,3 +17,12 @@ export const getData = async (key) => {
     // error reading value
   }
 }
+
+export const clearAllData = (navigation) => {
+  AsyncStorage.getAllKeys().then((keys) => {
+    AsyncStorage.multiRemove(keys).then(() => {
+      console.log('uyee')
+      navigation.navigate('splashScreen')
+    })
+  })
+}
