@@ -1,21 +1,21 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import {
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-} from "react-native";
+} from 'react-native'
 
-import MainButton from "../components/MainButton";
-import CirclePicture from "../components/CirclePicture";
+import MainButton from '../components/MainButton'
+import CirclePicture from '../components/CirclePicture'
 
-import { coldBrew } from "../assets/image";
-import GeneralStyle from "../components/GeneralStyle";
+import { coldBrew } from '../assets/image'
+import GeneralStyle from '../components/GeneralStyle'
 
-const PICTURE_SIZE = 240;
-const RATIO = 0.8;
-const CIRCLE_SIZE_1 = 8;
+const PICTURE_SIZE = 240
+const RATIO = 0.8
+const CIRCLE_SIZE_1 = 8
 
 export default class ProdutDetail2 extends Component {
   render() {
@@ -62,18 +62,18 @@ export default class ProdutDetail2 extends Component {
           </TouchableOpacity>
         </View>
       </View>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
   parent: {
     paddingTop: 80,
-    backgroundColor: "#f7f0f0",
-    height: "100%",
+    backgroundColor: '#f7f0f0',
+    height: '100%',
     paddingHorizontal: 30,
-    alignItems: "center",
-    position: "relative",
+    alignItems: 'center',
+    position: 'relative',
   },
   pictureSection: {
     marginTop: 16,
@@ -83,17 +83,17 @@ const styles = StyleSheet.create({
     width: PICTURE_SIZE * RATIO,
     height: PICTURE_SIZE * RATIO,
     borderRadius: (PICTURE_SIZE * RATIO) / 2,
-    backgroundColor: "silver",
-    justifyContent: "center",
-    alignItems: "center",
-    overflow: "hidden",
+    backgroundColor: 'silver',
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'hidden',
   },
   picture: {
-    resizeMode: "contain",
-    width: "100%",
+    resizeMode: 'contain',
+    width: '100%',
   },
   circleWrapper: {
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   circle: {
     width: CIRCLE_SIZE_1,
@@ -102,32 +102,32 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   bgBrown: {
-    backgroundColor: "#6A4029",
+    backgroundColor: '#6A4029',
   },
   bgGrey: {
-    backgroundColor: "#C4C4C4",
+    backgroundColor: '#C4C4C4',
   },
   textWrapper: {
     marginTop: 41 * RATIO,
-    width: "100%",
+    width: '100%',
   },
   productName: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 28,
     marginVertical: 18 * RATIO,
-    textAlign: "center",
+    textAlign: 'center',
   },
   productPrice: {
     fontSize: 22,
-    color: "#6A4029",
-    textAlign: "center",
+    color: '#6A4029',
+    textAlign: 'center',
   },
   sectionTitle: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 17,
   },
   sectionContent: {
     fontSize: 15,
     marginBottom: 20,
   },
-});
+})

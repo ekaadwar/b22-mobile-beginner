@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
-import GeneralStyle from "../components/GeneralStyle";
+import React, { Component } from 'react'
+import { Image, StyleSheet, Text, View } from 'react-native'
+import GeneralStyle from '../components/GeneralStyle'
 
-import { welcome } from "../assets/image";
-import MainButton from "../components/MainButton";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { welcome } from '../assets/image'
+import MainButton from '../components/MainButton'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 export default class Welcome extends Component {
   render() {
@@ -21,13 +21,13 @@ export default class Welcome extends Component {
         <View style={GeneralStyle.mainButtonWrapper}>
           <View style={GeneralStyle.container}>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("signUpAndLogin")}
+              onPress={() => this.props.navigation.navigate('signUpAndLogin')}
             >
               <MainButton text="Get Started" />
             </TouchableOpacity>
           </View>
         </View>
       </View>
-    );
+    )
   }
 }

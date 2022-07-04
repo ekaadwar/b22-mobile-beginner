@@ -1,9 +1,9 @@
-import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import React from 'react'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 
-import ItemCard from "../components/ItemCard";
+import ItemCard from '../components/ItemCard'
 
-import dataFavorites from "../data/dataFavorites";
+import dataFavorites from '../data/dataFavorites'
 
 export default function FavoriteProducts() {
   return (
@@ -13,7 +13,7 @@ export default function FavoriteProducts() {
         {dataFavorites.map((item, index) => ItemCard(item, index))}
       </View>
     </ScrollView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -24,14 +24,14 @@ const styles = StyleSheet.create({
   mainTitle: {
     paddingHorizontal: 40,
     marginTop: 40,
-    fontWeight: "700",
+    fontWeight: '700',
     fontSize: 28,
   },
   itemsWrapper: {
     width: 300,
-    alignSelf: "center",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
+    alignSelf: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
-});
+})

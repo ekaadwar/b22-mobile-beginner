@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import GeneralStyle from "../components/GeneralStyle";
-import MainButton from "../components/MainButton";
-import SeparatorVertical from "../components/SeparatorVertical";
+import React, { useState } from 'react'
+import GeneralStyle from '../components/GeneralStyle'
+import MainButton from '../components/MainButton'
+import SeparatorVertical from '../components/SeparatorVertical'
 // import toastMessage from "../utils/showMessage";
 
 import {
@@ -11,25 +11,25 @@ import {
   Text,
   TextInput,
   View,
-} from "react-native";
-import { useDispatch } from "react-redux";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { signInAction } from "../redux/actions/auth";
-import { login } from "../assets/image";
+} from 'react-native'
+import { useDispatch } from 'react-redux'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import { signInAction } from '../redux/actions/auth'
+import { login } from '../assets/image'
 
 const Login = ({ navigation }) => {
-  const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const dispatch = useDispatch()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const data = {
     email,
     password,
-  };
+  }
 
   const onSubmit = () => {
-    dispatch(signInAction(data, navigation));
-  };
+    dispatch(signInAction(data, navigation))
+  }
 
   return (
     <View style={[GeneralStyle.parent, styles.parent]}>
@@ -71,7 +71,7 @@ const Login = ({ navigation }) => {
 
           <View style={GeneralStyle.section}>
             <TouchableOpacity
-              onPress={() => navigation.navigate("forgotPassword")}
+              onPress={() => navigation.navigate('forgotPassword')}
             >
               <Text style={styles.linkText}>Forgot password?</Text>
             </TouchableOpacity>
@@ -102,50 +102,50 @@ const Login = ({ navigation }) => {
         </View>
       </View>
     </View>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
 
 const styles = StyleSheet.create({
   pictureWrapper: {
-    position: "relative",
+    position: 'relative',
     height: 250,
   },
   picture: {
-    position: "absolute",
+    position: 'absolute',
     right: -20,
   },
   pictureArea: {
-    width: "50%",
-    alignItems: "flex-end",
-    position: "relative",
-    height: "100%",
+    width: '50%',
+    alignItems: 'flex-end',
+    position: 'relative',
+    height: '100%',
   },
   titleSignUp: {
     width: 150,
-    position: "absolute",
-    left: "50%",
+    position: 'absolute',
+    left: '50%',
     top: 60,
   },
   linkText: {
     fontSize: 12,
-    color: "#895537",
-    textDecorationLine: "underline",
+    color: '#895537',
+    textDecorationLine: 'underline',
   },
   parent: {
     paddingBottom: 250,
   },
   separatorWrapper: {
-    position: "relative",
+    position: 'relative',
   },
   separatorText: {
-    position: "absolute",
-    backgroundColor: "#f7f0f0",
-    width: "50%",
-    textAlign: "center",
-    left: "25%",
+    position: 'absolute',
+    backgroundColor: '#f7f0f0',
+    width: '50%',
+    textAlign: 'center',
+    left: '25%',
     top: 20,
     height: 21,
   },
-});
+})

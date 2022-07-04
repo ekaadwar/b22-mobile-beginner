@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-import IonIcons from "react-native-vector-icons/Ionicons";
+import IonIcons from 'react-native-vector-icons/Ionicons'
 
 import {
   FlatList,
@@ -8,7 +8,7 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from "react-native";
+} from 'react-native'
 
 const HomeHeader = ({ navigation }) => {
   return (
@@ -28,25 +28,25 @@ const HomeHeader = ({ navigation }) => {
           <TouchableOpacity>
             <IonIcons name="search" color="grey" size={24} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("cart")}>
+          <TouchableOpacity onPress={() => navigation.navigate('cart')}>
             <IonIcons name="cart-outline" color="grey" size={24} />
           </TouchableOpacity>
         </View>
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   parent: {
     height: 80,
-    justifyContent: "flex-end",
+    justifyContent: 'flex-end',
     paddingHorizontal: 34,
     paddingBottom: 10,
   },
   contentWrapper: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   buttonWrapper: {
     width: 100,
@@ -55,10 +55,10 @@ const styles = StyleSheet.create({
     height: 24,
     width: 24,
     borderRadius: 9999,
-    backgroundColor: "coral",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: 'coral',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-});
+})
 
-export default HomeHeader;
+export default HomeHeader

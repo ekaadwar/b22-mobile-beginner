@@ -1,60 +1,60 @@
-import { vergieTomattoMix, coldBrew, pinkyPromise } from "../assets/image";
+import { vergieTomattoMix, coldBrew, pinkyPromise } from '../assets/image'
 
 const dataCart = [
   {
-    name: "Vergie Tomatto Mix",
+    name: 'Vergie Tomatto Mix',
     image: vergieTomattoMix,
-    price: "34.000",
+    price: '34.000',
     amount: 1,
   },
   {
-    name: "Cold Brew",
+    name: 'Cold Brew',
     image: coldBrew,
-    price: "30.000",
+    price: '30.000',
     amount: 1,
   },
   {
-    name: "Pinky Promise",
+    name: 'Pinky Promise',
     image: pinkyPromise,
-    price: "25.000",
+    price: '25.000',
     amount: 1,
   },
   {
-    name: "Vergie Tomatto Mix",
+    name: 'Vergie Tomatto Mix',
     image: vergieTomattoMix,
-    price: "34.000",
+    price: '34.000',
     amount: 1,
   },
   {
-    name: "Cold Brew",
+    name: 'Cold Brew',
     image: coldBrew,
-    price: "30.000",
+    price: '30.000',
     amount: 1,
   },
   {
-    name: "Pinky Promise",
+    name: 'Pinky Promise',
     image: pinkyPromise,
-    price: "25.000",
+    price: '25.000',
     amount: 1,
   },
   {
-    name: "Vergie Tomatto Mix",
+    name: 'Vergie Tomatto Mix',
     image: vergieTomattoMix,
-    price: "34.000",
+    price: '34.000',
     amount: 1,
   },
   {
-    name: "Cold Brew",
+    name: 'Cold Brew',
     image: coldBrew,
-    price: "30.000",
+    price: '30.000',
     amount: 1,
   },
   {
-    name: "Pinky Promise",
+    name: 'Pinky Promise',
     image: pinkyPromise,
-    price: "25.000",
+    price: '25.000',
     amount: 1,
   },
-];
+]
 
-export default dataCart;
+export default dataCart

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import {
   FlatList,
   Image,
@@ -7,17 +7,17 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from "react-native";
+} from 'react-native'
 
-import hazelnutLatte from "../assets/image/products/hazelnutLatte.png";
-import cappuccino from "../assets/image/products/cappuccino.png";
+import hazelnutLatte from '../assets/image/products/hazelnutLatte.png'
+import cappuccino from '../assets/image/products/cappuccino.png'
 
-import { connect } from "react-redux";
-import { getItems } from "../redux/actions/items";
+import { connect } from 'react-redux'
+import { getItems } from '../redux/actions/items'
 
 class HomeScreen extends Component {
   componentDidMount() {
-    this.props.getItems();
+    this.props.getItems()
   }
   render() {
     return (
@@ -26,7 +26,7 @@ class HomeScreen extends Component {
           <Text style={styles.mainTitle}>A good coffee is a good day</Text>
           <Text style={styles.sectionTitle}>Favorite Products</Text>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("favorites")}
+            onPress={() => this.props.navigation.navigate('favorites')}
             style={styles.linkWrapper}
           >
             <Text style={styles.linkText}>See more</Text>
@@ -57,14 +57,14 @@ class HomeScreen extends Component {
             horizontal
             renderItem={({ item }) => (
               <TouchableOpacity
-                onPress={() => this.props.navigation.navigate("detail")}
+                onPress={() => this.props.navigation.navigate('detail')}
                 style={styles.productCard}
               >
                 <View style={styles.image}>
                   {/* <Image source={hazelnutLatte} style={styles.img} /> */}
                   <Image
                     source={{
-                      uri: "http://localhost:8080/uploads/1651623998957.jpg",
+                      uri: 'http://localhost:8080/uploads/1651623998957.jpg',
                     }}
                     style={styles.img}
                   />
@@ -83,7 +83,7 @@ class HomeScreen extends Component {
         <View style={styles.container}>
           <Text style={styles.sectionTitle}>Promo for you</Text>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("promo")}
+            onPress={() => this.props.navigation.navigate('promo')}
             style={styles.linkWrapper}
           >
             <Text style={styles.linkText}>See more</Text>
@@ -93,7 +93,7 @@ class HomeScreen extends Component {
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {[...Array(20)].map((_i, idx) => (
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("detail")}
+              onPress={() => this.props.navigation.navigate('detail')}
               style={styles.productCard}
               key={String(idx)}
             >
@@ -110,15 +110,15 @@ class HomeScreen extends Component {
           ))}
         </ScrollView>
       </ScrollView>
-    );
+    )
   }
 }
 
-const ratio = 0.8;
+const ratio = 0.8
 
 const styles = StyleSheet.create({
   parent: {
-    backgroundColor: "#F2F2F2",
+    backgroundColor: '#F2F2F2',
     paddingTop: 100,
   },
   container: {
@@ -126,66 +126,66 @@ const styles = StyleSheet.create({
   },
   mainTitle: {
     fontSize: 34,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 20,
   },
   sectionTitle: {
-    color: "#6A4029",
-    fontWeight: "700",
+    color: '#6A4029',
+    fontWeight: '700',
     fontSize: 17,
   },
   linkWrapper: {
     width: 80,
-    alignSelf: "flex-end",
+    alignSelf: 'flex-end',
   },
   linkText: {
-    color: "#6A4029",
+    color: '#6A4029',
     fontSize: 17,
-    textAlign: "right",
+    textAlign: 'right',
   },
   productCard: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     height: 270 * ratio,
     width: 220 * ratio,
     borderRadius: 30,
     elevation: 5,
     margin: 38,
     marginTop: 98,
-    alignItems: "center",
+    alignItems: 'center',
   },
   img: {
-    resizeMode: "contain",
-    width: "100%",
+    resizeMode: 'contain',
+    width: '100%',
   },
   image: {
     width: 168 * ratio,
     height: 189 * ratio,
-    backgroundColor: "silver",
+    backgroundColor: 'silver',
     borderRadius: 30,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: -60,
-    overflow: "hidden",
+    overflow: 'hidden',
   },
   textWrapper: {
     marginTop: 10,
-    justifyContent: "space-around",
+    justifyContent: 'space-around',
     height: 100,
   },
   productName: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 22,
-    textAlign: "center",
+    textAlign: 'center',
   },
   productPrice: {
-    fontWeight: "bold",
-    color: "#6A4029",
-    textAlign: "center",
+    fontWeight: 'bold',
+    color: '#6A4029',
+    textAlign: 'center',
   },
-});
+})
 
-const mapStateToProps = (state) => ({ items: state.items });
+const mapStateToProps = (state) => ({ items: state.items })
 
-const mapDispatchToProps = { getItems };
+const mapDispatchToProps = { getItems }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

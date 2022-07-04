@@ -1,37 +1,37 @@
-import React, { useState } from "react";
-import { Image, StyleSheet, Text, TextInput, View } from "react-native";
-import { useDispatch } from "react-redux";
-import GeneralStyle from "../components/GeneralStyle";
+import React, { useState } from 'react'
+import { Image, StyleSheet, Text, TextInput, View } from 'react-native'
+import { useDispatch } from 'react-redux'
+import GeneralStyle from '../components/GeneralStyle'
 
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
-import { signUpAction } from "../redux/actions/auth";
-import { signUp } from "../assets/image";
-import MainButton from "../components/MainButton";
-import toastMessage from "../utils/showMessage";
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
+import { signUpAction } from '../redux/actions/auth'
+import { signUp } from '../assets/image'
+import MainButton from '../components/MainButton'
+import toastMessage from '../utils/showMessage'
 
 const SignUp = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [phone, setPhone] = useState('')
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const formData = {
     email,
     password,
     phone,
-  };
+  }
 
   const onSubmit = () => {
-    if (email === "" || password === "" || phone === "") {
-      toastMessage("form cannot be empty!");
+    if (email === '' || password === '' || phone === '') {
+      toastMessage('form cannot be empty!')
     } else {
-      email.includes("@")
+      email.includes('@')
         ? dispatch(signUpAction(formData, navigation))
         : // ? toastMessage(phone, "success")
-          toastMessage("wrong email");
+          toastMessage('wrong email')
     }
-  };
+  }
 
   return (
     <View style={GeneralStyle.parent}>
@@ -88,20 +88,20 @@ const SignUp = ({ navigation }) => {
         </View>
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   pictureWrapper: {
-    position: "relative",
+    position: 'relative',
     marginBottom: 20,
   },
   titleSignUp: {
     width: 150,
-    position: "absolute",
+    position: 'absolute',
     right: 0,
     top: 30,
   },
-});
+})
 
-export default SignUp;
+export default SignUp

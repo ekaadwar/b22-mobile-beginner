@@ -5,45 +5,45 @@ import {
   beefSpaghetti,
   mixSnack,
   spicyChicken,
-} from "../assets/image";
+} from '../assets/image'
 
 const dataFavorites = [
   {
     image: coffeeWhippedCream,
-    name: "Coffee Whipped Cream",
-    price: "34.000",
-    promo: "24.000",
+    name: 'Coffee Whipped Cream',
+    price: '34.000',
+    promo: '24.000',
   },
   {
     image: pinkyPromise,
-    name: "Pinky Promise",
-    price: "30.000",
-    promo: "25.000",
+    name: 'Pinky Promise',
+    price: '30.000',
+    promo: '25.000',
   },
   {
     image: chocoOreo,
-    name: "Choco Oreo",
-    price: "34.000",
-    promo: "27.000",
+    name: 'Choco Oreo',
+    price: '34.000',
+    promo: '27.000',
   },
   {
     image: beefSpaghetti,
-    name: "Beef Spaghetti",
-    price: "44.000",
-    promo: "30",
+    name: 'Beef Spaghetti',
+    price: '44.000',
+    promo: '30',
   },
   {
     image: mixSnack,
-    name: "Mix Snack",
-    price: "34.000",
-    promo: "30.000",
+    name: 'Mix Snack',
+    price: '34.000',
+    promo: '30.000',
   },
   {
     image: spicyChicken,
-    name: "Salty Rice",
-    price: "30.000",
-    promo: "25000",
+    name: 'Salty Rice',
+    price: '30.000',
+    promo: '25000',
   },
-];
+]
 
-export default dataFavorites;
+export default dataFavorites

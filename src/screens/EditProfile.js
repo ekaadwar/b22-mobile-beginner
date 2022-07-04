@@ -1,4 +1,4 @@
-import React, { Component /*, useState*/ } from "react";
+import React, { Component /*, useState*/ } from 'react'
 import {
   View,
   ScrollView,
@@ -6,43 +6,43 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-} from "react-native";
-import RadioGroup, { Radio } from "react-native-radio-input";
+} from 'react-native'
+import RadioGroup, { Radio } from 'react-native-radio-input'
 
-import CirclePicture from "../components/CirclePicture";
-import CircleButton from "../components/CircleButton";
-import GeneralStyle from "../components/GeneralStyle";
-import MainButton from "../components/MainButton";
+import CirclePicture from '../components/CirclePicture'
+import CircleButton from '../components/CircleButton'
+import GeneralStyle from '../components/GeneralStyle'
+import MainButton from '../components/MainButton'
 
-import { connect } from "react-redux";
-import { getProfile, editProfile } from "../redux/actions/profile";
+import { connect } from 'react-redux'
+import { getProfile, editProfile } from '../redux/actions/profile'
 
 class EditProfile extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       data: {},
-    };
+    }
   }
 
   componentDidMount() {
-    this.getData();
+    this.getData()
   }
 
   getData = () => {
     this.props.getProfile().then(() => {
-      this.setState({ data: this.props.profile.data });
-    });
-  };
+      this.setState({ data: this.props.profile.data })
+    })
+  }
 
   onSubmit = () => {
-    const prevKeys = Object.keys(this.props.profile.data);
-    const prevValues = Object.values(this.props.profile.data);
-    const realKeys = Object.keys(this.state.data);
-    const realValues = Object.values(this.state.data);
-    const dataLength = prevKeys.length;
+    const prevKeys = Object.keys(this.props.profile.data)
+    const prevValues = Object.values(this.props.profile.data)
+    const realKeys = Object.keys(this.state.data)
+    const realValues = Object.values(this.state.data)
+    const dataLength = prevKeys.length
 
-    let keys = "";
+    let keys = ''
 
     // console.log("realValues");
     // console.log(realValues);
@@ -51,17 +51,17 @@ class EditProfile extends Component {
 
     for (let i = 0; i < dataLength; i++) {
       if (prevValues[i] !== realValues[i]) {
-        if (keys !== "") {
-          keys += ", ";
+        if (keys !== '') {
+          keys += ', '
         }
 
-        keys += prevKeys[i];
-        this.props.editProfile(realKeys[i], realValues[i]);
+        keys += prevKeys[i]
+        this.props.editProfile(realKeys[i], realValues[i])
       }
     }
 
-    console.log(keys);
-  };
+    console.log(keys)
+  }
 
   render() {
     return (
@@ -106,10 +106,10 @@ class EditProfile extends Component {
           <View style={styles.section}>
             <RadioGroup
               getChecked={this.getChecked}
-              RadioGroupStyle={{ flexDirection: "row" }}
+              RadioGroupStyle={{ flexDirection: 'row' }}
             >
-              <Radio iconName={"lens"} label={"Female"} value={"female"} />
-              <Radio iconName={"lens"} label={"Male"} value={"male"} />
+              <Radio iconName={'lens'} label={'Female'} value={'female'} />
+              <Radio iconName={'lens'} label={'Male'} value={'male'} />
             </RadioGroup>
           </View>
 
@@ -187,20 +187,20 @@ class EditProfile extends Component {
           </TouchableOpacity>
         </View>
       </View>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
   pictureSection: {
-    alignItems: "center",
+    alignItems: 'center',
     marginVertical: 40,
   },
   imageWrapper: {
-    position: "relative",
+    position: 'relative',
   },
   buttonWrapper: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     right: 0,
   },
@@ -208,19 +208,19 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   inputLabel: {
-    color: "#9F9F9F",
-    fontWeight: "700",
+    color: '#9F9F9F',
+    fontWeight: '700',
     fontSize: 13,
   },
   input: {
     paddingVertical: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#9F9F9F",
+    borderBottomColor: '#9F9F9F',
   },
-});
+})
 
-const mapStateToProps = (state) => ({ profile: state.profile });
+const mapStateToProps = (state) => ({ profile: state.profile })
 
-const mapDispatchToProps = { getProfile, editProfile };
+const mapDispatchToProps = { getProfile, editProfile }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile)

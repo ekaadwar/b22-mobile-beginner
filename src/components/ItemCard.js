@@ -1,15 +1,15 @@
-import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import React from 'react'
+import { Image, StyleSheet, Text, View } from 'react-native'
 
-const ratio = 0.9;
+const ratio = 0.9
 
-const promoPrice = (promo = "harga promo") => {
+const promoPrice = (promo = 'harga promo') => {
   return (
     <View style={styles.promoCard}>
       <Text style={styles.productPrice}>IDR {promo}</Text>
     </View>
-  );
-};
+  )
+}
 
 const ItemCard = (data, index) => {
   return (
@@ -26,17 +26,17 @@ const ItemCard = (data, index) => {
         </Text>
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   itemCard: {
     width: 156 * ratio,
     height: 212 * ratio,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     marginTop: 75,
     borderRadius: 30 * ratio,
-    alignItems: "center",
+    alignItems: 'center',
     elevation: 2,
   },
   pictureWrapper: {
@@ -44,49 +44,49 @@ const styles = StyleSheet.create({
     width: 130 * ratio,
     marginTop: -50 * ratio,
     borderRadius: 9999,
-    backgroundColor: "silver",
-    justifyContent: "center",
-    alignItems: "center",
-    overflow: "hidden",
+    backgroundColor: 'silver',
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'hidden',
   },
   productPicture: {
-    resizeMode: "contain",
-    width: "100%",
+    resizeMode: 'contain',
+    width: '100%',
   },
   textWrapper: {
     height: 100,
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
     paddingTop: 10,
-    alignItems: "center",
+    alignItems: 'center',
     paddingHorizontal: 10,
-    position: "relative",
+    position: 'relative',
   },
   promoCard: {
-    position: "absolute",
+    position: 'absolute',
     height: 43 * ratio,
     width: 133 * ratio,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: 20 * ratio,
     top: 43 * ratio * -1,
     elevation: 2,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   productName: {
     fontSize: 22,
-    fontWeight: "700",
-    textAlign: "center",
+    fontWeight: '700',
+    textAlign: 'center',
   },
   productPrice: {
     fontSize: 17,
-    fontWeight: "700",
-    color: "#6A4029",
+    fontWeight: '700',
+    color: '#6A4029',
   },
   priceCanceled: {
     fontSize: 17,
-    color: "#9F9F9F",
-    textDecorationLine: "line-through",
+    color: '#9F9F9F',
+    textDecorationLine: 'line-through',
   },
-});
+})
 
-export default ItemCard;
+export default ItemCard

@@ -1,25 +1,30 @@
-import React, { Component } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import React, { Component } from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
-import GeneralStyle from "../components/GeneralStyle";
-import MainButton from "../components/MainButton";
-import CirclePicture from "../components/CirclePicture";
-import SeparatorVertical from "../components/SeparatorVertical";
+import GeneralStyle from '../components/GeneralStyle'
+import MainButton from '../components/MainButton'
+import CirclePicture from '../components/CirclePicture'
+import SeparatorVertical from '../components/SeparatorVertical'
 
 export default class Profile extends Component {
-  buttonHead = ["Order History", "Edit Password", "FAQ", "Help"];
+  buttonHead = ['Order History', 'Edit Password', 'FAQ', 'Help']
 
   userData = {
-    name: "Si Jon",
-    email: "sijon@gmail.com",
-    phone: "+62 81348287878",
+    name: 'Si Jon',
+    email: 'sijon@gmail.com',
+    phone: '+62 81348287878',
     address:
-      "Iskandar Street Block A Number 102 ular melingkar lingakr di pagar pak umar",
-  };
+      'Iskandar Street Block A Number 102 ular melingkar lingakr di pagar pak umar',
+  }
 
-  data = [ this.userData.name, this.userData.email, this.userData.phone, this.userData.address ]
+  data = [
+    this.userData.name,
+    this.userData.email,
+    this.userData.phone,
+    this.userData.address,
+  ]
 
   render() {
     return (
@@ -32,7 +37,9 @@ export default class Profile extends Component {
           <View style={styles.section}>
             <View style={[styles.titleSectionWrapper, styles.spaceBottom]}>
               <Text style={GeneralStyle.titleSection}>Your Information</Text>
-              <TouchableOpacity onPress={()=>this.props.navigation.navigate("editProfile")} >
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('editProfile')}
+              >
                 <Text style={styles.linkText}>edit</Text>
               </TouchableOpacity>
             </View>
@@ -44,17 +51,17 @@ export default class Profile extends Component {
                 </View>
 
                 <View style={styles.userInfoWrapper}>
-                  {this.data.map((item, index)=>(
+                  {this.data.map((item, index) => (
                     <View key={String(index)}>
-                      <Text style={
-                        index === 0 ? styles.fullName : styles.userInfo
-                      }>
+                      <Text
+                        style={index === 0 ? styles.fullName : styles.userInfo}
+                      >
                         {item}
                       </Text>
 
                       {index + 1 < this.data.length && (
-                        <SeparatorVertical top={2} bottom={5}/>
-                      ) }
+                        <SeparatorVertical top={2} bottom={5} />
+                      )}
                     </View>
                   ))}
                 </View>
@@ -64,10 +71,11 @@ export default class Profile extends Component {
 
           {this.buttonHead.map((item, index) => (
             <TouchableOpacity
-              onPress={()=>this.props.navigation.navigate(
-                item === "Order History" ? "history" : "profil"
-              )}
-
+              onPress={() =>
+                this.props.navigation.navigate(
+                  item === 'Order History' ? 'history' : 'profil'
+                )
+              }
               key={String(index)}
               style={[
                 GeneralStyle.card,
@@ -85,39 +93,39 @@ export default class Profile extends Component {
           <MainButton text="Save change" />
         </TouchableOpacity>
       </View>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
   titleSectionWrapper: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
-  linkText:{
-    color : "#6A4029"
+  linkText: {
+    color: '#6A4029',
   },
   section: {
     marginVertical: 10,
   },
-  spaceBottom:{
-    marginBottom : 10
+  spaceBottom: {
+    marginBottom: 10,
   },
   pictureWrapper: {
     marginRight: 10,
   },
   profileInfoWrapper: {
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   userInfoWrapper: {
     flex: 1,
   },
   fullName: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 18,
   },
   userInfo: {
-    color: "#6A4029",
+    color: '#6A4029',
   },
-});
+})

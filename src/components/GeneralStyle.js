@@ -1,21 +1,21 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native'
 
 const GeneralStyle = StyleSheet.create({
   alignCenter: {
-    alignItems: "center",
+    alignItems: 'center',
   },
   backButtonWrapper: {
-    height: "100%",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    flexDirection: "row",
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    flexDirection: 'row',
   },
   bold: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   card: {
     padding: 20,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderRadius: 20,
     elevation: 2,
   },
@@ -25,72 +25,72 @@ const GeneralStyle = StyleSheet.create({
   inputAuth: {
     paddingVertical: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#9A9A9D",
+    borderBottomColor: '#9A9A9D',
   },
   justifyCenter: {
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   justifyBetween: {
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
   },
   mainButtonWrapper: {
-    width: "100%",
-    position: "absolute",
+    width: '100%',
+    position: 'absolute',
     bottom: 40,
-    alignSelf: "center",
+    alignSelf: 'center',
   },
   mb10: {
     marginBottom: 10,
   },
   parent: {
     paddingTop: 80,
-    backgroundColor: "#f7f0f0",
-    height: "100%",
-    alignItems: "stretch",
-    position: "relative",
+    backgroundColor: '#f7f0f0',
+    height: '100%',
+    alignItems: 'stretch',
+    position: 'relative',
     paddingBottom: 120,
   },
   parentAuth: {
     paddingTop: 80,
-    backgroundColor: "#f7f0f0",
-    height: "100%",
-    alignItems: "stretch",
-    position: "relative",
+    backgroundColor: '#f7f0f0',
+    height: '100%',
+    alignItems: 'stretch',
+    position: 'relative',
   },
   picture: {
-    resizeMode: "contain",
-    width: "100%",
+    resizeMode: 'contain',
+    width: '100%',
   },
   pictureVertical: {
-    resizeMode: "contain",
-    height: "100%",
+    resizeMode: 'contain',
+    height: '100%',
   },
   section: {
     marginVertical: 10,
   },
   subTitle: {
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 17,
   },
   textCenter: {
-    textAlign: "center",
+    textAlign: 'center',
   },
   titleAuth: {
     fontSize: 50,
-    fontWeight: "700",
+    fontWeight: '700',
   },
   titleMain: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 34,
     marginTop: 30,
   },
   titleSection: {
     fontSize: 17,
-    fontWeight: "700",
+    fontWeight: '700',
   },
   wFull: {
-    width: "100%",
+    width: '100%',
   },
-});
+})
 
-export default GeneralStyle;
+export default GeneralStyle

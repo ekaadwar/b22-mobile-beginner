@@ -1,9 +1,9 @@
-import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import React from 'react'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 
-import ItemCard from "../components/ItemCard";
+import ItemCard from '../components/ItemCard'
 
-import dataPromo from "../data/dataPromo";
+import dataPromo from '../data/dataPromo'
 
 export default function PromoProducts() {
   return (
@@ -14,7 +14,7 @@ export default function PromoProducts() {
         {dataPromo.map((item, index) => ItemCard(item, index))}
       </View>
     </ScrollView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -25,18 +25,18 @@ const styles = StyleSheet.create({
   mainTitle: {
     paddingHorizontal: 40,
     marginTop: 40,
-    fontWeight: "700",
+    fontWeight: '700',
     fontSize: 28,
-    textAlign: "center",
+    textAlign: 'center',
   },
   subTitle: {
-    textAlign: "center",
+    textAlign: 'center',
   },
   itemsWrapper: {
     width: 300,
-    alignSelf: "center",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
+    alignSelf: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
-});
+})

@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
-import GeneralStyle from "../components/GeneralStyle";
+import React, { Component } from 'react'
+import { Image, StyleSheet, Text, View } from 'react-native'
+import GeneralStyle from '../components/GeneralStyle'
 
-import { signUpOrLogin } from "../assets/image";
-import MainButton from "../components/MainButton";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { signUpOrLogin } from '../assets/image'
+import MainButton from '../components/MainButton'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 export default class SignUpAndLogin extends Component {
   render() {
@@ -26,20 +26,20 @@ export default class SignUpAndLogin extends Component {
         <View style={GeneralStyle.mainButtonWrapper}>
           <View style={GeneralStyle.container}>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("signUp")}
+              onPress={() => this.props.navigation.navigate('signUp')}
               style={GeneralStyle.mb10}
             >
               <MainButton text="Create New Account" />
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("login")}
+              onPress={() => this.props.navigation.navigate('login')}
             >
               <MainButton text="Login" color="#FFBA33" textColor="#000" />
             </TouchableOpacity>
           </View>
         </View>
       </View>
-    );
+    )
   }
 }

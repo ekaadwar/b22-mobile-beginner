@@ -1,21 +1,21 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
   View,
   Text,
-} from "react-native";
+} from 'react-native'
 
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
-import MainButton from "../components/MainButton";
-import CirclePicture from "../components/CirclePicture";
+import MainButton from '../components/MainButton'
+import CirclePicture from '../components/CirclePicture'
 
-import dataCart from "../data/dataCart";
+import dataCart from '../data/dataCart'
 
-import GeneralStyle from "../components/GeneralStyle";
-import SwipeableSubtitles from "../components/SwipeableSubtitles";
+import GeneralStyle from '../components/GeneralStyle'
+import SwipeableSubtitles from '../components/SwipeableSubtitles'
 
 export default class History extends Component {
   render() {
@@ -62,19 +62,19 @@ export default class History extends Component {
           showsVerticalScrollIndicator={false}
         />
       </View>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
   cardWrapper: {
-    width: "100%",
+    width: '100%',
   },
   card: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderRadius: 20,
-    flexDirection: "row",
-    width: "100%",
+    flexDirection: 'row',
+    width: '100%',
     elevation: 2,
     padding: 20,
     marginVertical: 7,
@@ -82,40 +82,40 @@ const styles = StyleSheet.create({
   textWrapper: {
     marginLeft: 20,
     flex: 1,
-    justifyContent: "space-around",
+    justifyContent: 'space-around',
   },
   parent: {
     paddingTop: 80,
     paddingBottom: 50,
-    backgroundColor: "#f7f0f0",
-    height: "100%",
-    alignItems: "stretch",
-    position: "relative",
+    backgroundColor: '#f7f0f0',
+    height: '100%',
+    alignItems: 'stretch',
+    position: 'relative',
   },
   productName: {
     fontSize: 17,
-    fontWeight: "700",
+    fontWeight: '700',
   },
   priceWrapper: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   productPrice: {
-    color: "#895537",
+    color: '#895537',
   },
   amountWrapper: {
-    flexDirection: "row",
-    backgroundColor: "#6A4029",
+    flexDirection: 'row',
+    backgroundColor: '#6A4029',
     height: 20,
     width: 70,
     borderRadius: 9999,
     paddingHorizontal: 12,
-    justifyContent: "space-between",
-    alignItems: "center",
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   amountText: {
-    color: "#fff",
+    color: '#fff',
     fontSize: 10,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
-});
+})

@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import {
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-} from "react-native";
+} from 'react-native'
 
 export default class ProductDetail extends Component {
   render() {
@@ -29,8 +29,8 @@ export default class ProductDetail extends Component {
           <View style={styles.contentContext}>
             <View style={styles.deliveryText}>
               <Text style={styles.text}>
-                Delivery only on{" "}
-                <Text style={styles.bold}>Monday to friday</Text> at{" "}
+                Delivery only on{' '}
+                <Text style={styles.bold}>Monday to friday</Text> at{' '}
                 <Text style={styles.bold}>1 - 7 pm</Text>
               </Text>
             </View>
@@ -47,12 +47,12 @@ export default class ProductDetail extends Component {
 
           <View style={styles.buttonWrapper}>
             <View style={styles.variantWrapper}>
-              {["R", "L", "XL"].map((items) => {
+              {['R', 'L', 'XL'].map((items) => {
                 return (
                   <View style={styles.variant} key={items}>
                     <Text style={styles.variantText}>{items}</Text>
                   </View>
-                );
+                )
               })}
             </View>
 
@@ -62,19 +62,19 @@ export default class ProductDetail extends Component {
           </View>
         </View>
       </ScrollView>
-    );
+    )
   }
 }
 
-const PICTURE_SIZE = 180;
+const PICTURE_SIZE = 180
 
 const styles = StyleSheet.create({
   parent: {
     flex: 1,
-    backgroundColor: "#362115",
+    backgroundColor: '#362115',
   },
   content: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     marginTop: 268,
     flex: 1,
     borderTopRightRadius: 60,
@@ -82,9 +82,9 @@ const styles = StyleSheet.create({
   price: {
     width: 120,
     height: 40,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#FFBA33",
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFBA33',
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
     marginTop: -40,
@@ -92,10 +92,10 @@ const styles = StyleSheet.create({
   },
   priceText: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   pictureWrapper: {
-    flexDirection: "row-reverse",
+    flexDirection: 'row-reverse',
     paddingLeft: 20,
     marginTop: (PICTURE_SIZE / 2) * -1,
   },
@@ -103,20 +103,20 @@ const styles = StyleSheet.create({
     width: PICTURE_SIZE,
     height: PICTURE_SIZE,
     borderRadius: PICTURE_SIZE / 2,
-    backgroundColor: "silver",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: 'silver',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   titleWrapper: {
-    flexDirection: "row-reverse",
+    flexDirection: 'row-reverse',
     paddingLeft: 20,
     marginTop: 10,
   },
   title: {
     width: PICTURE_SIZE,
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 28,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   contentContext: {
     paddingHorizontal: 40,
@@ -128,41 +128,41 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 14,
-    color: "#6A4029",
+    color: '#6A4029',
   },
   bold: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   buttonWrapper: {
     paddingHorizontal: 20,
     paddingBottom: 40,
   },
   variantWrapper: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
     marginVertical: 20,
   },
   variant: {
     width: 40,
     height: 40,
-    backgroundColor: "#FFBA33",
+    backgroundColor: '#FFBA33',
     borderRadius: 9999,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   variantText: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   button: {
     height: 60,
     borderRadius: 15,
-    backgroundColor: "#6A4029",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: '#6A4029',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   buttonText: {
-    color: "#fff",
+    color: '#fff',
     fontSize: 17,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
-});
+})

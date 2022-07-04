@@ -1,16 +1,16 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
 
-import MaterialIcon from "react-native-vector-icons/MaterialIcons";
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 
-const RATIO = 0.8;
+const RATIO = 0.8
 
 const CircleButton = ({
-  icon = "check",
+  icon = 'check',
   size = 50,
-  color = "silver",
+  color = 'silver',
   iconSize = 15,
-  iconColor = "black",
+  iconColor = 'black',
 }) => {
   const styles = StyleSheet.create({
     parent: {
@@ -18,18 +18,18 @@ const CircleButton = ({
       width: size * RATIO,
       height: size * RATIO,
       borderRadius: 9999,
-      justifyContent: "center",
-      alignItems: "center",
+      justifyContent: 'center',
+      alignItems: 'center',
     },
-  });
+  })
 
   return (
     <View style={styles.parent}>
       <MaterialIcon name={icon} size={iconSize} color={iconColor} />
     </View>
-  );
-};
+  )
+}
 
-export default CircleButton;
+export default CircleButton
 
 // love, delete

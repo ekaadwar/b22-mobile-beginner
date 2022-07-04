@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import {
   Image,
   ScrollView,
@@ -6,38 +6,38 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from "react-native";
+} from 'react-native'
 
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import GeneralStyle from "../components/GeneralStyle";
-import MainButton from "../components/MainButton";
-import SeparatorVertical from "../components/SeparatorVertical";
+import GeneralStyle from '../components/GeneralStyle'
+import MainButton from '../components/MainButton'
+import SeparatorVertical from '../components/SeparatorVertical'
 
-import { dataPayment, dataCards } from "../data";
+import { dataPayment, dataCards } from '../data'
 
 export default class Payment extends Component {
   paymentMethods = [
     {
-      method: "Card",
-      icon: "credit-card",
-      color: "#F47B0A",
-      iconColor: "#fff",
+      method: 'Card',
+      icon: 'credit-card',
+      color: '#F47B0A',
+      iconColor: '#fff',
     },
 
     {
-      method: "Bank account",
-      icon: "bank",
-      color: "#895537",
-      iconColor: "#fff",
+      method: 'Bank account',
+      icon: 'bank',
+      color: '#895537',
+      iconColor: '#fff',
     },
     {
-      method: "Cash on delivery",
-      icon: "truck-delivery",
-      color: "#FFBA33",
-      iconColor: "#000",
+      method: 'Cash on delivery',
+      icon: 'truck-delivery',
+      color: '#FFBA33',
+      iconColor: '#000',
     },
-  ];
+  ]
 
   render() {
     return (
@@ -147,38 +147,38 @@ export default class Payment extends Component {
           <MainButton text="Proceed payment" />
         </TouchableOpacity>
       </View>
-    );
+    )
   }
 }
 
-const RATIO = 0.9;
+const RATIO = 0.9
 
 const styles = StyleSheet.create({
   sectionTitle: {
-    fontWeight: "700",
+    fontWeight: '700',
     fontSize: 17,
     marginTop: 33,
     marginBottom: 12,
   },
   cardSection: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginVertical: 5,
   },
   imageWrapper: {
     height: 64,
     width: 54,
-    backgroundColor: "silver",
+    backgroundColor: 'silver',
     marginRight: 10,
     borderRadius: 20 * RATIO,
-    alignItems: "center",
-    justifyContent: "center",
-    overflow: "hidden",
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
   },
   productAmount: {
     flex: 1,
   },
   priceWrapper: {
-    alignSelf: "center",
+    alignSelf: 'center',
   },
   price: {
     fontSize: 17,
@@ -186,8 +186,8 @@ const styles = StyleSheet.create({
   iconWrapper: {
     width: 40,
     height: 40,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     // backgroundColor: "coral",
     borderRadius: 10 * RATIO,
     marginRight: 10,
@@ -200,15 +200,15 @@ const styles = StyleSheet.create({
     height: 150,
     marginVertical: 10,
     marginRight: 10,
-    backgroundColor: "silver",
+    backgroundColor: 'silver',
     borderRadius: 10,
     elevation: 2,
-    alignItems: "center",
-    justifyContent: "center",
-    overflow: "hidden",
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
   },
   totalPrice: {
     fontSize: 22,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
-});
+})

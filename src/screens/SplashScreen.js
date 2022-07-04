@@ -1,20 +1,20 @@
-import React, { useEffect } from "react";
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
-import { BGSplashScreen, welcome } from "../assets/image";
-import { getData } from "../utils/storage";
+import React, { useEffect } from 'react'
+import { ImageBackground, StyleSheet, Text, View } from 'react-native'
+import { BGSplashScreen, welcome } from '../assets/image'
+import { getData } from '../utils/storage'
 
 const SplashScreen = ({ navigation }) => {
   useEffect(() => {
     setTimeout(() => {
-      getData("token").then((res) => {
+      getData('token').then((res) => {
         if (res) {
-          navigation.reset({ index: 0, routes: [{ name: "Main" }] });
+          navigation.reset({ index: 0, routes: [{ name: 'Main' }] })
         } else {
-          navigation.replace("welcome");
+          navigation.replace('welcome')
         }
-      });
-    }, 2000);
-  }, [navigation]);
+      })
+    }, 2000)
+  }, [navigation])
 
   return (
     <View style={styles.container}>
@@ -24,27 +24,27 @@ const SplashScreen = ({ navigation }) => {
         </ImageBackground>
       </View>
     </View>
-  );
-};
+  )
+}
 
-export default SplashScreen;
+export default SplashScreen
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   picture: {
-    resizeMode: "cover",
+    resizeMode: 'cover',
     flex: 1,
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   text: {
-    backgroundColor: "#000000a0",
+    backgroundColor: '#000000a0',
     flex: 1,
-    color: "#fff",
+    color: '#fff',
     fontSize: 65,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     paddingTop: 209,
-    textAlign: "center",
+    textAlign: 'center',
   },
-});
+})

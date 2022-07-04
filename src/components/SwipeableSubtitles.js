@@ -1,7 +1,7 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 const SwipeableSubtitles = () => {
   return (
@@ -9,14 +9,14 @@ const SwipeableSubtitles = () => {
       <MaterialIcons name="swipe" size={16} />
       <Text style={styles.mainTitle}>swipe on an item to delete</Text>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   titleWrapper: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginTop: 40,
     marginBottom: 20,
   },
@@ -24,6 +24,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginLeft: 10,
   },
-});
+})
 
-export default SwipeableSubtitles;
+export default SwipeableSubtitles
