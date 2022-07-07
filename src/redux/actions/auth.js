@@ -22,6 +22,7 @@ export const signUpAction = (data, navigation) => (dispatch) => {
     .catch((err) => {
       dispatch({ type: 'SET_LOADING', payload: false })
       toastMessage(err?.response?.data?.message)
+      // toastMessage('owalah')
     })
 }
 

@@ -8,6 +8,7 @@ import { signUpAction } from '../redux/actions/auth'
 import { signUp } from '../assets/image'
 import MainButton from '../components/MainButton'
 import toastMessage from '../utils/showMessage'
+import { number } from 'prop-types'
 
 const SignUp = ({ navigation }) => {
   const [email, setEmail] = useState('')
@@ -26,10 +27,13 @@ const SignUp = ({ navigation }) => {
     if (email === '' || password === '' || phone === '') {
       toastMessage('form cannot be empty!')
     } else {
-      email.includes('@')
-        ? dispatch(signUpAction(formData, navigation))
-        : // ? toastMessage(phone, "success")
-          toastMessage('wrong email')
+      if (!email.includes('@')) {
+        toastMessage('wrong email')
+      } else if (password.length < 6) {
+        toastMessage('password length must be 6 characters at least')
+      } else {
+        dispatch(signUpAction(formData, navigation))
+      }
     }
   }
 
