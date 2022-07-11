@@ -21,11 +21,6 @@ export default class History extends Component {
   render() {
     return (
       <View style={[styles.parent, GeneralStyle.container]}>
-        {/* <View style={styles.titleWrapper}>
-          <MaterialIcons name="swipe" size={16} />
-          <Text style={styles.mainTitle}>swipe on an item to delete</Text>
-        </View> */}
-
         <SwipeableSubtitles />
 
         <FlatList
