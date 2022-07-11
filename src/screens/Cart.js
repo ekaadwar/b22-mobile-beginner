@@ -100,7 +100,7 @@ class Cart extends Component {
             <EmptyContent
               icon="shopping-cart"
               title="No orders yet"
-              description="Hit the orange button down below to Create an order"
+              description="Hit the button down below to Create an order"
             />
 
             <TouchableOpacity

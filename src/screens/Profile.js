@@ -9,7 +9,12 @@ import CirclePicture from '../components/CirclePicture'
 import SeparatorVertical from '../components/SeparatorVertical'
 
 export default class Profile extends Component {
-  buttonHead = ['Order History', 'Edit Password', 'FAQ', 'Help']
+  buttonHead = [
+    { head: 'Order History', stack: 'history' },
+    { head: 'Edit Password', stack: 'editPassword' },
+    { head: 'FAQ', stack: 'profil' },
+    { head: 'Help', stack: 'profil' },
+  ]
 
   userData = {
     name: 'Si Jon',
@@ -71,11 +76,7 @@ export default class Profile extends Component {
 
           {this.buttonHead.map((item, index) => (
             <TouchableOpacity
-              onPress={() =>
-                this.props.navigation.navigate(
-                  item === 'Order History' ? 'history' : 'profil'
-                )
-              }
+              onPress={() => this.props.navigation.navigate(item.stack)}
               key={String(index)}
               style={[
                 GeneralStyle.card,
@@ -83,7 +84,7 @@ export default class Profile extends Component {
                 styles.titleSectionWrapper,
               ]}
             >
-              <Text style={GeneralStyle.titleSection}>{item}</Text>
+              <Text style={GeneralStyle.titleSection}>{item.head}</Text>
               <FontAwesome name="chevron-right" size={16} />
             </TouchableOpacity>
           ))}

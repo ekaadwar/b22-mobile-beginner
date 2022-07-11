@@ -1,12 +1,12 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 
-import MaterialIcon from "react-native-vector-icons/MaterialIcons";
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 
 const EmptyContent = ({
-  icon = "hourglass-empty",
-  title = "Screen Title",
-  description = "Screen Description",
+  icon = 'hourglass-empty',
+  title = 'Screen Title',
+  description = 'Screen Description',
 }) => {
   return (
     <View style={styles.emptyParent}>
@@ -14,30 +14,28 @@ const EmptyContent = ({
 
       <Text style={styles.emptyTitle}>{title}</Text>
 
-      <Text style={styles.emptyDescription}>
-        Hit the orange button down below to Create an order
-      </Text>
+      <Text style={styles.emptyDescription}>{description}</Text>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   emptyParent: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   emptyTitle: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 28,
-    textAlign: "center",
+    textAlign: 'center',
     marginVertical: 10,
   },
   emptyDescription: {
     fontSize: 17,
-    textAlign: "center",
+    textAlign: 'center',
     width: 200,
   },
-});
+})
 
-export default EmptyContent;
+export default EmptyContent
