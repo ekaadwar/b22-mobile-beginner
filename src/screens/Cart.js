@@ -1,26 +1,30 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
   View,
   Text,
-} from "react-native";
-import { SwipeListView } from "react-native-swipe-list-view";
-import { connect } from "react-redux";
-import { deleteItem } from "../redux/actions/cart";
+} from 'react-native'
+import { SwipeListView } from 'react-native-swipe-list-view'
+import { connect } from 'react-redux'
+import { deleteItem, getCart } from '../redux/actions/cart'
 
-import MainButton from "../components/MainButton";
-import CirclePicture from "../components/CirclePicture";
-import CircleButton from "../components/CircleButton";
+import MainButton from '../components/MainButton'
+import CirclePicture from '../components/CirclePicture'
+import CircleButton from '../components/CircleButton'
 
-import GeneralStyle from "../components/GeneralStyle";
-import SwipeableSubtitles from "../components/SwipeableSubtitles";
+import GeneralStyle from '../components/GeneralStyle'
+import SwipeableSubtitles from '../components/SwipeableSubtitles'
 
-import MaterialIcon from "react-native-vector-icons/MaterialIcons";
-import EmptyContent from "../components/EmptyContent";
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
+import EmptyContent from '../components/EmptyContent'
 
 class Cart extends Component {
+  componentDidMount() {
+    this.props.getCart()
+  }
+
   render() {
     return (
       <View style={[GeneralStyle.parent, GeneralStyle.container]}>
@@ -85,7 +89,7 @@ class Cart extends Component {
             />
 
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("checkout")}
+              onPress={() => this.props.navigation.navigate('checkout')}
               style={GeneralStyle.mainButtonWrapper}
             >
               <MainButton text="Confirm and Checkout" />
@@ -93,16 +97,6 @@ class Cart extends Component {
           </>
         ) : (
           <>
-            {/* <View style={styles.emptyParent}>
-              <MaterialIcon name="shopping-cart" color="#C7C7C7" size={150} />
-
-              <Text style={styles.emptyTitle}>No orders yet</Text>
-
-              <Text style={styles.emptyDescription}>
-                Hit the orange button down below to Create an order
-              </Text>
-            </View> */}
-
             <EmptyContent
               icon="shopping-cart"
               title="No orders yet"
@@ -110,7 +104,7 @@ class Cart extends Component {
             />
 
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("home")}
+              onPress={() => this.props.navigation.navigate('home')}
               style={GeneralStyle.mainButtonWrapper}
             >
               <MainButton text="Start ordering" />
@@ -118,14 +112,14 @@ class Cart extends Component {
           </>
         )}
       </View>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
   titleWrapper: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginTop: 40,
     marginBottom: 20,
   },
@@ -137,13 +131,13 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   cardWrapper: {
-    width: "100%",
+    width: '100%',
   },
   card: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderRadius: 20,
-    flexDirection: "row",
-    width: "100%",
+    flexDirection: 'row',
+    width: '100%',
     elevation: 2,
     padding: 20,
     marginVertical: 7,
@@ -151,56 +145,40 @@ const styles = StyleSheet.create({
   textWrapper: {
     marginLeft: 20,
     flex: 1,
-    justifyContent: "space-around",
+    justifyContent: 'space-around',
   },
   productName: {
     fontSize: 17,
-    fontWeight: "700",
+    fontWeight: '700',
   },
   priceWrapper: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   productPrice: {
-    color: "#895537",
+    color: '#895537',
   },
   amountWrapper: {
-    flexDirection: "row",
-    backgroundColor: "#6A4029",
+    flexDirection: 'row',
+    backgroundColor: '#6A4029',
     height: 20,
     width: 70,
     borderRadius: 9999,
     paddingHorizontal: 12,
-    justifyContent: "space-between",
-    alignItems: "center",
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   amountText: {
-    color: "#fff",
+    color: '#fff',
     fontSize: 10,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
-  // emptyParent: {
-  //   flex: 1,
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  // },
-  // emptyTitle: {
-  //   fontWeight: "bold",
-  //   fontSize: 28,
-  //   textAlign: "center",
-  //   marginVertical: 10,
-  // },
-  // emptyDescription: {
-  //   fontSize: 17,
-  //   textAlign: "center",
-  //   width: 200,
-  // },
-});
+})
 
 const mapStateToProps = (state) => ({
   cart: state.cart,
-});
+})
 
-const mapDispatchToProps = { deleteCartItem: deleteItem };
+const mapDispatchToProps = { deleteCartItem: deleteItem, getCart }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)

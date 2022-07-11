@@ -232,6 +232,13 @@ const Router = () => {
         name="orderstack"
         component={OrderStack}
       />
+      {/* <Drawer.Screen
+        options={{
+          title: 'Orders',
+        }}
+        name="cart"
+        component={Cart}
+      /> */}
       <Drawer.Screen
         options={{ title: 'All Menu' }}
         name="allMenu"

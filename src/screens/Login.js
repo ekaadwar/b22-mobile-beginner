@@ -29,6 +29,7 @@ const Login = ({ navigation }) => {
 
   const onSubmit = () => {
     dispatch(signInAction(data, navigation))
+    // console.log(data)
   }
 
   return (
