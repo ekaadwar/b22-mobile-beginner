@@ -1,8 +1,8 @@
 import React from 'react'
 import EmptyContent from '../components/EmptyContent'
 
-const EditPassword = () => {
+const Help = () => {
   return <EmptyContent title="" description="Screen is not yet available" />
 }
 
-export default EditPassword
+export default Help

@@ -12,8 +12,8 @@ export default class Profile extends Component {
   buttonHead = [
     { head: 'Order History', stack: 'history' },
     { head: 'Edit Password', stack: 'editPassword' },
-    { head: 'FAQ', stack: 'profil' },
-    { head: 'Help', stack: 'profil' },
+    { head: 'FAQ', stack: 'faq' },
+    { head: 'Help', stack: 'help' },
   ]
 
   userData = {

@@ -41,6 +41,8 @@ import ForgotPassword from './src/screens/ForgotPAssword'
 import Loading from './src/components/Loading'
 import store from './src/redux/store'
 import EditPassword from './src/screens/EditPassword'
+import FAQ from './src/screens/FAQ'
+import Help from './src/screens/Help'
 
 const Stack = createStackNavigator()
 const Drawer = createDrawerNavigator()
@@ -196,7 +198,25 @@ class MainStack extends Component {
             cardStyle: { backgroundColor: 'transparent' },
             headerTransparent: true,
           }}
-          name="editPasword"
+          name="editPassword"
+        />
+        <Stack.Screen
+          component={FAQ}
+          options={{
+            header: Header,
+            cardStyle: { backgroundColor: 'transparent' },
+            headerTransparent: true,
+          }}
+          name="faq"
+        />
+        <Stack.Screen
+          component={Help}
+          options={{
+            header: Header,
+            cardStyle: { backgroundColor: 'transparent' },
+            headerTransparent: true,
+          }}
+          name="help"
         />
       </Stack.Navigator>
     )
