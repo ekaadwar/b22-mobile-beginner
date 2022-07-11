@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect } from 'react'
 import {
   FlatList,
   StyleSheet,
@@ -11,8 +11,16 @@ import CirclePicture from '../components/CirclePicture'
 import GeneralStyle from '../components/GeneralStyle'
 import SwipeableSubtitles from '../components/SwipeableSubtitles'
 import dataCart from '../data/dataCart'
+import { getHistory } from '../redux/actions/history'
+import { getData } from '../utils/storage'
 
 const HistoryFunc = () => {
+  useEffect(() => {
+    getData('token').then((res) => {
+      dispatch(getHistory(res))
+    })
+  }, [])
+
   return (
     <View style={[styles.parent, GeneralStyle.container]}>
       <SwipeableSubtitles />
