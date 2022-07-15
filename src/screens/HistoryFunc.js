@@ -6,18 +6,25 @@ import {
   View,
   Text,
 } from 'react-native'
+import { useDispatch, useSelector, connect } from 'react-redux'
+import { getHistory } from '../redux/actions/history'
+import { getData } from '../utils/storage'
 
 import CirclePicture from '../components/CirclePicture'
 import GeneralStyle from '../components/GeneralStyle'
 import SwipeableSubtitles from '../components/SwipeableSubtitles'
 import dataCart from '../data/dataCart'
-import { getHistory } from '../redux/actions/history'
-import { getData } from '../utils/storage'
 
-const HistoryFunc = () => {
+const HistoryFunc = (props) => {
+  // const dispatch = useDispatch()
+
+  // const { history } = useSelector((state) => state.history)
+
   useEffect(() => {
     getData('token').then((res) => {
-      dispatch(getHistory(res))
+      props.getHistory(res).then(() => {
+        console.log(props.history.data)
+      })
     })
   }, [])
 
@@ -27,16 +34,16 @@ const HistoryFunc = () => {
 
       <FlatList
         style={styles.cardWrapper}
-        data={dataCart}
+        data={props.history.data}
         renderItem={({ item, idx }) => (
           <TouchableOpacity style={styles.card} key={String(idx)}>
-            <CirclePicture picture={item.image} size={70} />
+            {/* <CirclePicture picture={item.image} size={70} /> */}
 
             <View style={styles.textWrapper}>
-              <Text style={styles.productName}>{item.name}</Text>
+              <Text style={styles.productName}>{item.code}</Text>
 
               <View style={styles.priceWrapper}>
-                <Text style={styles.productPrice}>IDR {item.price}</Text>
+                <Text style={styles.productPrice}>IDR {item.total}</Text>
 
                 <View style={styles.amountWrapper}>
                   <TouchableOpacity>
@@ -62,7 +69,13 @@ const HistoryFunc = () => {
   )
 }
 
-export default HistoryFunc
+const mapStateToProps = (state) => ({ history: state.history })
+
+const mapDispatchToProps = {
+  getHistory,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HistoryFunc)
 
 const styles = StyleSheet.create({
   cardWrapper: {
