@@ -14,6 +14,7 @@ import CircleButton from '../components/CircleButton'
 import GeneralStyle from '../components/GeneralStyle'
 import SwipeableSubtitles from '../components/SwipeableSubtitles'
 import { SwipeListView } from 'react-native-swipe-list-view'
+import DetailHistory from './HistoryDetail'
 
 const HistoryFunc = (props) => {
   useEffect(() => {
@@ -35,7 +36,11 @@ const HistoryFunc = (props) => {
         showsVerticalScrollIndicator={false}
         data={props.history.data}
         renderItem={({ item, idx }) => (
-          <TouchableOpacity style={styles.card} key={String(idx)}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('detailHistory')}
+            style={styles.card}
+            key={String(idx)}
+          >
             {/* <CirclePicture picture={item.image} size={70} /> */}
 
             <View style={styles.textWrapper}>

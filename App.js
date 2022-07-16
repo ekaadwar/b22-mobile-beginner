@@ -43,6 +43,7 @@ import store from './src/redux/store'
 import EditPassword from './src/screens/EditPassword'
 import FAQ from './src/screens/FAQ'
 import Help from './src/screens/Help'
+import DetailHistory from './src/screens/DetailHistory'
 
 const Stack = createStackNavigator()
 const Drawer = createDrawerNavigator()
@@ -217,6 +218,15 @@ class MainStack extends Component {
             headerTransparent: true,
           }}
           name="help"
+        />
+        <Stack.Screen
+          component={DetailHistory}
+          options={{
+            header: Header,
+            cardStyle: { backgroundColor: 'transparent' },
+            headerTransparent: true,
+          }}
+          name="detailHistory"
         />
       </Stack.Navigator>
     )
