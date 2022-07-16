@@ -35,11 +35,11 @@ const HistoryFunc = (props) => {
       <SwipeListView
         showsVerticalScrollIndicator={false}
         data={props.history.data}
-        renderItem={({ item, idx }) => (
+        renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('detailHistory')}
+            onPress={() => props.navigation.navigate('historyDetail')}
             style={styles.card}
-            key={String(idx)}
+            key={String(item.id)}
           >
             {/* <CirclePicture picture={item.image} size={70} /> */}
 
@@ -54,6 +54,10 @@ const HistoryFunc = (props) => {
 
               <View style={styles.priceWrapper}>
                 <Text style={styles.productPrice}>Dine in</Text>
+              </View>
+
+              <View style={styles.priceWrapper}>
+                <Text style={styles.productPrice}>id : {item.id}</Text>
               </View>
             </View>
           </TouchableOpacity>
