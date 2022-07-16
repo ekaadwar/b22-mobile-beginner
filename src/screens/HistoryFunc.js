@@ -30,6 +30,9 @@ const HistoryFunc = (props) => {
 
   return (
     <View style={[styles.parent, GeneralStyle.container]}>
+      <View style={styles.screenTitleWrap}>
+        <Text style={styles.screenTitle}>Order History</Text>
+      </View>
       <SwipeableSubtitles />
 
       <FlatList
@@ -40,24 +43,16 @@ const HistoryFunc = (props) => {
             {/* <CirclePicture picture={item.image} size={70} /> */}
 
             <View style={styles.textWrapper}>
-              <Text style={styles.productName}>{item.code}</Text>
+              <View style={styles.productNameWrap}>
+                <Text style={styles.productName}>{item.code}</Text>
+              </View>
 
               <View style={styles.priceWrapper}>
                 <Text style={styles.productPrice}>IDR {item.total}</Text>
+              </View>
 
-                <View style={styles.amountWrapper}>
-                  <TouchableOpacity>
-                    <Text style={styles.amountText}>-</Text>
-                  </TouchableOpacity>
-
-                  <View style={styles.amountValue}>
-                    <Text style={styles.amountText}>{item.amount}</Text>
-                  </View>
-
-                  <TouchableOpacity>
-                    <Text style={styles.amountText}>+</Text>
-                  </TouchableOpacity>
-                </View>
+              <View style={styles.priceWrapper}>
+                <Text style={styles.productPrice}>Dine in</Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -78,6 +73,13 @@ const mapDispatchToProps = {
 export default connect(mapStateToProps, mapDispatchToProps)(HistoryFunc)
 
 const styles = StyleSheet.create({
+  screenTitleWrap: {
+    paddingTop: '40px',
+  },
+  screenTitle: {
+    fontSize: '24px',
+    fontWeight: 'bold',
+  },
   cardWrapper: {
     width: '100%',
   },
