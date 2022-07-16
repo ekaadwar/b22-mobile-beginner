@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import {
   FlatList,
   StyleSheet,
@@ -6,20 +6,16 @@ import {
   View,
   Text,
 } from 'react-native'
-import { useDispatch, useSelector, connect } from 'react-redux'
+import { connect } from 'react-redux'
 import { getHistory } from '../redux/actions/history'
 import { getData } from '../utils/storage'
 
-import CirclePicture from '../components/CirclePicture'
+import CircleButton from '../components/CircleButton'
 import GeneralStyle from '../components/GeneralStyle'
 import SwipeableSubtitles from '../components/SwipeableSubtitles'
-import dataCart from '../data/dataCart'
+import { SwipeListView } from 'react-native-swipe-list-view'
 
 const HistoryFunc = (props) => {
-  // const dispatch = useDispatch()
-
-  // const { history } = useSelector((state) => state.history)
-
   useEffect(() => {
     getData('token').then((res) => {
       props.getHistory(res).then(() => {
@@ -35,8 +31,8 @@ const HistoryFunc = (props) => {
       </View>
       <SwipeableSubtitles />
 
-      <FlatList
-        style={styles.cardWrapper}
+      <SwipeListView
+        showsVerticalScrollIndicator={false}
         data={props.history.data}
         renderItem={({ item, idx }) => (
           <TouchableOpacity style={styles.card} key={String(idx)}>
@@ -57,8 +53,23 @@ const HistoryFunc = (props) => {
             </View>
           </TouchableOpacity>
         )}
+        renderHiddenItem={(data, rowMap) => (
+          <View style={GeneralStyle.backButtonWrapper}>
+            <TouchableOpacity
+              style={styles.backButton}
+              // onPress={() => this.props.deleteCartItem(data.index)}
+            >
+              <CircleButton
+                icon="delete-outline"
+                color="#6A4029"
+                iconColor="#FFF"
+                iconSize={20}
+              />
+            </TouchableOpacity>
+          </View>
+        )}
+        rightOpenValue={-50}
         keyExtractor={(_i, idx) => String(idx)}
-        showsVerticalScrollIndicator={false}
       />
     </View>
   )
@@ -79,9 +90,6 @@ const styles = StyleSheet.create({
   screenTitle: {
     fontSize: '24px',
     fontWeight: 'bold',
-  },
-  cardWrapper: {
-    width: '100%',
   },
   card: {
     backgroundColor: '#fff',
@@ -116,19 +124,7 @@ const styles = StyleSheet.create({
   productPrice: {
     color: '#895537',
   },
-  amountWrapper: {
-    flexDirection: 'row',
-    backgroundColor: '#6A4029',
-    height: 20,
-    width: 70,
-    borderRadius: 9999,
-    paddingHorizontal: 12,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  amountText: {
-    color: '#fff',
-    fontSize: 10,
-    fontWeight: 'bold',
+  backButton: {
+    marginLeft: 5,
   },
 })
