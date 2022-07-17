@@ -1,5 +1,7 @@
 const initHistory = {
+  test: 'ulalala',
   data: [],
+  detail: [],
 }
 
 const history = (state = initHistory, action) => {
@@ -8,6 +10,12 @@ const history = (state = initHistory, action) => {
       return {
         ...state,
         data: action.payload,
+      }
+    }
+    case 'SET_MYTRANSACTION_DETAIL': {
+      return {
+        ...state,
+        detail: action.payload,
       }
     }
     default: {

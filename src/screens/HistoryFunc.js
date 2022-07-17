@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   FlatList,
   StyleSheet,
@@ -7,23 +7,35 @@ import {
   Text,
 } from 'react-native'
 import { connect } from 'react-redux'
-import { getHistory } from '../redux/actions/history'
+import { getHistory, getHistoryDetail } from '../redux/actions/history'
 import { getData } from '../utils/storage'
 
 import CircleButton from '../components/CircleButton'
 import GeneralStyle from '../components/GeneralStyle'
 import SwipeableSubtitles from '../components/SwipeableSubtitles'
 import { SwipeListView } from 'react-native-swipe-list-view'
-import DetailHistory from './HistoryDetail'
 
-const HistoryFunc = (props) => {
+const HistoryFunc = ({ getHistory, getHistoryDetail, history, navigation }) => {
+  const [token, setToken] = useState('')
+
   useEffect(() => {
     getData('token').then((res) => {
-      props.getHistory(res).then(() => {
-        console.log(props.history.data)
-      })
+      setToken(res)
+      getHistory(res)
     })
   }, [])
+
+  // const getToken = () =>{
+  //   getData('token').then((res)=>{
+  //     setToken(res)
+  //   })
+  // }
+
+  const getDetail = (id, token, navigation) => {
+    getHistoryDetail(id, token).then(() => {
+      navigation.navigate('historyDetail')
+    })
+  }
 
   return (
     <View style={[styles.parent, GeneralStyle.container]}>
@@ -34,10 +46,10 @@ const HistoryFunc = (props) => {
 
       <SwipeListView
         showsVerticalScrollIndicator={false}
-        data={props.history.data}
+        data={history.data}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => props.navigation.navigate('historyDetail')}
+            onPress={() => getDetail(item.id, token, navigation)}
             style={styles.card}
             key={String(item.id)}
           >
@@ -88,6 +100,7 @@ const mapStateToProps = (state) => ({ history: state.history })
 
 const mapDispatchToProps = {
   getHistory,
+  getHistoryDetail,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HistoryFunc)
