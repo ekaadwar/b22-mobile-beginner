@@ -1,7 +1,7 @@
 const initHistory = {
   test: 'ulalala',
-  data: [],
   detail: [],
+  data: [],
 }
 
 const history = (state = initHistory, action) => {

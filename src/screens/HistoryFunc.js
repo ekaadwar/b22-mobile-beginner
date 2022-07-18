@@ -25,12 +25,6 @@ const HistoryFunc = ({ getHistory, getHistoryDetail, history, navigation }) => {
     })
   }, [])
 
-  // const getToken = () =>{
-  //   getData('token').then((res)=>{
-  //     setToken(res)
-  //   })
-  // }
-
   const getDetail = (id, token, navigation) => {
     getHistoryDetail(id, token).then(() => {
       navigation.navigate('historyDetail')
@@ -39,9 +33,10 @@ const HistoryFunc = ({ getHistory, getHistoryDetail, history, navigation }) => {
 
   return (
     <View style={[styles.parent, GeneralStyle.container]}>
-      <View style={styles.screenTitleWrap}>
-        <Text style={styles.screenTitle}>Order History</Text>
+      <View style={GeneralStyle.titleMainWrapper}>
+        <Text style={GeneralStyle.titleMain}>Order History</Text>
       </View>
+
       <SwipeableSubtitles />
 
       <SwipeListView
@@ -53,8 +48,6 @@ const HistoryFunc = ({ getHistory, getHistoryDetail, history, navigation }) => {
             style={styles.card}
             key={String(item.id)}
           >
-            {/* <CirclePicture picture={item.image} size={70} /> */}
-
             <View style={styles.textWrapper}>
               <View style={styles.productNameWrap}>
                 <Text style={styles.productName}>{item.code}</Text>
@@ -76,10 +69,7 @@ const HistoryFunc = ({ getHistory, getHistoryDetail, history, navigation }) => {
         )}
         renderHiddenItem={(data, rowMap) => (
           <View style={GeneralStyle.backButtonWrapper}>
-            <TouchableOpacity
-              style={styles.backButton}
-              // onPress={() => this.props.deleteCartItem(data.index)}
-            >
+            <TouchableOpacity style={styles.backButton}>
               <CircleButton
                 icon="delete-outline"
                 color="#6A4029"

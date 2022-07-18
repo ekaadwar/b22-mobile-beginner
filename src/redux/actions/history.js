@@ -22,6 +22,7 @@ export const getHistory = (token) => {
       const { data } = await http(token).get(
         `${BACKEND_URL}/transactions/mytransaction`
       )
+      console.log('getHistory')
       console.log(data)
       dispatch({
         type: 'SET_MYTRANSACTION',
@@ -40,10 +41,11 @@ export const getHistoryDetail = (id, token) => {
       const { data } = await http(token).get(
         `${BACKEND_URL}/transactions/mytransaction/${id}`
       )
+      console.log('getHistoryDetail:')
       console.log(data)
       dispatch({
         type: 'SET_MYTRANSACTION_DETAIL',
-        patload: data.message,
+        payload: data.message,
       })
     } catch (err) {
       console.log(err)

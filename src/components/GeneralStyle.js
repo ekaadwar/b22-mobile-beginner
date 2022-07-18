@@ -82,7 +82,10 @@ const GeneralStyle = StyleSheet.create({
   titleMain: {
     fontWeight: 'bold',
     fontSize: 34,
-    marginTop: 30,
+  },
+  titleMainWrapper: {
+    paddingTop: '40px',
+    paddingBottom: '20px',
   },
   titleSection: {
     fontSize: 17,
