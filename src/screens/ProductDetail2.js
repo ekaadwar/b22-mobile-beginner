@@ -6,19 +6,38 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import { connect } from 'react-redux'
+import { addCart } from '../redux/actions/cart'
+import { coldBrew } from '../assets/image'
 
 import MainButton from '../components/MainButton'
 import CirclePicture from '../components/CirclePicture'
-
-import { coldBrew } from '../assets/image'
 import GeneralStyle from '../components/GeneralStyle'
+import items from '../redux/reducers/items'
 
 const PICTURE_SIZE = 240
 const RATIO = 0.8
 const CIRCLE_SIZE_1 = 8
 
-export default class ProdutDetail2 extends Component {
+class ProductDetail2 extends Component {
+  componentDidMount() {
+    console.log('ProductDetail Screen')
+    console.log(this.props.items.detail)
+  }
+
+  addToCart = (id, name, picture, price) => {
+    const detail = {
+      items_id: id,
+      items_amount: 1,
+      name,
+      picture,
+      price,
+    }
+    this.props.addCart(detail)
+  }
+
   render() {
+    const detail = this.props.items.detail
     return (
       <View style={[GeneralStyle.parent, GeneralStyle.container]}>
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -38,8 +57,8 @@ export default class ProdutDetail2 extends Component {
             ))}
           </View>
 
-          <Text style={styles.productName}>Cold Brew</Text>
-          <Text style={styles.productPrice}>IDR 30.000</Text>
+          <Text style={styles.productName}>{detail.name}</Text>
+          <Text style={styles.productPrice}>IDR {detail.price}</Text>
 
           <View style={styles.textWrapper}>
             <Text style={styles.sectionTitle}>Delivery Info</Text>
@@ -57,7 +76,16 @@ export default class ProdutDetail2 extends Component {
         </ScrollView>
 
         <View style={GeneralStyle.mainButtonWrapper}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              this.addToCart(
+                detail.id,
+                detail.name,
+                detail.picture,
+                detail.price
+              )
+            }
+          >
             <MainButton text="Add to cart" />
           </TouchableOpacity>
         </View>
@@ -65,6 +93,16 @@ export default class ProdutDetail2 extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  items: state.items,
+})
+
+const mapDispatchToProps = {
+  addCart,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail2)
 
 const styles = StyleSheet.create({
   parent: {

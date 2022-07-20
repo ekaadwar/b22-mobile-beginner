@@ -14,7 +14,6 @@ import CircleButton from '../components/CircleButton'
 import GeneralStyle from '../components/GeneralStyle'
 import MainButton from '../components/MainButton'
 
-// import { connect } from "react-redux";
 import { useDispatch, useSelector } from 'react-redux'
 import { getProfile } from '../redux/actions/profile'
 import { editProfile } from '../redux/actions/profile'
@@ -24,13 +23,6 @@ const EditProfileFunc = ({ navigation }) => {
   const dispatch = useDispatch()
 
   const { profile } = useSelector((state) => state.profileReducer)
-  // const profile = [
-  //   {
-  //     email: "test@mail.com",
-  //   },
-  // ];
-
-  // const [profile, setProfile] = useState({});
   const [name, setName] = useState(profile?.display_name)
   const [email, setEmail] = useState(profile?.email)
   const [phone, setPhone] = useState(profile?.mobile_number)

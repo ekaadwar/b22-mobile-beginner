@@ -23,6 +23,16 @@ export const getCart = () => {
   }
 }
 
+export const addCart = (data) => ({
+  type: 'CART_ADD_ITEM',
+  payload: data,
+})
+
+export const createTotal = (total) => ({
+  type: 'CART_CREATE_TOTAL',
+  payload: total,
+})
+
 export const deleteItem = (payload) => ({
   type: 'CART_DELETE_ITEM',
   payload,

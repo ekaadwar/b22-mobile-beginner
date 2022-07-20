@@ -20,9 +20,9 @@ class HomeScreen extends Component {
     this.props.getItems()
   }
 
-  getDetail = (id) => {
-    getDetailItem(id).then(() => {
-      console.log('getDetailOke')
+  getDetail = (id, navigation) => {
+    this.props.getDetailItem(id).then(() => {
+      navigation.navigate('detail')
     })
   }
 
@@ -47,7 +47,7 @@ class HomeScreen extends Component {
             renderItem={({ item }) => (
               <TouchableOpacity
                 // onPress={() => this.props.navigation.navigate('detail')}
-                onPress={() => this.getDetail(item.id)}
+                onPress={() => this.getDetail(item.id, this.props.navigation)}
                 style={styles.productCard}
               >
                 <View style={styles.image}>

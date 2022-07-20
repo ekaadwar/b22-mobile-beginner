@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, TouchableOpacity, View, Text } from 'react-native'
+import { connect } from 'react-redux'
 
 import MainButton from '../components/MainButton'
 import GeneralStyle from '../components/GeneralStyle'
@@ -7,7 +8,13 @@ import SeparatorVertical from '../components/SeparatorVertical'
 
 const deliveryMethod = ['Door delivery', 'Pick up at the store', 'Dine in']
 
-export default class Checkout extends Component {
+class Checkout extends Component {
+  componentDidMount() {
+    console.log('Cheackout screen')
+    console.log(this.props.cart)
+    console.log(this.props.profile)
+    console.log(this.props.profile.photo)
+  }
   render() {
     return (
       <View style={[GeneralStyle.parent, GeneralStyle.container]}>
@@ -29,13 +36,11 @@ export default class Checkout extends Component {
 
             <SeparatorVertical top={5} bottom={5} />
 
-            <Text>
-              Km 5 refinery road oppsite re public road, effurun, Jakarta
-            </Text>
+            <Text>{this.props.profile?.address}</Text>
 
             <SeparatorVertical top={5} bottom={5} />
 
-            <Text>+62 81348287878</Text>
+            <Text>{this.props.profile.photo}</Text>
           </View>
         </View>
 
@@ -63,7 +68,7 @@ export default class Checkout extends Component {
             ]}
           >
             <Text>Total</Text>
-            <Text style={styles.totalPrice}>IDR 123.000</Text>
+            <Text style={styles.totalPrice}>IDR {this.props.cart.total}</Text>
           </View>
         </View>
 
@@ -77,6 +82,13 @@ export default class Checkout extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  profile: state.profileReducer,
+  cart: state.cart,
+})
+
+export default connect(mapStateToProps)(Checkout)
 
 const styles = StyleSheet.create({
   mainTitle: {

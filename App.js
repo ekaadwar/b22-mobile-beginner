@@ -112,6 +112,15 @@ class MainStack extends Component {
           }}
         />
         <Stack.Screen
+          component={ProductDetail2}
+          options={{
+            header: Header,
+            cardStyle: { backgroundColor: 'transparent' },
+            headerTransparent: true,
+          }}
+          name="detail"
+        />
+        <Stack.Screen
           component={History}
           options={{
             header: Header,
@@ -164,15 +173,6 @@ class MainStack extends Component {
             headerTransparent: true,
           }}
           name="cart"
-        />
-        <Stack.Screen
-          component={ProductDetail2}
-          options={{
-            header: Header,
-            cardStyle: { backgroundColor: 'transparent' },
-            headerTransparent: true,
-          }}
-          name="detail"
         />
         <Stack.Screen
           component={FavoriteProducts}

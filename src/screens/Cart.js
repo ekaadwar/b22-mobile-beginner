@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import { SwipeListView } from 'react-native-swipe-list-view'
 import { connect } from 'react-redux'
-import { deleteItem, getCart } from '../redux/actions/cart'
+import { deleteItem, getCart, createTotal } from '../redux/actions/cart'
 
 import MainButton from '../components/MainButton'
 import CirclePicture from '../components/CirclePicture'
@@ -22,7 +22,17 @@ import EmptyContent from '../components/EmptyContent'
 
 class Cart extends Component {
   componentDidMount() {
-    this.props.getCart()
+    // this.props.getCart()
+    console.log(this.props.cart)
+  }
+
+  goToCheckOut = (navigation) => {
+    let total = 0
+    this.props.cart.data.map((data) => {
+      total += data.price
+    })
+    this.props.createTotal(total)
+    navigation.navigate('checkout')
   }
 
   render() {
@@ -89,7 +99,7 @@ class Cart extends Component {
             />
 
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('checkout')}
+              onPress={() => this.goToCheckOut(this.props.navigation)}
               style={GeneralStyle.mainButtonWrapper}
             >
               <MainButton text="Confirm and Checkout" />
@@ -179,6 +189,6 @@ const mapStateToProps = (state) => ({
   cart: state.cart,
 })
 
-const mapDispatchToProps = { deleteCartItem: deleteItem, getCart }
+const mapDispatchToProps = { deleteCartItem: deleteItem, getCart, createTotal }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
