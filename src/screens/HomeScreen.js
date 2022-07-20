@@ -13,12 +13,19 @@ import hazelnutLatte from '../assets/image/products/hazelnutLatte.png'
 import cappuccino from '../assets/image/products/cappuccino.png'
 
 import { connect } from 'react-redux'
-import { getItems } from '../redux/actions/items'
+import { getItems, getDetailItem } from '../redux/actions/items'
 
 class HomeScreen extends Component {
   componentDidMount() {
     this.props.getItems()
   }
+
+  getDetail = (id) => {
+    getDetailItem(id).then(() => {
+      console.log('getDetailOke')
+    })
+  }
+
   render() {
     return (
       <ScrollView style={styles.parent}>
@@ -34,34 +41,16 @@ class HomeScreen extends Component {
         </View>
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {/* {[...Array(20)].map((_i, idx) => (
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("detail")}
-              style={styles.productCard}
-              key={String(idx)}
-            >
-              <View style={styles.image}>
-                <Image source={hazelnutLatte} style={styles.img} />
-              </View>
-
-              <View style={styles.textWrapper}>
-                <Text style={styles.productName}>Hazelnut Latte</Text>
-
-                <Text style={styles.productPrice}>IDR 30.000</Text>
-              </View>
-            </TouchableOpacity>
-          ))} */}
-
           <FlatList
             data={this.props.items.data}
             horizontal
             renderItem={({ item }) => (
               <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('detail')}
+                // onPress={() => this.props.navigation.navigate('detail')}
+                onPress={() => this.getDetail(item.id)}
                 style={styles.productCard}
               >
                 <View style={styles.image}>
-                  {/* <Image source={hazelnutLatte} style={styles.img} /> */}
                   <Image
                     source={{
                       uri: 'http://localhost:8080/uploads/1651623998957.jpg',
@@ -186,6 +175,6 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({ items: state.items })
 
-const mapDispatchToProps = { getItems }
+const mapDispatchToProps = { getItems, getDetailItem }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

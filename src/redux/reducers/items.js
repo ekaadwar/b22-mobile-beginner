@@ -1,5 +1,6 @@
 const itemState = {
   data: [],
+  detail: {},
 }
 
 const items = (state = itemState, action) => {
@@ -8,6 +9,12 @@ const items = (state = itemState, action) => {
       return {
         ...state,
         data: action.payload,
+      }
+    }
+    case 'ITEM_GET_DETAIL': {
+      return {
+        ...state,
+        detail: action.payload,
       }
     }
     default: {

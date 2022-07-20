@@ -17,3 +17,20 @@ export const getItems = () => {
     }
   }
 }
+
+export const getDetailItem = (id) => {
+  console.log('getDetailItem action')
+  return async (dispatch) => {
+    try {
+      const { data } = await http().get(`${BACKEND_URL}/items/${id}`)
+      console.log('async')
+      console.log(data)
+      dispatch({
+        type: 'ITEM_GET_DETAIL',
+        payload: data.results,
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
