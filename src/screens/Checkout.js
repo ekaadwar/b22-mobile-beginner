@@ -30,7 +30,7 @@ class Checkout extends Component {
     console.log('Cheackout screen')
     console.log(this.props.cart)
     console.log(this.props.profile)
-    console.log(this.props.profile.photo)
+    console.log(this.props.profile.email)
   }
 
   render() {
@@ -50,13 +50,13 @@ class Checkout extends Component {
           </View>
 
           <View style={GeneralStyle.card}>
-            <Text style={GeneralStyle.bold}>Iskandar Street</Text>
+            <Text style={GeneralStyle.bold}></Text>
 
-            <SeparatorVertical top={5} bottom={5} color={'#ccc'} />
+            <SeparatorVertical top={20} bottom={20} color={'#ccc'} />
 
             <Text>{this.props.profile?.address}</Text>
 
-            <SeparatorVertical top={5} bottom={5} color={'#ccc'} />
+            <SeparatorVertical top={20} bottom={20} color={'#ccc'} />
 
             <Text>{this.props.profile.photo}</Text>
           </View>

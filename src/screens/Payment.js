@@ -7,16 +7,32 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import { dataPayment, dataCards } from '../data'
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-
 import GeneralStyle from '../components/GeneralStyle'
 import MainButton from '../components/MainButton'
 import SeparatorVertical from '../components/SeparatorVertical'
+import Circle from '../components/Circle'
+import { connect } from 'react-redux'
 
-import { dataPayment, dataCards } from '../data'
+const SmallCircle = () => {
+  return <Circle size={10} color={'#6A4029'} />
+}
 
-export default class Payment extends Component {
+const ChosenCircle = () => {
+  return (
+    <Circle
+      content={<SmallCircle />}
+      size={18}
+      color={'#FFF'}
+      border={1}
+      borderColor={'#6A4029'}
+    />
+  )
+}
+
+class Payment extends Component {
   paymentMethods = [
     {
       method: 'Card',
@@ -39,6 +55,11 @@ export default class Payment extends Component {
     },
   ]
 
+  componentDidMount() {
+    console.log('Payment Screen')
+    console.log(this.props.cart)
+  }
+
   render() {
     return (
       <View style={[GeneralStyle.parent]}>
@@ -50,19 +71,19 @@ export default class Payment extends Component {
             <Text style={styles.sectionTitle}>Products</Text>
 
             <View style={GeneralStyle.card}>
-              {dataPayment.map((item, index) => (
+              {this.props.cart.data.map((item, index) => (
                 <View
                   style={[styles.cardSection, GeneralStyle.justifyBetween]}
                   key={String(index)}
                 >
                   <View style={styles.imageWrapper}>
-                    <Image style={GeneralStyle.picture} source={item.image} />
+                    <Image style={GeneralStyle.picture} source={item.picture} />
                   </View>
 
                   <View style={styles.productAmount}>
                     <Text>{item.name}</Text>
-                    <Text>x {item.amount}</Text>
-                    <Text>{item.size}</Text>
+                    <Text>x {item.items_amount}</Text>
+                    <Text>Regular</Text>
                   </View>
 
                   <View style={styles.priceWrapper}>
@@ -78,32 +99,47 @@ export default class Payment extends Component {
 
             <View style={GeneralStyle.card}>
               {this.paymentMethods.map((item, index) => (
-                <View key={String(index)}>
-                  <View
-                    style={[styles.cardSection, GeneralStyle.alignCenter]}
-                    key={String(index)}
-                  >
-                    <View
-                      style={[
-                        styles.iconWrapper,
-                        { backgroundColor: item.color },
-                      ]}
-                    >
-                      <MaterialCommunityIcons
-                        name={item.icon}
-                        color={item.iconColor}
-                        size={20}
+                <View style={styles.itemPaymentMethod} key={String(index)}>
+                  <View style={styles.optionButtonWrap}>
+                    {item.method === 'Cash on delivery' ? (
+                      <ChosenCircle />
+                    ) : (
+                      <Circle
+                        size={15}
+                        color={'#fff'}
+                        border={1}
+                        borderColor={'#ccc'}
                       />
-                    </View>
-
-                    <View>
-                      <Text>{item.method}</Text>
-                    </View>
+                    )}
                   </View>
 
-                  {index + 1 < this.paymentMethods.length && (
-                    <SeparatorVertical top={5} bottom={5} />
-                  )}
+                  <View style={styles.contentPaymentMethod}>
+                    <View
+                      style={[styles.cardSection, GeneralStyle.alignCenter]}
+                      key={String(index)}
+                    >
+                      <View
+                        style={[
+                          styles.iconWrapper,
+                          { backgroundColor: item.color },
+                        ]}
+                      >
+                        <MaterialCommunityIcons
+                          name={item.icon}
+                          color={item.iconColor}
+                          size={20}
+                        />
+                      </View>
+
+                      <View>
+                        <Text>{item.method}</Text>
+                      </View>
+                    </View>
+
+                    {index + 1 < this.paymentMethods.length && (
+                      <SeparatorVertical top={5} bottom={5} />
+                    )}
+                  </View>
                 </View>
               ))}
             </View>
@@ -113,7 +149,11 @@ export default class Payment extends Component {
             <Text style={styles.sectionTitle}>My Card</Text>
           </View>
 
-          <ScrollView horizontal style={styles.cardPaySection}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={[styles.cardPaySection, styles.cardSection]}
+          >
             {dataCards.map((item, index) => (
               <View
                 key={String(index)}
@@ -137,7 +177,7 @@ export default class Payment extends Component {
             ]}
           >
             <Text>Total</Text>
-            <Text style={styles.totalPrice}>IDR 84.000</Text>
+            <Text style={styles.totalPrice}>IDR {this.props.cart.total}</Text>
           </View>
         </ScrollView>
 
@@ -151,6 +191,12 @@ export default class Payment extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  cart: state.cart,
+})
+
+export default connect(mapStateToProps)(Payment)
+
 const RATIO = 0.9
 
 const styles = StyleSheet.create({
@@ -160,9 +206,19 @@ const styles = StyleSheet.create({
     marginTop: 33,
     marginBottom: 12,
   },
+  itemPaymentMethod: {
+    flexDirection: 'row',
+  },
+  optionButtonWrap: {
+    width: 25,
+  },
+  contentPaymentMethod: {
+    flex: 1,
+  },
   cardSection: {
     flexDirection: 'row',
     marginVertical: 5,
+    marginBottom: 20,
   },
   imageWrapper: {
     height: 64,
@@ -188,7 +244,6 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: "coral",
     borderRadius: 10 * RATIO,
     marginRight: 10,
   },
