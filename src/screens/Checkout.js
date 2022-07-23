@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import MainButton from '../components/MainButton'
 import GeneralStyle from '../components/GeneralStyle'
 import SeparatorVertical from '../components/SeparatorVertical'
+import Circle from '../components/Circle'
 
 const deliveryMethod = ['Door delivery', 'Pick up at the store', 'Dine in']
 
@@ -15,6 +16,7 @@ class Checkout extends Component {
     console.log(this.props.profile)
     console.log(this.props.profile.photo)
   }
+
   render() {
     return (
       <View style={[GeneralStyle.parent, GeneralStyle.container]}>
@@ -34,11 +36,11 @@ class Checkout extends Component {
           <View style={GeneralStyle.card}>
             <Text style={GeneralStyle.bold}>Iskandar Street</Text>
 
-            <SeparatorVertical top={5} bottom={5} />
+            <SeparatorVertical top={5} bottom={5} color={'#ccc'} />
 
             <Text>{this.props.profile?.address}</Text>
 
-            <SeparatorVertical top={5} bottom={5} />
+            <SeparatorVertical top={5} bottom={5} color={'#ccc'} />
 
             <Text>{this.props.profile.photo}</Text>
           </View>
@@ -52,10 +54,19 @@ class Checkout extends Component {
           <View style={GeneralStyle.card}>
             {deliveryMethod.map((item, index) => (
               <View key={String(index)}>
-                <Text>{item}</Text>
-                {index + 1 < deliveryMethod.length && (
-                  <SeparatorVertical top={20} bottom={20} />
-                )}
+                <Circle />
+                <View>
+                  <Text
+                    style={
+                      item === 'Dine in' ? styles.selected : styles.unselected
+                    }
+                  >
+                    {item}
+                  </Text>
+                  {index + 1 < deliveryMethod.length && (
+                    <SeparatorVertical top={20} bottom={20} color={'#ccc'} />
+                  )}
+                </View>
               </View>
             ))}
           </View>
@@ -111,6 +122,12 @@ const styles = StyleSheet.create({
   },
   changeButton: {
     color: '#6A4029',
+  },
+  selected: {
+    color: '#000',
+  },
+  unselected: {
+    color: '#ccc',
   },
   totalPrice: {
     fontSize: 22,
