@@ -9,6 +9,22 @@ import Circle from '../components/Circle'
 
 const deliveryMethod = ['Door delivery', 'Pick up at the store', 'Dine in']
 
+const SmallCircle = () => {
+  return <Circle size={10} color={'#6A4029'} />
+}
+
+const ChosenCircle = () => {
+  return (
+    <Circle
+      content={<SmallCircle />}
+      size={18}
+      color={'#FFF'}
+      border={1}
+      borderColor={'#6A4029'}
+    />
+  )
+}
+
 class Checkout extends Component {
   componentDidMount() {
     console.log('Cheackout screen')
@@ -53,9 +69,21 @@ class Checkout extends Component {
 
           <View style={GeneralStyle.card}>
             {deliveryMethod.map((item, index) => (
-              <View key={String(index)}>
-                <Circle />
-                <View>
+              <View key={String(index)} style={styles.deliveryItem}>
+                <View style={styles.optionButtonWrap}>
+                  {item === 'Dine in' ? (
+                    <ChosenCircle />
+                  ) : (
+                    <Circle
+                      size={15}
+                      color={'#fff'}
+                      border={1}
+                      borderColor={'#ccc'}
+                    />
+                  )}
+                </View>
+
+                <View style={styles.deliveryItemWrap}>
                   <Text
                     style={
                       item === 'Dine in' ? styles.selected : styles.unselected
@@ -120,8 +148,17 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: '700',
   },
+  deliveryItem: {
+    flexDirection: 'row',
+  },
   changeButton: {
     color: '#6A4029',
+  },
+  optionButtonWrap: {
+    width: 25,
+  },
+  deliveryItemWrap: {
+    flex: 1,
   },
   selected: {
     color: '#000',
