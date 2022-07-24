@@ -28,10 +28,26 @@ export const addCart = (data) => ({
   payload: data,
 })
 
-export const createTotal = (total) => ({
-  type: 'CART_CREATE_TOTAL',
-  payload: total,
-})
+export const createTotal = (total) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'CART_CREATE_TOTAL',
+      payload: total,
+    })
+  }
+}
+
+export const addPaymentMethod = (data) => {
+  return (dispatch) => {
+    console.log(data)
+    dispatch({
+      type: 'CART_ADD_PAYMENT_METHOD',
+      payload: data,
+    })
+  }
+}
+
+// export const createTransaction = ()
 
 export const deleteItem = (payload) => ({
   type: 'CART_DELETE_ITEM',

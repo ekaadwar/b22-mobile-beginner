@@ -1,8 +1,9 @@
-import { vergieTomattoMix, coldBrew, pinkyPromise } from '../../assets/image'
+// import { vergieTomattoMix, coldBrew, pinkyPromise } from '../../assets/image'
 
 const cartState = {
   data: [],
   total: 0,
+  payment_method: '',
 }
 
 const cart = (state = cartState, action) => {
@@ -23,6 +24,12 @@ const cart = (state = cartState, action) => {
       return {
         ...state,
         total: action.payload,
+      }
+    }
+    case 'CART_ADD_PAYMENT_METHOD': {
+      return {
+        ...state,
+        payment_method: action.payload,
       }
     }
     case 'CART_DELETE_ITEM': {

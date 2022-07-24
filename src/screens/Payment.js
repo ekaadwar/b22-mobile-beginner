@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native'
 import { dataPayment, dataCards } from '../data'
+import { addPaymentMethod } from '../redux/actions/cart'
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import GeneralStyle from '../components/GeneralStyle'
@@ -15,6 +16,7 @@ import MainButton from '../components/MainButton'
 import SeparatorVertical from '../components/SeparatorVertical'
 import Circle from '../components/Circle'
 import { connect } from 'react-redux'
+import { getData } from '../utils/storage'
 
 const SmallCircle = () => {
   return <Circle size={10} color={'#6A4029'} />
@@ -30,6 +32,10 @@ const ChosenCircle = () => {
       borderColor={'#6A4029'}
     />
   )
+}
+
+function getToken() {
+  return getData('token')
 }
 
 class Payment extends Component {
@@ -56,8 +62,13 @@ class Payment extends Component {
   ]
 
   componentDidMount() {
-    console.log('Payment Screen')
-    console.log(this.props.cart)
+    console.log('Payment Screen : token')
+    console.log(getToken())
+  }
+
+  payment = () => {
+    console.log('payment method')
+    this.props.addPaymentMethod('Cast on Delivery')
   }
 
   render() {
@@ -183,6 +194,7 @@ class Payment extends Component {
 
         <TouchableOpacity
           style={[GeneralStyle.mainButtonWrapper, GeneralStyle.container]}
+          onPress={() => this.payment()}
         >
           <MainButton text="Proceed payment" />
         </TouchableOpacity>
@@ -195,7 +207,11 @@ const mapStateToProps = (state) => ({
   cart: state.cart,
 })
 
-export default connect(mapStateToProps)(Payment)
+const mapDispatchToProps = {
+  addPaymentMethod,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Payment)
 
 const RATIO = 0.9
 

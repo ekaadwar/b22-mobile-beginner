@@ -17,7 +17,7 @@ const Circle = ({
       height: size,
       borderRadius: size / 2,
       alignItems: 'center',
-      //   justifyContent: 'center',
+      justifyContent: 'center',
       borderWidth: border,
       borderColor: borderColor,
     },
