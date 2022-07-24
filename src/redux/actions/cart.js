@@ -47,8 +47,6 @@ export const addPaymentMethod = (data) => {
   }
 }
 
-// export const createTransaction = ()
-
 export const deleteItem = (payload) => ({
   type: 'CART_DELETE_ITEM',
   payload,
