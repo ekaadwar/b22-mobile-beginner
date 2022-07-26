@@ -52,7 +52,7 @@ export const getHistoryDetail = (id, token) => {
   }
 }
 
-export const createHistory = (data, token) => (dispatch) => {
+export const createHistory = (data, token, navigation) => (dispatch) => {
   const form = new URLSearchParams()
   data.data.forEach((item) => {
     form.append('items_id', item.items_id)
@@ -73,6 +73,7 @@ export const createHistory = (data, token) => (dispatch) => {
       dispatch({ type: 'SET_LOADING', payload: false })
       dispatch({ type: 'CART_CLEAR' })
       toastMessage(res?.data?.message, 'success')
+      navigation.reset({ index: 0, routes: [{ name: 'home' }] })
     })
     .catch((err) => {
       dispatch({ type: 'SET_LOADING', payload: false })

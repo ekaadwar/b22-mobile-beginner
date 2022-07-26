@@ -30,7 +30,6 @@ export const signInAction = (data, navigation) => (dispatch) => {
   const form = new URLSearchParams()
   form.append('email', data.email)
   form.append('password', data.password)
-  console.log(data)
 
   dispatch({ type: 'SET_LOADING', payload: true })
   axios

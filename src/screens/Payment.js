@@ -79,7 +79,7 @@ const Payment = (props) => {
     setModalVisible(!modalVisible)
   }
 
-  const confirmPayment = () => {
+  const confirmPayment = (navigation) => {
     const data = props.cart.data
     const paymentMethod = props.cart.payment_method
     let itemsId = []
@@ -96,7 +96,7 @@ const Payment = (props) => {
       paymentMethod,
     }
 
-    props.createHistory(props.cart, token)
+    props.createHistory(props.cart, token, navigation)
     console.log('okeeee')
   }
 
@@ -239,7 +239,7 @@ const Payment = (props) => {
         <ConfirmCard
           text="Do you want to make payment?"
           cancel={() => setModalVisible(!modalVisible)}
-          submit={confirmPayment}
+          submit={() => confirmPayment(props.navigation)}
         />
       </Modal>
     </View>
