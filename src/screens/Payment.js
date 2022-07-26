@@ -1,6 +1,8 @@
-import React, { Component, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
+  Alert,
   Image,
+  Modal,
   ScrollView,
   StyleSheet,
   Text,
@@ -9,6 +11,7 @@ import {
 } from 'react-native'
 import { dataPayment, dataCards } from '../data'
 import { addPaymentMethod } from '../redux/actions/cart'
+import { createHistory } from '../redux/actions/history'
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import GeneralStyle from '../components/GeneralStyle'
@@ -63,6 +66,7 @@ const Payment = (props) => {
   ]
 
   const [token, setToken] = useState('')
+  const [modalVisible, setModalVisible] = useState(false)
 
   useEffect(() => {
     getData('token').then((token) => {
@@ -72,10 +76,29 @@ const Payment = (props) => {
 
   const payment = () => {
     console.log('payment method')
-    props.addPaymentMethod('Cakak on Delivery').then(() => {
-      console.log(props.cart)
-    })
+    props.addPaymentMethod('cash on Delivery')
     console.log(token)
+    setModalVisible(!modalVisible)
+  }
+
+  const confirmPayment = () => {
+    const data = props.cart.data
+    const paymentMethod = props.cart.payment_method
+    let itemsId = []
+    let itemsAmount = []
+
+    for (let i = 0; i < data.length; i++) {
+      itemsId.push(data[i].items_id)
+      itemsAmount.push(data[i].items_amount)
+    }
+
+    const finalData = {
+      itemsId,
+      itemsAmount,
+      paymentMethod,
+    }
+
+    props.createHistory(props.cart, token)
   }
 
   return (
@@ -205,7 +228,21 @@ const Payment = (props) => {
         <MainButton text="Proceed payment" />
       </TouchableOpacity>
 
-      <ConfirmCard />
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.')
+          setModalVisible(!modalVisible)
+        }}
+      >
+        <ConfirmCard
+          text="Do you want to make payment?"
+          cancel={() => setModalVisible(!modalVisible)}
+          submit={confirmPayment}
+        />
+      </Modal>
     </View>
   )
 }
@@ -216,6 +253,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   addPaymentMethod,
+  createHistory,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Payment)

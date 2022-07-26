@@ -1,5 +1,7 @@
 import axios from 'axios'
 import http from '../../helpers/http'
+import toastMessage from '../../utils/showMessage'
+import { storeData } from '../../utils/storage'
 
 const BACKEND_URL = 'http://localhost:8080'
 
@@ -51,4 +53,36 @@ export const getHistoryDetail = (id, token) => {
       console.log(err)
     }
   }
+}
+
+export const createHistory = (data, token) => (dispatch) => {
+  console.log(data)
+
+  const form = new URLSearchParams()
+  data.data.forEach((item) => {
+    form.append('items_id', item.items_id)
+    form.append('items_amount', item.items_amount)
+    console.log(`items_id ${item.items_id}`)
+    console.log(`items_amount ${item.items_amount}`)
+  })
+  form.append('payment_method', data.payment_method)
+
+  dispatch({ type: 'SET_LOADING', payload: true })
+
+  axios
+    .post(`${BACKEND_URL}/transactions`, form, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    })
+    .then((res) => {
+      dispatch({ type: 'SET_LOADING', payload: false })
+      toastMessage(res?.data?.message, 'success')
+    })
+    .catch((err) => {
+      dispatch({ type: 'SET_LOADING', payload: false })
+      // toastMessage(err)
+      console.log(err)
+    })
 }
