@@ -40,6 +40,14 @@ const cart = (state = cartState, action) => {
         data,
       }
     }
+    case 'CART_CLEAR': {
+      return {
+        ...state,
+        data: [],
+        total: 0,
+        payment_method: '',
+      }
+    }
     default: {
       return state
     }

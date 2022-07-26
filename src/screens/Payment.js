@@ -75,9 +75,7 @@ const Payment = (props) => {
   })
 
   const payment = () => {
-    console.log('payment method')
     props.addPaymentMethod('cash on Delivery')
-    console.log(token)
     setModalVisible(!modalVisible)
   }
 
@@ -99,6 +97,7 @@ const Payment = (props) => {
     }
 
     props.createHistory(props.cart, token)
+    console.log('okeeee')
   }
 
   return (

@@ -39,12 +39,9 @@ export const getHistory = (token) => {
 export const getHistoryDetail = (id, token) => {
   return async (dispatch) => {
     try {
-      console.log(id)
       const { data } = await http(token).get(
         `${BACKEND_URL}/transactions/mytransaction/${id}`
       )
-      console.log('getHistoryDetail:')
-      console.log(data)
       dispatch({
         type: 'SET_MYTRANSACTION_DETAIL',
         payload: data.message,
@@ -56,14 +53,10 @@ export const getHistoryDetail = (id, token) => {
 }
 
 export const createHistory = (data, token) => (dispatch) => {
-  console.log(data)
-
   const form = new URLSearchParams()
   data.data.forEach((item) => {
     form.append('items_id', item.items_id)
     form.append('items_amount', item.items_amount)
-    console.log(`items_id ${item.items_id}`)
-    console.log(`items_amount ${item.items_amount}`)
   })
   form.append('payment_method', data.payment_method)
 
@@ -78,11 +71,11 @@ export const createHistory = (data, token) => (dispatch) => {
     })
     .then((res) => {
       dispatch({ type: 'SET_LOADING', payload: false })
+      dispatch({ type: 'CART_CLEAR' })
       toastMessage(res?.data?.message, 'success')
     })
     .catch((err) => {
       dispatch({ type: 'SET_LOADING', payload: false })
-      // toastMessage(err)
       console.log(err)
     })
 }
