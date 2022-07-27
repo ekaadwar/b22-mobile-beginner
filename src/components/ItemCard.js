@@ -11,11 +11,11 @@ const promoPrice = (promo = 'harga promo') => {
   )
 }
 
-const ItemCard = (data, index) => {
+const ItemCard = ({ data = null, index = 1 }) => {
   return (
     <View key={String(index)} style={styles.itemCard}>
       <View style={styles.pictureWrapper}>
-        <Image style={styles.productPicture} source={data.image} />
+        <Image style={styles.productPicture} source={data.picture} />
       </View>
 
       <View style={styles.textWrapper}>
@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '700',
     textAlign: 'center',
+    textTransform: 'capitalize',
   },
   productPrice: {
     fontSize: 17,
