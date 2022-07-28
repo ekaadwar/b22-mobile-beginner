@@ -1,10 +1,6 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import EmptyContent from '../components/EmptyContent'
 
-export default function PrivacyPolicy() {
-  return (
-    <View style={{ paddingTop: 80 }}>
-      <Text>PrivacyPolicy</Text>
-    </View>
-  )
+export default function AllMenu() {
+  return <EmptyContent title="" description="screen is not yet available" />
 }

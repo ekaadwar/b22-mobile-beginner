@@ -1,10 +1,6 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import EmptyContent from '../components/EmptyContent'
 
 export default function AllMenu() {
-  return (
-    <View style={{ paddingTop: 80 }}>
-      <Text>AllMenu</Text>
-    </View>
-  )
+  return <EmptyContent title="" description="screen is not yet available" />
 }

@@ -26,6 +26,7 @@ const DrawerContents = ({ descriptors, navigation }) => {
 
       <FlatList
         style={drawerStyles.menuWrapper}
+        showsVerticalScrollIndicator={false}
         data={renderMenu}
         renderItem={({ item, index }) => (
           <TouchableOpacity
