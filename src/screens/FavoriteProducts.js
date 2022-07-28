@@ -7,18 +7,23 @@ import {
   View,
 } from 'react-native'
 import { connect } from 'react-redux'
-import { getDetailItem } from '../redux/actions/items'
+import { getDetailItem, getItems } from '../redux/actions/items'
 
 import ItemCard from '../components/ItemCard'
+import IonIcon from 'react-native-vector-icons/Ionicons'
 
 const FavoriteProducts = (props) => {
-  // useEffect(() => {
-  //   console.log(props.items)
-  // }, [])
+  const { prevPage, nextPage, currentPage } = props.items.pageInfo
 
-  getDetail = (id, navigation) => {
+  const getDetail = (id, navigation) => {
     props.getDetailItem(id).then(() => {
       navigation.navigate('detail')
+    })
+  }
+
+  const changePage = (url) => {
+    props.getItems(url).then(() => {
+      console.log('yowess')
     })
   }
 
@@ -34,6 +39,36 @@ const FavoriteProducts = (props) => {
           </TouchableOpacity>
         ))}
       </View>
+
+      <View style={styles.pageButtonWrap}>
+        <TouchableOpacity
+          onPress={() => {
+            prevPage && changePage(prevPage)
+          }}
+        >
+          <IonIcon
+            name="caret-back-outline"
+            size={30}
+            color={prevPage === null ? '#999' : '#6A4029'}
+          />
+        </TouchableOpacity>
+
+        <View style={styles.indicatorWrap}>
+          <Text style={styles.indicator}>{currentPage}</Text>
+        </View>
+
+        <TouchableOpacity
+          onPress={() => {
+            nextPage && changePage(nextPage)
+          }}
+        >
+          <IonIcon
+            name="caret-forward-outline"
+            size={30}
+            color={nextPage === null ? '#999' : '#6A4029'}
+          />
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   )
 }
@@ -44,6 +79,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   getDetailItem,
+  getItems,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FavoriteProducts)
@@ -65,5 +101,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
+  },
+  pageButtonWrap: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 50,
+  },
+  indicatorWrap: {
+    width: 50,
+  },
+  indicator: {
+    textAlign: 'center',
+    fontSize: 16,
   },
 })

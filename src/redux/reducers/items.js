@@ -1,6 +1,8 @@
 const itemState = {
   data: [],
+  pageInfo: {},
   detail: {},
+  url: '',
 }
 
 const items = (state = itemState, action) => {
@@ -8,7 +10,8 @@ const items = (state = itemState, action) => {
     case 'ITEM_GET_LIST': {
       return {
         ...state,
-        data: action.payload,
+        data: action.payload.results,
+        pageInfo: action.payload.pageInfo,
       }
     }
     case 'ITEM_GET_DETAIL': {

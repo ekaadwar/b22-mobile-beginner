@@ -17,7 +17,9 @@ import { getItems, getDetailItem } from '../redux/actions/items'
 
 class HomeScreen extends Component {
   componentDidMount() {
-    this.props.getItems()
+    this.props.getItems().then(() => {
+      console.log(this.props.items)
+    })
   }
 
   getDetail = (id, navigation) => {

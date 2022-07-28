@@ -3,13 +3,14 @@ import http from '../../helpers/http'
 
 const BACKEND_URL = 'http://localhost:8080'
 
-export const getItems = () => {
+export const getItems = (url = null) => {
+  const baseUrl = `${BACKEND_URL}/items`
   return async (dispatch) => {
     try {
-      const { data } = await http().get(`${BACKEND_URL}/items`)
+      const { data } = await http().get(url !== null ? url : baseUrl)
       dispatch({
         type: 'ITEM_GET_LIST',
-        payload: data.results,
+        payload: data,
       })
     } catch (e) {
       console.log(e)
