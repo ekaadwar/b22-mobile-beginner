@@ -48,7 +48,7 @@ const GeneralStyle = StyleSheet.create({
     height: '100%',
     alignItems: 'stretch',
     position: 'relative',
-    paddingBottom: 120,
+    // paddingBottom: 120,
   },
   parentAuth: {
     paddingTop: 80,

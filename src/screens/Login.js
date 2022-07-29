@@ -29,7 +29,6 @@ const Login = ({ navigation }) => {
 
   const onSubmit = () => {
     dispatch(signInAction(data, navigation))
-    // console.log(data)
   }
 
   return (
@@ -37,7 +36,7 @@ const Login = ({ navigation }) => {
       <ScrollView>
         <View style={styles.pictureWrapper}>
           <Text style={[GeneralStyle.titleAuth, styles.titleSignUp]}>
-            Sign Up
+            Log in
           </Text>
 
           <View style={styles.pictureArea}>

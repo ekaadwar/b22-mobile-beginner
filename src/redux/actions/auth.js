@@ -46,7 +46,7 @@ export const signInAction = (data, navigation) => (dispatch) => {
         })
         .then((newData) => {
           storeData('profile', newData.data.results)
-          toastMessage(token, 'success')
+          toastMessage('Login has been successful', 'success')
         })
       navigation.reset({ index: 0, routes: [{ name: 'home' }] })
     })

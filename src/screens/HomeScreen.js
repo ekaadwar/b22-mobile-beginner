@@ -8,18 +8,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-
-import hazelnutLatte from '../assets/image/products/hazelnutLatte.png'
-import cappuccino from '../assets/image/products/cappuccino.png'
-
 import { connect } from 'react-redux'
-import { getItems, getDetailItem } from '../redux/actions/items'
+import { getDetailItem, getItems } from '../redux/actions/items'
+
+import cappuccino from '../assets/image/products/cappuccino.png'
 
 class HomeScreen extends Component {
   componentDidMount() {
-    this.props.getItems().then(() => {
-      console.log(this.props.items)
-    })
+    this.props.getItems()
   }
 
   getDetail = (id, navigation) => {
@@ -48,7 +44,6 @@ class HomeScreen extends Component {
             horizontal
             renderItem={({ item }) => (
               <TouchableOpacity
-                // onPress={() => this.props.navigation.navigate('detail')}
                 onPress={() => this.getDetail(item.id, this.props.navigation)}
                 style={styles.productCard}
               >
@@ -167,6 +162,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 22,
     textAlign: 'center',
+    textTransform: 'capitalize',
   },
   productPrice: {
     fontWeight: 'bold',

@@ -1,29 +1,30 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
-  FlatList,
+  Alert,
+  Modal,
   StyleSheet,
+  Text,
   TouchableOpacity,
   View,
-  Text,
 } from 'react-native'
 import { SwipeListView } from 'react-native-swipe-list-view'
-import { connect } from 'react-redux'
-import { deleteItem, getCart, createTotal } from '../redux/actions/cart'
+import { createTotal, deleteItem, getCart } from '../redux/actions/cart'
 
-import MainButton from '../components/MainButton'
-import CirclePicture from '../components/CirclePicture'
 import CircleButton from '../components/CircleButton'
-
-import GeneralStyle from '../components/GeneralStyle'
-import SwipeableSubtitles from '../components/SwipeableSubtitles'
-
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
+import CirclePicture from '../components/CirclePicture'
 import EmptyContent from '../components/EmptyContent'
+import GeneralStyle from '../components/GeneralStyle'
+import MainButton from '../components/MainButton'
+import SwipeableSubtitles from '../components/SwipeableSubtitles'
+import ConfirmCard from '../components/ConfirmCard'
 
 class Cart extends Component {
-  componentDidMount() {
-    // this.props.getCart()
-    console.log(this.props.cart)
+  constructor(props) {
+    super(props)
+    this.state = {
+      modalVisible: false,
+    }
   }
 
   goToCheckOut = (navigation) => {
@@ -33,6 +34,11 @@ class Cart extends Component {
     })
     this.props.createTotal(total)
     navigation.navigate('checkout')
+  }
+
+  deleteConfirm = (id) => {
+    console.log(id)
+    this.setState({ modalVisible: true })
   }
 
   render() {
@@ -84,13 +90,26 @@ class Cart extends Component {
 
                   <TouchableOpacity
                     style={styles.backButton}
-                    onPress={() => this.props.deleteCartItem(data.index)}
+                    // onPress={() => this.props.deleteCartItem(data.index)}
+                    onPress={() => this.deleteConfirm(data.index)}
                   >
                     <CircleButton
                       icon="delete-outline"
                       color="#FFBA33"
                       iconSize={20}
                     />
+
+                    <Modal
+                      animationType="fade"
+                      transparent={true}
+                      visible={this.state.modalVisible}
+                      onRequestClose={() => {
+                        Alert.alert('Modal has been closed')
+                        this.setState({ modalVisible: !modalVisible })
+                      }}
+                    >
+                      <ConfirmCard />
+                    </Modal>
                   </TouchableOpacity>
                 </View>
               )}
@@ -98,12 +117,14 @@ class Cart extends Component {
               keyExtractor={(_i, idx) => String(idx)}
             />
 
-            <TouchableOpacity
-              onPress={() => this.goToCheckOut(this.props.navigation)}
-              style={GeneralStyle.mainButtonWrapper}
-            >
-              <MainButton text="Confirm and Checkout" />
-            </TouchableOpacity>
+            <View style={GeneralStyle.container}>
+              <TouchableOpacity
+                onPress={() => this.goToCheckOut(this.props.navigation)}
+                style={GeneralStyle.mainButtonWrapper}
+              >
+                <MainButton text="Confirm and Checkout" />
+              </TouchableOpacity>
+            </View>
           </>
         ) : (
           <>
@@ -113,12 +134,14 @@ class Cart extends Component {
               description="Hit the button down below to Create an order"
             />
 
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('home')}
-              style={GeneralStyle.mainButtonWrapper}
-            >
-              <MainButton text="Start ordering" />
-            </TouchableOpacity>
+            <View style={GeneralStyle.container}>
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('home')}
+                style={GeneralStyle.mainButtonWrapper}
+              >
+                <MainButton text="Start ordering" />
+              </TouchableOpacity>
+            </View>
           </>
         )}
       </View>
