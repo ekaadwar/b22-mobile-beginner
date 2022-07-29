@@ -41,6 +41,11 @@ class Cart extends Component {
     this.setState({ modalVisible: true })
   }
 
+  deleteItem = (id) => {
+    this.props.deleteCartItem(id)
+    this.setState({ modalVisible: false })
+  }
+
   render() {
     return (
       <View style={[GeneralStyle.parent, GeneralStyle.container]}>
@@ -108,7 +113,10 @@ class Cart extends Component {
                         this.setState({ modalVisible: !modalVisible })
                       }}
                     >
-                      <ConfirmCard />
+                      <ConfirmCard
+                        cancel={() => this.setState({ modalVisible: false })}
+                        submit={() => this.deleteItem(data.index)}
+                      />
                     </Modal>
                   </TouchableOpacity>
                 </View>
