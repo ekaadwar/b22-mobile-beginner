@@ -75,7 +75,7 @@ class ProductDetail2 extends Component {
           </View>
         </ScrollView>
 
-        <View style={GeneralStyle.mainButtonWrapper}>
+        <View style={[GeneralStyle.mainButtonWrapper, GeneralStyle.container]}>
           <TouchableOpacity
             onPress={() =>
               this.addToCart(

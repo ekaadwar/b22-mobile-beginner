@@ -1,32 +1,17 @@
 import http from '../../helpers/http'
+import toastMessage from '../../utils/showMessage'
 
 const BACKEND_URL = 'http://localhost:8080'
 
-export const getCart = () => {
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzcsImVtYWlsIjoidXNlcjI2QG1haWwuY29tIiwiaWF0IjoxNjU3MTcwNzEzfQ.hdnXAcUuBrZAdQtRgaqJb8U2DxZ63e_fOKXHO7QvQ1E'
-
-  return async (dispatch) => {
-    try {
-      // const { data } = await http(token).get(
-      //   `${BACKEND_URL}/transactions/mytransaction`
-      // )
-      const { data } = await http().get(`${BACKEND_URL}/items/`)
-      console.log(data)
-      dispatch({
-        type: 'CART_GET_LIST',
-        payload: data.message,
-      })
-    } catch (err) {
-      console(err)
-    }
+export const addCart = (data) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'CART_ADD_ITEM',
+      payload: data,
+    })
+    toastMessage(`${data.name} has been added to cart`, 'success')
   }
 }
-
-export const addCart = (data) => ({
-  type: 'CART_ADD_ITEM',
-  payload: data,
-})
 
 export const createTotal = (total) => {
   return (dispatch) => {
