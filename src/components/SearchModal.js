@@ -1,10 +1,24 @@
 import React from 'react'
-import { StyleSheet, TextInput, View } from 'react-native'
+import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
+import GeneralStyle from './GeneralStyle'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
-const SearchModal = () => {
+const SearchModal = ({ submit = () => {}, cancel = () => {} }) => {
+  const handleKeyPress = ({ nativeEvent: { key: keyValue } }) => {
+    if (keyValue === 'Enter') {
+      submit
+    }
+  }
   return (
     <View style={styles.canvas}>
-      <TextInput />
+      <View style={GeneralStyle.container}>
+        <TouchableOpacity style={styles.cancelBtn} onPress={cancel}>
+          <Icon name={'cancel'} color={'#FFF'} size={25} />
+        </TouchableOpacity>
+        <View style={styles.inputWrap}>
+          <TextInput onKeyPress={handleKeyPress} />
+        </View>
+      </View>
     </View>
   )
 }
@@ -17,5 +31,17 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
     zIndex: 9999,
     height: '100vh',
+    width: '100%',
+    paddingTop: 25,
+  },
+  cancelBtn: {
+    alignSelf: 'flex-end',
+  },
+  inputWrap: {
+    backgroundColor: '#FFF',
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderRadius: 10,
+    marginTop: 25,
   },
 })
