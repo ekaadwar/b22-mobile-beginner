@@ -2,6 +2,13 @@ import http from '../../helpers/http'
 
 const BACKEND_URL = 'http://localhost:8080'
 
+const dispatchData = (dispatch, type, data) => {
+  dispatch({
+    type: 'ITEM_GET_LIST',
+    payload: data,
+  })
+}
+
 export const getItems = (url = null, search = null) => {
   let baseUrl = `${BACKEND_URL}/items/?page=1`
 
@@ -11,28 +18,16 @@ export const getItems = (url = null, search = null) => {
 
       if (url !== null && search !== null) {
         const { data } = await http().get(`${url}&search=${search}`)
-        dispatch({
-          type: 'ITEM_GET_LIST',
-          payload: data,
-        })
+        dispatchData(dispatch, 'ITEM_GET_LIST', data)
       } else if (url !== null) {
         const { data } = await http().get(`${url}`)
-        dispatch({
-          type: 'ITEM_GET_LIST',
-          payload: data,
-        })
+        dispatchData(dispatch, 'ITEM_GET_LIST', data)
       } else if (search !== null) {
         const { data } = await http().get(`${baseUrl}&search=${search}`)
-        dispatch({
-          type: 'ITEM_GET_LIST',
-          payload: data,
-        })
+        dispatchData(dispatch, 'ITEM_GET_LIST', data)
       } else {
         const { data } = await http().get(baseUrl)
-        dispatch({
-          type: 'ITEM_GET_LIST',
-          payload: data,
-        })
+        dispatchData(dispatch, 'ITEM_GET_LIST', data)
       }
     } catch (e) {
       console.log(e)

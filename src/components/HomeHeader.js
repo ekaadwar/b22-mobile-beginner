@@ -41,7 +41,10 @@ const HomeHeader = ({ navigation }) => {
           setModalVisibility(!modalVisibility)
         }}
       >
-        <SearchModal cancel={() => setModalVisibility(!modalVisibility)} />
+        <SearchModal
+          cancel={() => setModalVisibility(!modalVisibility)}
+          submit={(key) => console.log(key)}
+        />
       </Modal>
     </View>
   )

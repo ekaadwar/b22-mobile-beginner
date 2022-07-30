@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
 import GeneralStyle from './GeneralStyle'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-const SearchModal = ({ submit = () => {}, cancel = () => {} }) => {
+const SearchModal = ({
+  initialState = '',
+  submit = () => {},
+  cancel = () => {},
+}) => {
+  const [keyWord, setKeyWord] = useState(initialState)
+
   const handleKeyPress = ({ nativeEvent: { key: keyValue } }) => {
     if (keyValue === 'Enter') {
-      submit
+      submit(keyWord)
     }
   }
   return (
@@ -16,7 +22,11 @@ const SearchModal = ({ submit = () => {}, cancel = () => {} }) => {
           <Icon name={'cancel'} color={'#FFF'} size={25} />
         </TouchableOpacity>
         <View style={styles.inputWrap}>
-          <TextInput onKeyPress={handleKeyPress} />
+          <TextInput
+            onKeyPress={handleKeyPress}
+            value={keyWord}
+            onChangeText={(e) => setKeyWord(e)}
+          />
         </View>
       </View>
     </View>
