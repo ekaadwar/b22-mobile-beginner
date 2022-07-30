@@ -1,16 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import IonIcons from 'react-native-vector-icons/Ionicons'
 
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native'
+import { Alert, Modal, StyleSheet, TouchableOpacity, View } from 'react-native'
+import SearchModal from './SearchModal'
 
 const HomeHeader = ({ navigation }) => {
+  const [modalVisibility, setModalVisibility] = useState(false)
   return (
     <View style={styles.parent}>
       <View style={styles.contentWrapper}>
@@ -25,7 +21,9 @@ const HomeHeader = ({ navigation }) => {
               size={24}
             />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => setModalVisibility(!modalVisibility)}
+          >
             <IonIcons name="search" color="grey" size={24} />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate('cart')}>
@@ -33,6 +31,18 @@ const HomeHeader = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
+
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisibility}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.')
+          setModalVisibility(!modalVisibility)
+        }}
+      >
+        <SearchModal />
+      </Modal>
     </View>
   )
 }

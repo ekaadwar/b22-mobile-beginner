@@ -48,8 +48,6 @@ class Cart extends Component {
     this.setState({ modalVisible: false, idDelete: null })
   }
 
-  // deleteModal = (id)
-
   render() {
     return (
       <View style={[GeneralStyle.parent]}>
