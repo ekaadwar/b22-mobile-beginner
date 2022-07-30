@@ -17,7 +17,7 @@ const GeneralStyle = StyleSheet.create({
     padding: 20,
     backgroundColor: '#fff',
     borderRadius: 20,
-    elevation: 2,
+    elevation: 5,
   },
   container: {
     paddingHorizontal: 30,
@@ -45,7 +45,7 @@ const GeneralStyle = StyleSheet.create({
   parent: {
     paddingTop: 80,
     backgroundColor: '#f7f0f0',
-    height: '100%',
+    height: '100vh',
     alignItems: 'stretch',
     position: 'relative',
     // paddingBottom: 120,

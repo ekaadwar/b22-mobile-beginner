@@ -102,130 +102,131 @@ const Payment = (props) => {
 
   return (
     <View style={[GeneralStyle.parent]}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        style={GeneralStyle.wFull}
-      >
-        <View style={[GeneralStyle.wFull, GeneralStyle.container]}>
-          <Text style={styles.sectionTitle}>Products</Text>
+      <View style={styles.subParent}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={GeneralStyle.wFull}
+        >
+          <View style={[GeneralStyle.wFull, GeneralStyle.container]}>
+            <Text style={styles.sectionTitle}>Products</Text>
 
-          <View style={GeneralStyle.card}>
-            {props.cart.data.map((item, index) => (
-              <View
-                style={[styles.cardSection, GeneralStyle.justifyBetween]}
-                key={String(index)}
-              >
-                <View style={styles.imageWrapper}>
-                  <Image style={GeneralStyle.picture} source={item.picture} />
-                </View>
-
-                <View style={styles.productAmount}>
-                  <Text>{item.name}</Text>
-                  <Text>x {item.items_amount}</Text>
-                  <Text>Regular</Text>
-                </View>
-
-                <View style={styles.priceWrapper}>
-                  <Text style={styles.price}>IDR {item.price}</Text>
-                </View>
-              </View>
-            ))}
-          </View>
-        </View>
-
-        <View style={[GeneralStyle.wFull, GeneralStyle.container]}>
-          <Text style={styles.sectionTitle}>Payment method</Text>
-
-          <View style={GeneralStyle.card}>
-            {paymentMethods.map((item, index) => (
-              <View style={styles.itemPaymentMethod} key={String(index)}>
-                <View style={styles.optionButtonWrap}>
-                  {item.method === 'Cash on delivery' ? (
-                    <ChosenCircle />
-                  ) : (
-                    <Circle
-                      size={15}
-                      color={'#fff'}
-                      border={1}
-                      borderColor={'#ccc'}
-                    />
-                  )}
-                </View>
-
-                <View style={styles.contentPaymentMethod}>
-                  <View
-                    style={[styles.cardSection, GeneralStyle.alignCenter]}
-                    key={String(index)}
-                  >
-                    <View
-                      style={[
-                        styles.iconWrapper,
-                        { backgroundColor: item.color },
-                      ]}
-                    >
-                      <MaterialCommunityIcons
-                        name={item.icon}
-                        color={item.iconColor}
-                        size={20}
-                      />
-                    </View>
-
-                    <View>
-                      <Text>{item.method}</Text>
-                    </View>
+            <View style={GeneralStyle.card}>
+              {props.cart.data.map((item, index) => (
+                <View
+                  style={[styles.cardSection, GeneralStyle.justifyBetween]}
+                  key={String(index)}
+                >
+                  <View style={styles.imageWrapper}>
+                    <Image style={GeneralStyle.picture} source={item.picture} />
                   </View>
 
-                  {index + 1 < paymentMethods.length && (
-                    <SeparatorVertical top={5} bottom={5} />
-                  )}
+                  <View style={styles.productAmount}>
+                    <Text>{item.name}</Text>
+                    <Text>x {item.items_amount}</Text>
+                    <Text>Regular</Text>
+                  </View>
+
+                  <View style={styles.priceWrapper}>
+                    <Text style={styles.price}>IDR {item.price}</Text>
+                  </View>
                 </View>
+              ))}
+            </View>
+          </View>
+
+          <View style={[GeneralStyle.wFull, GeneralStyle.container]}>
+            <Text style={styles.sectionTitle}>Payment method</Text>
+
+            <View style={GeneralStyle.card}>
+              {paymentMethods.map((item, index) => (
+                <View style={styles.itemPaymentMethod} key={String(index)}>
+                  <View style={styles.optionButtonWrap}>
+                    {item.method === 'Cash on delivery' ? (
+                      <ChosenCircle />
+                    ) : (
+                      <Circle
+                        size={15}
+                        color={'#fff'}
+                        border={1}
+                        borderColor={'#ccc'}
+                      />
+                    )}
+                  </View>
+
+                  <View style={styles.contentPaymentMethod}>
+                    <View
+                      style={[styles.cardSection, GeneralStyle.alignCenter]}
+                      key={String(index)}
+                    >
+                      <View
+                        style={[
+                          styles.iconWrapper,
+                          { backgroundColor: item.color },
+                        ]}
+                      >
+                        <MaterialCommunityIcons
+                          name={item.icon}
+                          color={item.iconColor}
+                          size={20}
+                        />
+                      </View>
+
+                      <View>
+                        <Text>{item.method}</Text>
+                      </View>
+                    </View>
+
+                    {index + 1 < paymentMethods.length && (
+                      <SeparatorVertical top={5} bottom={5} />
+                    )}
+                  </View>
+                </View>
+              ))}
+            </View>
+          </View>
+
+          <View style={[GeneralStyle.wFull, GeneralStyle.container]}>
+            <Text style={styles.sectionTitle}>My Card</Text>
+          </View>
+
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={[styles.cardPaySection, styles.cardSection]}
+          >
+            {dataCards.map((item, index) => (
+              <View
+                key={String(index)}
+                style={[
+                  styles.cardWrapper,
+                  index === 0 && { marginLeft: 30 },
+                  index + 1 === dataCards.length && { marginRight: 30 },
+                ]}
+              >
+                <Image source={item} style={GeneralStyle.picture} />
               </View>
             ))}
+          </ScrollView>
+
+          <View
+            style={[
+              GeneralStyle.wFull,
+              styles.cardSection,
+              GeneralStyle.justifyBetween,
+              GeneralStyle.container,
+            ]}
+          >
+            <Text>Total</Text>
+            <Text style={styles.totalPrice}>IDR {props.cart.total}</Text>
           </View>
-        </View>
-
-        <View style={[GeneralStyle.wFull, GeneralStyle.container]}>
-          <Text style={styles.sectionTitle}>My Card</Text>
-        </View>
-
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={[styles.cardPaySection, styles.cardSection]}
-        >
-          {dataCards.map((item, index) => (
-            <View
-              key={String(index)}
-              style={[
-                styles.cardWrapper,
-                index === 0 && { marginLeft: 30 },
-                index + 1 === dataCards.length && { marginRight: 30 },
-              ]}
-            >
-              <Image source={item} style={GeneralStyle.picture} />
-            </View>
-          ))}
         </ScrollView>
+      </View>
 
-        <View
-          style={[
-            GeneralStyle.wFull,
-            styles.cardSection,
-            GeneralStyle.justifyBetween,
-            GeneralStyle.container,
-          ]}
-        >
-          <Text>Total</Text>
-          <Text style={styles.totalPrice}>IDR {props.cart.total}</Text>
-        </View>
-      </ScrollView>
-
-      <TouchableOpacity
-        style={[GeneralStyle.mainButtonWrapper, GeneralStyle.container]}
-        onPress={() => payment()}
-      >
-        <MainButton text="Proceed payment" />
-      </TouchableOpacity>
+      <View style={[GeneralStyle.mainButtonWrapper, GeneralStyle.container]}>
+        <TouchableOpacity onPress={() => payment()}>
+          <MainButton text="Proceed payment" />
+        </TouchableOpacity>
+      </View>
 
       <Modal
         animationType="fade"
@@ -260,6 +261,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(Payment)
 const RATIO = 0.9
 
 const styles = StyleSheet.create({
+  subParent: {
+    height: '80%',
+  },
   sectionTitle: {
     fontWeight: '700',
     fontSize: 17,

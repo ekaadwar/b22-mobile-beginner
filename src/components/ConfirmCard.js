@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import GeneralStyle from './GeneralStyle'
 
@@ -14,13 +14,13 @@ const ConfirmCard = ({
         <View style={styles.buttonWrap}>
           <TouchableOpacity onPress={cancel}>
             <View style={[styles.button, styles.cancel]}>
-              <Text>Cancel</Text>
+              <Text style={styles.buttonText}>Cancel</Text>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={submit}>
             <View style={[styles.button, styles.submit]}>
-              <Text>Yes</Text>
+              <Text style={styles.buttonText}>Yes</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     height: '100%',
     width: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
     top: 0,
     zIndex: 2147483638,
     alignItems: 'center',
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   buttonWrap: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 50,
+    marginTop: 30,
   },
   button: {
     padding: 5,
@@ -64,5 +64,8 @@ const styles = StyleSheet.create({
   },
   cancel: {
     backgroundColor: '#999',
+  },
+  buttonText: {
+    color: '#FFF',
   },
 })

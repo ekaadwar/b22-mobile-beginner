@@ -12,14 +12,14 @@ const MainButton = ({
 }) => {
   const mainButtonStyles = StyleSheet.create({
     button: {
-      height: 70 * RATIO,
-      backgroundColor: color,
-      borderRadius: 20 * RATIO,
-      width: '100%',
       alignItems: 'center',
-      justifyContent: 'center',
-      borderWidth: borderWidth,
+      backgroundColor: color,
       borderColor: borderColor,
+      borderRadius: 20 * RATIO,
+      borderWidth: borderWidth,
+      height: 70 * RATIO,
+      justifyContent: 'center',
+      width: '100%',
     },
     buttonText: {
       color: textColor,

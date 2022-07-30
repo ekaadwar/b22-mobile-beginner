@@ -34,71 +34,80 @@ export default class Profile extends Component {
   render() {
     return (
       <View style={[GeneralStyle.parent, GeneralStyle.container]}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View>
-            <Text style={GeneralStyle.titleMain}>My Profile</Text>
-          </View>
-
-          <View style={styles.section}>
-            <View style={[styles.titleSectionWrapper, styles.spaceBottom]}>
-              <Text style={GeneralStyle.titleSection}>Your Information</Text>
-              <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('editProfile')}
-              >
-                <Text style={styles.linkText}>edit</Text>
-              </TouchableOpacity>
+        <View style={styles.subParent}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <View>
+              <Text style={GeneralStyle.titleMain}>My Profile</Text>
             </View>
 
-            <View style={GeneralStyle.card}>
-              <View style={styles.profileInfoWrapper}>
-                <View style={styles.pictureWrapper}>
-                  <CirclePicture size={80} />
-                </View>
+            <View style={styles.section}>
+              <View style={[styles.titleSectionWrapper, styles.spaceBottom]}>
+                <Text style={GeneralStyle.titleSection}>Your Information</Text>
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate('editProfile')}
+                >
+                  <Text style={styles.linkText}>edit</Text>
+                </TouchableOpacity>
+              </View>
 
-                <View style={styles.userInfoWrapper}>
-                  {this.data.map((item, index) => (
-                    <View key={String(index)}>
-                      <Text
-                        style={index === 0 ? styles.fullName : styles.userInfo}
-                      >
-                        {item}
-                      </Text>
+              <View style={GeneralStyle.card}>
+                <View style={styles.profileInfoWrapper}>
+                  <View style={styles.pictureWrapper}>
+                    <CirclePicture size={80} />
+                  </View>
 
-                      {index + 1 < this.data.length && (
-                        <SeparatorVertical top={2} bottom={5} />
-                      )}
-                    </View>
-                  ))}
+                  <View style={styles.userInfoWrapper}>
+                    {this.data.map((item, index) => (
+                      <View key={String(index)}>
+                        <Text
+                          style={
+                            index === 0 ? styles.fullName : styles.userInfo
+                          }
+                        >
+                          {item}
+                        </Text>
+
+                        {index + 1 < this.data.length && (
+                          <SeparatorVertical top={2} bottom={5} />
+                        )}
+                      </View>
+                    ))}
+                  </View>
                 </View>
               </View>
             </View>
-          </View>
 
-          {this.buttonHead.map((item, index) => (
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate(item.stack)}
-              key={String(index)}
-              style={[
-                GeneralStyle.card,
-                styles.section,
-                styles.titleSectionWrapper,
-              ]}
-            >
-              <Text style={GeneralStyle.titleSection}>{item.head}</Text>
-              <FontAwesome name="chevron-right" size={16} />
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+            {this.buttonHead.map((item, index) => (
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate(item.stack)}
+                key={String(index)}
+                style={[
+                  GeneralStyle.card,
+                  styles.section,
+                  styles.titleSectionWrapper,
+                ]}
+              >
+                <Text style={GeneralStyle.titleSection}>{item.head}</Text>
+                <FontAwesome name="chevron-right" size={16} />
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
 
-        <TouchableOpacity style={GeneralStyle.mainButtonWrapper}>
-          <MainButton text="Save change" />
-        </TouchableOpacity>
+        <View style={[GeneralStyle.mainButtonWrapper, GeneralStyle.container]}>
+          <TouchableOpacity>
+            <MainButton text="Save change" />
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  subParent: {
+    height: '80%',
+  },
   titleSectionWrapper: {
     flexDirection: 'row',
     alignItems: 'center',

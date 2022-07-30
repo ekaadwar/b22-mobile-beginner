@@ -111,12 +111,13 @@ class Checkout extends Component {
           </View>
         </View>
 
-        <TouchableOpacity
-          onPress={() => this.props.navigation.navigate('payment')}
-          style={GeneralStyle.mainButtonWrapper}
-        >
-          <MainButton text="Proceed to payment" />
-        </TouchableOpacity>
+        <View style={[GeneralStyle.mainButtonWrapper, GeneralStyle.container]}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('payment')}
+          >
+            <MainButton text="Proceed to payment" />
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }

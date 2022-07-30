@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import {
   Alert,
   Modal,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -24,6 +25,7 @@ class Cart extends Component {
     super(props)
     this.state = {
       modalVisible: false,
+      idDelete: null,
     }
   }
 
@@ -38,102 +40,123 @@ class Cart extends Component {
 
   deleteConfirm = (id) => {
     console.log(id)
-    this.setState({ modalVisible: true })
+    this.setState({ modalVisible: true, idDelete: id })
   }
 
   deleteItem = (id) => {
     this.props.deleteCartItem(id)
-    this.setState({ modalVisible: false })
+    this.setState({ modalVisible: false, idDelete: null })
   }
+
+  // deleteModal = (id)
 
   render() {
     return (
-      <View style={[GeneralStyle.parent, GeneralStyle.container]}>
+      <View style={[GeneralStyle.parent]}>
         {this.props.cart.data.length >= 1 ? (
-          <>
-            <SwipeableSubtitles />
+          <View style={styles.subParent}>
+            <View style={GeneralStyle.container}>
+              <SwipeableSubtitles />
+            </View>
 
-            <SwipeListView
-              showsVerticalScrollIndicator={false}
-              data={this.props.cart.data}
-              renderItem={({ item, idx }) => (
-                <View style={styles.card} key={String(idx)}>
-                  <CirclePicture picture={item.image} size={70} />
+            <View style={[GeneralStyle.container, styles.itemWrap]}>
+              <ScrollView showsVerticalScrollIndicator={false}>
+                <SwipeListView
+                  showsVerticalSc
+                  rollIndicator={false}
+                  data={this.props.cart.data}
+                  renderItem={({ item, idx }) => (
+                    <View style={styles.card} key={String(idx)}>
+                      <CirclePicture picture={item.image} size={70} />
 
-                  <View style={styles.textWrapper}>
-                    <Text style={styles.productName}>{item.name}</Text>
+                      <View style={styles.textWrapper}>
+                        <Text style={styles.productName}>{item.name}</Text>
 
-                    <View style={styles.priceWrapper}>
-                      <Text style={styles.productPrice}>IDR {item.price}</Text>
+                        <View style={styles.priceWrapper}>
+                          <Text style={styles.productPrice}>
+                            IDR {item.price}
+                          </Text>
 
-                      <View style={styles.amountWrapper}>
-                        <TouchableOpacity>
-                          <Text style={styles.amountText}>-</Text>
-                        </TouchableOpacity>
+                          <View style={styles.amountWrapper}>
+                            <TouchableOpacity>
+                              <Text style={styles.amountText}>-</Text>
+                            </TouchableOpacity>
 
-                        <View style={styles.amountValue}>
-                          <Text style={styles.amountText}>{item.amount}</Text>
+                            <View style={styles.amountValue}>
+                              <Text style={styles.amountText}>1</Text>
+                            </View>
+
+                            <TouchableOpacity>
+                              <Text style={styles.amountText}>+</Text>
+                            </TouchableOpacity>
+                          </View>
                         </View>
-
-                        <TouchableOpacity>
-                          <Text style={styles.amountText}>+</Text>
-                        </TouchableOpacity>
                       </View>
                     </View>
-                  </View>
-                </View>
-              )}
-              renderHiddenItem={(data, rowMap) => (
-                <View style={GeneralStyle.backButtonWrapper}>
-                  <TouchableOpacity style={styles.backButton}>
-                    <CircleButton
-                      icon="favorite-outline"
-                      color="#FFBA33"
-                      iconSize={20}
-                    />
-                  </TouchableOpacity>
+                  )}
+                  renderHiddenItem={(data, rowMap) => (
+                    <View style={GeneralStyle.backButtonWrapper}>
+                      <TouchableOpacity style={styles.backButton}>
+                        <CircleButton
+                          icon="favorite-outline"
+                          color="#FFBA33"
+                          iconSize={20}
+                        />
+                      </TouchableOpacity>
 
-                  <TouchableOpacity
-                    style={styles.backButton}
-                    // onPress={() => this.props.deleteCartItem(data.index)}
-                    onPress={() => this.deleteConfirm(data.index)}
-                  >
-                    <CircleButton
-                      icon="delete-outline"
-                      color="#FFBA33"
-                      iconSize={20}
-                    />
+                      <TouchableOpacity
+                        style={styles.backButton}
+                        // onPress={() => this.props.deleteCartItem(data.index)}
+                        onPress={() => this.deleteConfirm(data.index)}
+                      >
+                        <CircleButton
+                          icon="delete-outline"
+                          color="#FFBA33"
+                          iconSize={20}
+                        />
+                      </TouchableOpacity>
+                    </View>
+                  )}
+                  rightOpenValue={-95}
+                  keyExtractor={(_i, idx) => String(idx)}
+                />
+              </ScrollView>
+            </View>
 
-                    <Modal
-                      animationType="fade"
-                      transparent={true}
-                      visible={this.state.modalVisible}
-                      onRequestClose={() => {
-                        Alert.alert('Modal has been closed')
-                        this.setState({ modalVisible: !modalVisible })
-                      }}
-                    >
-                      <ConfirmCard
-                        cancel={() => this.setState({ modalVisible: false })}
-                        submit={() => this.deleteItem(data.index)}
-                      />
-                    </Modal>
-                  </TouchableOpacity>
-                </View>
-              )}
-              rightOpenValue={-95}
-              keyExtractor={(_i, idx) => String(idx)}
-            />
-
-            <View style={GeneralStyle.container}>
+            {/* <View>
               <TouchableOpacity
                 onPress={() => this.goToCheckOut(this.props.navigation)}
                 style={GeneralStyle.mainButtonWrapper}
               >
                 <MainButton text="Confirm and Checkout" />
               </TouchableOpacity>
+            </View> */}
+
+            <Modal
+              animationType="fade"
+              transparent={true}
+              visible={this.state.modalVisible}
+              onRequestClose={() => {
+                Alert.alert('Modal has been closed')
+                this.setState({ modalVisible: false })
+              }}
+            >
+              <ConfirmCard
+                cancel={() => this.setState({ modalVisible: false })}
+                submit={() => this.deleteItem(this.state.idDelete)}
+              />
+            </Modal>
+
+            <View
+              style={[GeneralStyle.container, GeneralStyle.mainButtonWrapper]}
+            >
+              <TouchableOpacity
+                onPress={() => this.goToCheckOut(this.props.navigation)}
+              >
+                <MainButton text="Confirm and Checkout" />
+              </TouchableOpacity>
             </View>
-          </>
+          </View>
         ) : (
           <>
             <EmptyContent
@@ -142,10 +165,11 @@ class Cart extends Component {
               description="Hit the button down below to Create an order"
             />
 
-            <View style={GeneralStyle.container}>
+            <View
+              style={[GeneralStyle.container, GeneralStyle.mainButtonWrapper]}
+            >
               <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('home')}
-                style={GeneralStyle.mainButtonWrapper}
               >
                 <MainButton text="Start ordering" />
               </TouchableOpacity>
@@ -158,21 +182,11 @@ class Cart extends Component {
 }
 
 const styles = StyleSheet.create({
-  titleWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 40,
-    marginBottom: 20,
-  },
-  mainTitle: {
-    fontSize: 10,
-    marginLeft: 10,
+  subParent: {
+    height: '100%',
   },
   backButton: {
     marginLeft: 5,
-  },
-  cardWrapper: {
-    width: '100%',
   },
   card: {
     backgroundColor: '#fff',
@@ -213,6 +227,9 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 10,
     fontWeight: 'bold',
+  },
+  itemWrap: {
+    height: '70%',
   },
 })
 
