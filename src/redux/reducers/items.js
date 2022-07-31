@@ -1,4 +1,5 @@
 const itemState = {
+  initialData: [],
   data: [],
   pageInfo: {},
   detail: {},
@@ -7,6 +8,14 @@ const itemState = {
 
 const items = (state = itemState, action) => {
   switch (action.type) {
+    case 'ITEM_INITIAL_LIST': {
+      return {
+        ...state,
+        initialData: action.payload.results,
+        data: action.payload.results,
+        pageInfo: action.payload.pageInfo,
+      }
+    }
     case 'ITEM_GET_LIST': {
       return {
         ...state,

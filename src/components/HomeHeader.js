@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
 import { Alert, Modal, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { connect } from 'react-redux'
-import { getItems } from '../redux/actions/items'
+import { connect, useDispatch } from 'react-redux'
 
 import IonIcons from 'react-native-vector-icons/Ionicons'
 import SearchModal from './SearchModal'
+import { getItems } from '../redux/actions/items'
 
-const HomeHeader = ({ navigation, getItems }) => {
+const HomeHeader = ({ navigation }) => {
+  const dispatch = useDispatch()
   const [modalVisibility, setModalVisibility] = useState(false)
 
-  const searchData = (keyWord) => {
-    console.log(keyWord)
+  const searchData = (keyWord, navigation) => {
+    dispatch(getItems(null, keyWord))
+    navigation.navigate('favorites')
+    setModalVisibility(!modalVisibility)
   }
 
   return (
@@ -49,18 +52,19 @@ const HomeHeader = ({ navigation, getItems }) => {
       >
         <SearchModal
           cancel={() => setModalVisibility(!modalVisibility)}
-          submit={(key) => searchData(key)}
+          submit={(key) => searchData(key, navigation)}
         />
       </Modal>
     </View>
   )
 }
 
-const mapDispatchToProps = {
-  getItems,
-}
+// const mapDispatchToProps = {
+//   getItems,
+// }
 
-export default connect(null, mapDispatchToProps)(HomeHeader)
+// export default connect()(HomeHeader)
+export default HomeHeader
 
 const styles = StyleSheet.create({
   parent: {

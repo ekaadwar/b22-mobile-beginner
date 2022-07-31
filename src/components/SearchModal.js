@@ -27,6 +27,10 @@ const SearchModal = ({
             value={keyWord}
             onChangeText={(e) => setKeyWord(e)}
           />
+
+          <TouchableOpacity style={styles.cancelBtn}>
+            <Icon name={'sort'} color={'#999'} size={20} />
+          </TouchableOpacity>
         </View>
       </View>
     </View>

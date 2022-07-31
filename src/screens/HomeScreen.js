@@ -15,7 +15,7 @@ import cappuccino from '../assets/image/products/cappuccino.png'
 
 class HomeScreen extends Component {
   componentDidMount() {
-    this.props.getItems()
+    this.props.getItems(null, null, true)
   }
 
   getDetail = (id, navigation) => {
@@ -25,6 +25,7 @@ class HomeScreen extends Component {
   }
 
   render() {
+    console.log(this.props.items)
     return (
       <ScrollView style={styles.parent}>
         <View style={styles.container}>
@@ -40,7 +41,7 @@ class HomeScreen extends Component {
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <FlatList
-            data={this.props.items.data}
+            data={this.props.items.initialData}
             horizontal
             renderItem={({ item }) => (
               <TouchableOpacity
@@ -99,6 +100,12 @@ class HomeScreen extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({ items: state.items })
+
+const mapDispatchToProps = { getItems, getDetailItem }
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
 
 const ratio = 0.8
 
@@ -170,9 +177,3 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 })
-
-const mapStateToProps = (state) => ({ items: state.items })
-
-const mapDispatchToProps = { getItems, getDetailItem }
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
