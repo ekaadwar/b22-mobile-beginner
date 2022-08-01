@@ -53,6 +53,7 @@ const HomeHeader = ({ navigation }) => {
         <SearchModal
           cancel={() => setModalVisibility(!modalVisibility)}
           submit={(key) => searchData(key, navigation)}
+          callback={(sort) => console.log(sort)}
         />
       </Modal>
     </View>
