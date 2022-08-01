@@ -60,6 +60,7 @@ const SearchModal = ({
 
   const submitSortData = (data) => {
     callback(data)
+    setModalVisibility2(!modalVisibility2)
   }
   return (
     <View style={styles.canvas}>
