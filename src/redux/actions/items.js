@@ -9,7 +9,7 @@ const dispatchData = (dispatch, type, data) => {
   })
 }
 
-export const getItems = (url = null, search = null, home = false) => {
+export const getItems = (home = false, url = null, search = null) => {
   let baseUrl = `${BACKEND_URL}/items/?page=1`
 
   return async (dispatch) => {
@@ -22,7 +22,9 @@ export const getItems = (url = null, search = null, home = false) => {
         dispatchData(dispatch, 'ITEM_GET_LIST', data)
       } else if (search !== null) {
         const { data } = await http().get(`${baseUrl}&search=${search}`)
-        dispatchData(dispatch, 'ITEM_GET_LIST', data)
+        const payloadData = { data, search }
+        console.log(payloadData)
+        dispatchData(dispatch, 'ITEM_SEARCH_LIST', payloadData)
       } else {
         const { data } = await http().get(baseUrl)
         if (home === true) {

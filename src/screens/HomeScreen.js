@@ -15,7 +15,7 @@ import cappuccino from '../assets/image/products/cappuccino.png'
 
 class HomeScreen extends Component {
   componentDidMount() {
-    this.props.getItems(null, null, true)
+    this.props.getItems(true)
   }
 
   getDetail = (id, navigation) => {

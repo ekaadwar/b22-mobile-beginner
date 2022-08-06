@@ -4,6 +4,7 @@ const itemState = {
   pageInfo: {},
   detail: {},
   url: '',
+  search: null,
 }
 
 const items = (state = itemState, action) => {
@@ -21,6 +22,16 @@ const items = (state = itemState, action) => {
         ...state,
         data: action.payload.results,
         pageInfo: action.payload.pageInfo,
+      }
+    }
+    case 'ITEM_SEARCH_LIST': {
+      console.log('reducer ITEM_SEARCH_LIST')
+      console.log(action.payload)
+      return {
+        ...state,
+        data: action.payload.data.results,
+        pageInfo: action.payload.data.pageInfo,
+        search: action.payload.search,
       }
     }
     case 'ITEM_GET_DETAIL': {
