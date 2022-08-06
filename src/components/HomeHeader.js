@@ -16,6 +16,12 @@ const HomeHeader = ({ navigation }) => {
     setModalVisibility(!modalVisibility)
   }
 
+  const sortItems = (sortData, navigation) => {
+    dispatch(getItems(false, null, null, sortData.column, sortData.sort))
+    navigation.navigate('favorites')
+    setModalVisibility(!modalVisibility)
+  }
+
   return (
     <View style={styles.parent}>
       <View style={styles.contentWrapper}>
@@ -53,7 +59,7 @@ const HomeHeader = ({ navigation }) => {
         <SearchModal
           cancel={() => setModalVisibility(!modalVisibility)}
           submit={(key) => searchData(key, navigation)}
-          callback={(sort) => console.log(sort)}
+          callback={(sort) => sortItems(sort, navigation)}
         />
       </Modal>
     </View>

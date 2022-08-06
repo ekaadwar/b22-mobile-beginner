@@ -22,9 +22,12 @@ const FavoriteProducts = (props) => {
   }
 
   const changePage = (url) => {
-    props.getItems(false, url, props.items.search).then(() => {
-      console.log('yowess')
-    })
+    const { items } = props
+    props
+      .getItems(false, url, items.search, items.sort, items.sortType)
+      .then(() => {
+        console.log('yowess')
+      })
   }
 
   return (

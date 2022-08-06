@@ -5,6 +5,8 @@ const itemState = {
   detail: {},
   url: '',
   search: null,
+  sort: 'id',
+  sortType: 'ASC',
 }
 
 const items = (state = itemState, action) => {
@@ -20,8 +22,11 @@ const items = (state = itemState, action) => {
     case 'ITEM_GET_LIST': {
       return {
         ...state,
-        data: action.payload.results,
-        pageInfo: action.payload.pageInfo,
+        data: action.payload.data.results,
+        pageInfo: action.payload.data.pageInfo,
+        search: null,
+        sort: action.payload.sort,
+        sortType: action.payload.sortType,
       }
     }
     case 'ITEM_SEARCH_LIST': {
@@ -32,6 +37,8 @@ const items = (state = itemState, action) => {
         data: action.payload.data.results,
         pageInfo: action.payload.data.pageInfo,
         search: action.payload.search,
+        sort: 'id',
+        sortType: 'ASC',
       }
     }
     case 'ITEM_GET_DETAIL': {
