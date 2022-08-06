@@ -11,7 +11,7 @@ const HomeHeader = ({ navigation }) => {
   const [modalVisibility, setModalVisibility] = useState(false)
 
   const searchData = (keyWord, navigation) => {
-    dispatch(getItems(false, null, keyWord))
+    dispatch(getItems(false, null, keyWord, null, null))
     navigation.navigate('favorites')
     setModalVisibility(!modalVisibility)
   }

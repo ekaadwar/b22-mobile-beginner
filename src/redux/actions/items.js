@@ -22,7 +22,8 @@ export const getItems = (
     try {
       if (url !== null && search !== null) {
         const { data } = await http().get(`${url}&search=${search}`)
-        dispatchData(dispatch, 'ITEM_GET_LIST', data)
+        const dataPayload = { data, search }
+        dispatchData(dispatch, 'ITEM_SEARCH_LIST', dataPayload)
       } else if (url !== null) {
         console.log(
           `url = ${url}, search = ${search}, sort = ${sort}, sortType = ${sortType}`
@@ -31,6 +32,9 @@ export const getItems = (
         const payloadData = { data, sort, sortType }
         dispatchData(dispatch, 'ITEM_GET_LIST', payloadData)
       } else if (search !== null) {
+        console.log(
+          `url = ${url}, search = ${search}, sort = ${sort}, sortType = ${sortType}`
+        )
         const { data } = await http().get(`${baseUrl}&search=${search}`)
         const payloadData = { data, search }
         dispatchData(dispatch, 'ITEM_SEARCH_LIST', payloadData)

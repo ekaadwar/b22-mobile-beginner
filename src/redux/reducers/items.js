@@ -30,8 +30,6 @@ const items = (state = itemState, action) => {
       }
     }
     case 'ITEM_SEARCH_LIST': {
-      console.log('reducer ITEM_SEARCH_LIST')
-      console.log(action.payload)
       return {
         ...state,
         data: action.payload.data.results,
