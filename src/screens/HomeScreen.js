@@ -24,6 +24,12 @@ class HomeScreen extends Component {
     })
   }
 
+  moreFavorite = (navigation) => {
+    this.props.getItems().then(() => {
+      navigation.navigate('favorites')
+    })
+  }
+
   render() {
     console.log(this.props.items)
     return (
@@ -32,7 +38,7 @@ class HomeScreen extends Component {
           <Text style={styles.mainTitle}>A good coffee is a good day</Text>
           <Text style={styles.sectionTitle}>Favorite Products</Text>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('favorites')}
+            onPress={() => this.moreFavorite(this.props.navigation)}
             style={styles.linkWrapper}
           >
             <Text style={styles.linkText}>See more</Text>
