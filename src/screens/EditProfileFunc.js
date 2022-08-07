@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import {
-  View,
   ScrollView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
+  View,
 } from 'react-native'
 import { getData } from '../utils/storage'
 
-import CirclePicture from '../components/CirclePicture'
-import CircleButton from '../components/CircleButton'
-import GeneralStyle from '../components/GeneralStyle'
-import MainButton from '../components/MainButton'
-
-import { useDispatch, useSelector } from 'react-redux'
-import { getProfile } from '../redux/actions/profile'
 import { editProfile } from '../redux/actions/profile'
-import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar'
+import { getProfile } from '../redux/actions/profile'
+import { useDispatch, useSelector } from 'react-redux'
+
+import CircleButton from '../components/CircleButton'
+import CirclePicture from '../components/CirclePicture'
+import GeneralStyle from '../components/GeneralStyle'
+import * as ImagePicker from 'expo-image-picker'
+import MainButton from '../components/MainButton'
 
 const EditProfileFunc = ({ navigation }) => {
   const dispatch = useDispatch()
@@ -53,14 +53,9 @@ const EditProfileFunc = ({ navigation }) => {
     })
   }, [])
 
-  const getProfileData = (token) => {
-    dispatch(getProfile(token))
-  }
-
-  const getToken = () => {
-    getData('token').then((res) => {
-      setToken(res)
-    })
+  const changePicture = async () => {
+    let changeResult = await ImagePicker.launchImageLibraryAsync()
+    console.log(changeResult)
   }
 
   const onSubmit = () => {
@@ -96,7 +91,7 @@ const EditProfileFunc = ({ navigation }) => {
               <CirclePicture size={130} />
 
               <View style={styles.buttonWrapper}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={changePicture}>
                   <CircleButton
                     color="#6A4029"
                     iconColor="white"
