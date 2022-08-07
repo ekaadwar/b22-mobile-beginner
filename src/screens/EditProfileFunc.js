@@ -54,8 +54,19 @@ const EditProfileFunc = ({ navigation }) => {
   }, [])
 
   const changePicture = async () => {
-    let changeResult = await ImagePicker.launchImageLibraryAsync()
-    console.log(changeResult)
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      // aspect: [4, 3],
+      aspect: [10, 3],
+      quality: 0,
+    })
+
+    console.log(result)
+
+    // if (!result.cancelled) {
+    //   setImage(result.uri);
+    // }
   }
 
   const onSubmit = () => {
@@ -88,7 +99,7 @@ const EditProfileFunc = ({ navigation }) => {
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.pictureSection}>
             <View style={styles.imageWrapper}>
-              <CirclePicture size={130} />
+              <CirclePicture profile size={130} />
 
               <View style={styles.buttonWrapper}>
                 <TouchableOpacity onPress={changePicture}>

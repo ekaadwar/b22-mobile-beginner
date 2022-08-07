@@ -1,11 +1,15 @@
 import React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-import { defaultPicture } from '../assets/image'
+import { defaultPicture, defaultProfilePict } from '../assets/image'
 
 const RATIO = 0.8
 
-const CirclePicture = ({ picture = defaultPicture, size = 150 }) => {
+const CirclePicture = ({
+  profile = false,
+  picture = defaultPicture,
+  size = 150,
+}) => {
   const styles = StyleSheet.create({
     pictureCircle: {
       width: size * RATIO,
@@ -24,7 +28,10 @@ const CirclePicture = ({ picture = defaultPicture, size = 150 }) => {
 
   return (
     <View style={styles.pictureCircle}>
-      <Image style={styles.picture} source={picture} />
+      <Image
+        style={styles.picture}
+        source={profile ? defaultProfilePict : picture}
+      />
     </View>
   )
 }
