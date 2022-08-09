@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native'
 import { getData } from '../utils/storage'
-
+import { defaultProfilePict as defaultPicture } from '../assets/image'
 import { editProfile } from '../redux/actions/profile'
 import { getProfile } from '../redux/actions/profile'
 import { useDispatch, useSelector } from 'react-redux'
@@ -28,10 +28,13 @@ const EditProfileFunc = ({ navigation }) => {
   const [phone, setPhone] = useState(profile?.mobile_number)
   const [birth, setBirth] = useState(profile?.birth)
   const [address, setAddress] = useState(profile?.address)
+  const [photo, setPhoto] = useState(profile?.photo)
+  // const [photo, setPhoto] = useState(null)
   const [token, setToken] = useState('')
 
   const prevData = {
     display_name: profile?.display_name,
+    photo: profile?.photo,
     email: profile?.email,
     mobile_number: profile?.mobile_number,
     birth: profile?.birth,
@@ -40,6 +43,7 @@ const EditProfileFunc = ({ navigation }) => {
 
   const realData = {
     display_name: name,
+    photo,
     email,
     mobile_number: phone,
     birth,
@@ -54,15 +58,25 @@ const EditProfileFunc = ({ navigation }) => {
   }, [])
 
   const changePicture = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
+    // let result = await ImagePicker.launchImageLibraryAsync({
+    //   mediaTypes: ImagePicker.MediaTypeOptions.All,
+    //   allowsEditing: true,
+    //   // aspect: [4, 3],
+    //   aspect: [10, 3],
+    //   quality: 0,
+    // })
+
+    // console.log(result)
+
+    await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       // aspect: [4, 3],
       aspect: [10, 3],
       quality: 0,
+    }).then((res) => {
+      setPhoto(res.uri)
     })
-
-    console.log(result)
 
     // if (!result.cancelled) {
     //   setImage(result.uri);
@@ -99,7 +113,11 @@ const EditProfileFunc = ({ navigation }) => {
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.pictureSection}>
             <View style={styles.imageWrapper}>
-              <CirclePicture profile size={130} />
+              <CirclePicture
+                profile={photo === null && true}
+                size={130}
+                picture={photo !== null ? { uri: photo } : defaultPicture}
+              />
 
               <View style={styles.buttonWrapper}>
                 <TouchableOpacity onPress={changePicture}>
@@ -113,6 +131,8 @@ const EditProfileFunc = ({ navigation }) => {
               </View>
             </View>
           </View>
+
+          <Text>{photo}</Text>
 
           <View style={styles.section}>
             <Text style={styles.inputLabel}>Name :</Text>

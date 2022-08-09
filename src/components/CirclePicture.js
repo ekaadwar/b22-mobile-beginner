@@ -31,6 +31,7 @@ const CirclePicture = ({
       <Image
         style={styles.picture}
         source={profile ? defaultProfilePict : picture}
+        // source={{ uri: 'http://localhost:8080/uploads/1659947814771.jpg' }}
       />
     </View>
   )
