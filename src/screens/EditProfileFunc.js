@@ -12,11 +12,13 @@ import { defaultProfilePict as defaultPicture } from '../assets/image'
 import { editProfile } from '../redux/actions/profile'
 import { getProfile } from '../redux/actions/profile'
 import { useDispatch, useSelector } from 'react-redux'
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
 
 import CircleButton from '../components/CircleButton'
 import CirclePicture from '../components/CirclePicture'
 import GeneralStyle from '../components/GeneralStyle'
 import * as ImagePicker from 'expo-image-picker'
+import * as MediaLibrary from 'expo-media-library'
 import MainButton from '../components/MainButton'
 
 const EditProfileFunc = ({ navigation }) => {
@@ -58,26 +60,30 @@ const EditProfileFunc = ({ navigation }) => {
   }, [])
 
   const changePicture = async () => {
-    // let result = await ImagePicker.launchImageLibraryAsync({
-    //   mediaTypes: ImagePicker.MediaTypeOptions.All,
-    //   allowsEditing: true,
-    //   // aspect: [4, 3],
-    //   aspect: [10, 3],
-    //   quality: 0,
-    // })
-
-    // console.log(result)
-
-    await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      // aspect: [4, 3],
-      aspect: [10, 3],
-      quality: 0,
-    }).then((res) => {
+    await ImagePicker.launchImageLibraryAsync().then((res) => {
+      // const data = {
+      //   fieldname: 'photo',
+      //   originalname: 'jill_valinetine.jpg',
+      //   encoding: '7bit',
+      //   mimetype: 'image/jpeg',
+      //   destination:
+      //     '/home/ekaadwar/ekaadwar/b22-backend-intermediate/assets/images',
+      //   filename: '1660277062450.jpg',
+      //   path: '/home/ekaadwar/ekaadwar/b22-backend-intermediate/assets/images/1660277062450.jpg',
+      //   size: 16936,
+      // }
+      console.log(res)
       setPhoto(res.uri)
     })
 
+    // await MediaLibrary.getAssetsAsync({
+    //   album: album,
+    //   mediaType: 'audio',
+    // }).then((res) => {
+    //   console.log(res)
+    // })
+    // const result = await launchImageLibrary()
+    // console.log(result)
     // if (!result.cancelled) {
     //   setImage(result.uri);
     // }
@@ -132,7 +138,7 @@ const EditProfileFunc = ({ navigation }) => {
             </View>
           </View>
 
-          <Text>{photo}</Text>
+          {/* <Text>{photo}</Text> */}
 
           <View style={styles.section}>
             <Text style={styles.inputLabel}>Name :</Text>
