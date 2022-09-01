@@ -1,5 +1,6 @@
 import React from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
+import ItemImage from './ItemImage'
 
 const ratio = 0.9
 
@@ -15,7 +16,8 @@ const ItemCard = ({ data = null, index = 1 }) => {
   return (
     <View key={String(index)} style={styles.itemCard}>
       <View style={styles.pictureWrapper}>
-        <Image style={styles.productPicture} source={data.picture} />
+        {/* <Image style={styles.productPicture} source={data.picture} /> */}
+        <ItemImage category={data.category_name} />
       </View>
 
       <View style={styles.textWrapper}>
@@ -38,16 +40,25 @@ const styles = StyleSheet.create({
     borderRadius: 30 * ratio,
     alignItems: 'center',
     elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
   },
   pictureWrapper: {
     height: 130 * ratio,
     width: 130 * ratio,
     marginTop: -50 * ratio,
     borderRadius: 9999,
-    backgroundColor: 'silver',
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
   },
   productPicture: {
     resizeMode: 'contain',
