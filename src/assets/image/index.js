@@ -2,6 +2,12 @@ export const defaultPicture = require('./defaultPicture.jpg')
 export const defaultProfilePict = require('./defaultProfilePict.png')
 export const BG_SplashScreen = require('./BG_SplashScreen.png')
 
+// default
+export const addOn = require('./default/add-on.png')
+export const coffee = require('./default/coffee.png')
+export const food = require('./default/food.png')
+export const nonCoffee = require('./default/non-coffee.png')
+
 // auth
 export const forgotPassword = require('./auth/forgotPassword.png')
 

@@ -15,7 +15,8 @@ import cappuccino from '../assets/image/products/cappuccino.png'
 import coffee from '../assets/image/default/coffee.png'
 import nonCoffee from '../assets/image/default/non-coffee.png'
 import food from '../assets/image/default/food.png'
-import addOn from '../assets/image/default/addOn.png'
+import addOn from '../assets/image/default/add-on.png'
+import ItemImage from '../components/ItemImage'
 
 class HomeScreen extends Component {
   componentDidMount() {
@@ -59,16 +60,8 @@ class HomeScreen extends Component {
                 style={styles.productCard}
               >
                 <View style={styles.image}>
-                  <Image
-                    source={
-                      item.category_name === 'coffee' ? (
-                        <Image source={coffee} />
-                      ) : (
-                        <Image source={addOn} />
-                      )
-                    }
-                    style={styles.img}
-                  />
+                  <ItemImage category={item.category_name} />
+                  {/* <Image source={coffee} style={styles.img} /> */}
                 </View>
 
                 <View style={styles.textWrapper}>
@@ -155,10 +148,14 @@ const styles = StyleSheet.create({
     height: 270 * ratio,
     width: 220 * ratio,
     borderRadius: 30,
-    elevation: 5,
     margin: 38,
     marginTop: 98,
     alignItems: 'center',
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
   },
   img: {
     resizeMode: 'contain',
@@ -167,12 +164,17 @@ const styles = StyleSheet.create({
   image: {
     width: 168 * ratio,
     height: 189 * ratio,
-    backgroundColor: 'silver',
+    backgroundColor: 'white',
     borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: -60,
     overflow: 'hidden',
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
   },
   textWrapper: {
     marginTop: 10,

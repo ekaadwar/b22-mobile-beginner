@@ -31,7 +31,6 @@ const EditProfileFunc = ({ navigation }) => {
   const [birth, setBirth] = useState(profile?.birth)
   const [address, setAddress] = useState(profile?.address)
   const [photo, setPhoto] = useState(profile?.photo)
-  // const [photo, setPhoto] = useState(null)
   const [token, setToken] = useState('')
 
   const prevData = {
