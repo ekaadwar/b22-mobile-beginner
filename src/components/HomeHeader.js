@@ -1,14 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Alert, Modal, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { connect, useDispatch } from 'react-redux'
 
 import IonIcons from 'react-native-vector-icons/Ionicons'
 import SearchModal from './SearchModal'
 import { getItems } from '../redux/actions/items'
+import { getData } from '../utils/storage'
+import { getProfile } from '../redux/actions/profile'
 
 const HomeHeader = ({ navigation }) => {
   const dispatch = useDispatch()
   const [modalVisibility, setModalVisibility] = useState(false)
+  const [token, setToken] = useState('')
+
+  useEffect(() => {
+    getData('token').then((res) => {
+      dispatch(getProfile(res))
+    })
+  }, [])
 
   const searchData = (keyWord, navigation) => {
     dispatch(getItems(false, null, keyWord, null, null))
@@ -22,10 +31,14 @@ const HomeHeader = ({ navigation }) => {
     setModalVisibility(!modalVisibility)
   }
 
+  const showDrawer = (navigation) => {
+    navigation.toggleDrawer()
+  }
+
   return (
     <View style={styles.parent}>
       <View style={styles.contentWrapper}>
-        <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+        <TouchableOpacity onPress={() => showDrawer(navigation)}>
           <IonIcons name="menu" color="grey" size={24} />
         </TouchableOpacity>
         <View style={[styles.buttonWrapper, styles.contentWrapper]}>
@@ -86,13 +99,5 @@ const styles = StyleSheet.create({
   },
   buttonWrapper: {
     width: 100,
-  },
-  profile: {
-    height: 24,
-    width: 24,
-    borderRadius: 9999,
-    backgroundColor: 'coral',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 })

@@ -33,7 +33,7 @@ const Login = ({ navigation }) => {
 
   return (
     <View style={[GeneralStyle.parent, styles.parent]}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.pictureWrapper}>
           <Text style={[GeneralStyle.titleAuth, styles.titleSignUp]}>
             Log in

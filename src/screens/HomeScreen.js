@@ -12,6 +12,10 @@ import { connect } from 'react-redux'
 import { getDetailItem, getItems } from '../redux/actions/items'
 
 import cappuccino from '../assets/image/products/cappuccino.png'
+import coffee from '../assets/image/default/coffee.png'
+import nonCoffee from '../assets/image/default/non-coffee.png'
+import food from '../assets/image/default/food.png'
+import addOn from '../assets/image/default/addOn.png'
 
 class HomeScreen extends Component {
   componentDidMount() {
@@ -56,9 +60,13 @@ class HomeScreen extends Component {
               >
                 <View style={styles.image}>
                   <Image
-                    source={{
-                      uri: 'http://localhost:8080/uploads/1651623998957.jpg',
-                    }}
+                    source={
+                      item.category_name === 'coffee' ? (
+                        <Image source={coffee} />
+                      ) : (
+                        <Image source={addOn} />
+                      )
+                    }
                     style={styles.img}
                   />
                 </View>

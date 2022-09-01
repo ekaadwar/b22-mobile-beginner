@@ -16,6 +16,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer'
 import { Provider, useSelector } from 'react-redux'
 
 import FlashMessage from 'react-native-flash-message'
+
 import SplashScreen from './src/screens/SplashScreen'
 import HomeScreen from './src/screens/HomeScreen'
 import ProductDetail2 from './src/screens/ProductDetail2'

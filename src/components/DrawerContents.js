@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useSelector } from 'react'
 import {
   FlatList,
   StyleSheet,
@@ -6,13 +6,24 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import { connect } from 'react-redux'
 import { clearAllData } from '../utils/storage'
 
 import CirclePicture from './CirclePicture'
 
 const DrawerContents = ({ descriptors, navigation }) => {
+  // const dispatch = useDispatch()
+
+  // const { profile } = useSelector((state) => state.profileReducer)
+
   const menuItem = Object.keys(descriptors)
   const renderMenu = menuItem.map((item) => descriptors[item].options.title)
+
+  // useEffect(() => {
+  //   getData('profile').then((res) => {
+  //     console.log(res)
+  //   })
+  // }, [])
 
   return (
     <View style={drawerStyles.parent}>
@@ -49,6 +60,8 @@ const DrawerContents = ({ descriptors, navigation }) => {
     </View>
   )
 }
+
+export default DrawerContents
 
 const drawerStyles = StyleSheet.create({
   parent: {
@@ -96,5 +109,3 @@ const drawerStyles = StyleSheet.create({
     margin: 40,
   },
 })
-
-export default DrawerContents
