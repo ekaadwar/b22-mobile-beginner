@@ -17,11 +17,10 @@ export default class Profile extends Component {
   ]
 
   userData = {
-    name: 'Si Jon',
-    email: 'sijon@gmail.com',
+    name: 'Eka Fajhari Adwar',
+    email: 'test@mail.com',
     phone: '+62 81348287878',
-    address:
-      'Iskandar Street Block A Number 102 ular melingkar lingakr di pagar pak umar',
+    address: 'Jalan Rodrigues no 1, Philadelphia, Pansylvania',
   }
 
   data = [

@@ -8,11 +8,12 @@ import {
   View,
 } from 'react-native'
 import { getData } from '../utils/storage'
-import { defaultProfilePict as defaultPicture } from '../assets/image'
+import { defaultPicture } from '../assets/image'
 import { editProfile } from '../redux/actions/profile'
 import { getProfile } from '../redux/actions/profile'
 import { useDispatch, useSelector } from 'react-redux'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
+// import { defaultProfilePict } from '../assets/image'
 
 import CircleButton from '../components/CircleButton'
 import CirclePicture from '../components/CirclePicture'
@@ -121,7 +122,7 @@ const EditProfileFunc = ({ navigation }) => {
               <CirclePicture
                 profile={photo === null && true}
                 size={130}
-                picture={photo !== null ? { uri: photo } : defaultPicture}
+                picture={defaultPicture}
               />
 
               <View style={styles.buttonWrapper}>
